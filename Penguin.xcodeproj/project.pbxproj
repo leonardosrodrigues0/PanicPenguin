@@ -62,6 +62,11 @@
 		A74BA74C27998C1D00B0711C /* Penguin */ = {
 			isa = PBXGroup;
 			children = (
+				A74BA76A2799A81100B0711C /* Tools */,
+				A74BA7682799A79E00B0711C /* Assets */,
+				A74BA76C2799A83E00B0711C /* Components */,
+				A74BA76B2799A81F00B0711C /* Scenes */,
+				A74BA7692799A7FF00B0711C /* Entities */,
 				A74BA74D27998C1D00B0711C /* AppDelegate.swift */,
 				A74BA75127998C1D00B0711C /* GameViewController.swift */,
 				A74BA75327998C1D00B0711C /* Main.storyboard */,
@@ -69,6 +74,73 @@
 				A74BA75827998C1E00B0711C /* LaunchScreen.storyboard */,
 			);
 			path = Penguin;
+			sourceTree = "<group>";
+		};
+		A74BA7682799A79E00B0711C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		A74BA7692799A7FF00B0711C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A74BA76A2799A81100B0711C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				A74BA76E2799A89700B0711C /* Extensions */,
+				A74BA76D2799A88E00B0711C /* Services */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		A74BA76B2799A81F00B0711C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A74BA7702799A8DF00B0711C /* ViewControllers */,
+				A74BA76F2799A8D100B0711C /* Views */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A74BA76C2799A83E00B0711C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A74BA76D2799A88E00B0711C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A74BA76E2799A89700B0711C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A74BA76F2799A8D100B0711C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A74BA7702799A8DF00B0711C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
