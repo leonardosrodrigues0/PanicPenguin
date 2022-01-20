@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA74D27998C1D00B0711C /* AppDelegate.swift */; };
-		A74BA75027998C1D00B0711C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A74BA74F27998C1D00B0711C /* art.scnassets */; };
 		A74BA75227998C1D00B0711C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA75127998C1D00B0711C /* GameViewController.swift */; };
 		A74BA75527998C1D00B0711C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A74BA75327998C1D00B0711C /* Main.storyboard */; };
 		A74BA75727998C1E00B0711C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A74BA75627998C1E00B0711C /* Assets.xcassets */; };
@@ -21,7 +20,6 @@
 /* Begin PBXFileReference section */
 		A74BA74A27998C1D00B0711C /* Penguin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Penguin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74BA74D27998C1D00B0711C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A74BA74F27998C1D00B0711C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		A74BA75127998C1D00B0711C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A74BA75427998C1D00B0711C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A74BA75627998C1E00B0711C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				A74BA74D27998C1D00B0711C /* AppDelegate.swift */,
-				A74BA74F27998C1D00B0711C /* art.scnassets */,
 				A74BA75127998C1D00B0711C /* GameViewController.swift */,
 				A74BA75327998C1D00B0711C /* Main.storyboard */,
 				A74BA75627998C1E00B0711C /* Assets.xcassets */,
@@ -84,6 +81,7 @@
 				A74BA74627998C1D00B0711C /* Sources */,
 				A74BA74727998C1D00B0711C /* Frameworks */,
 				A74BA74827998C1D00B0711C /* Resources */,
+				A74BA76727998DB200B0711C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -132,7 +130,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A74BA75027998C1D00B0711C /* art.scnassets in Resources */,
 				A74BA75A27998C1E00B0711C /* LaunchScreen.storyboard in Resources */,
 				A74BA76127998C9300B0711C /* README.md in Resources */,
 				A74BA76527998CB200B0711C /* .swiftlint.yml in Resources */,
@@ -143,6 +140,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A74BA76727998DB200B0711C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A74BA74627998C1D00B0711C /* Sources */ = {

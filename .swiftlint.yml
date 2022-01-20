@@ -1,5 +1,5 @@
 disabled_rules:
-- identifier_name
+- trailing_whitespace
 opt_in_rules:
 - empty_count
 - empty_string
@@ -8,4 +8,11 @@ excluded:
 - Carthage
 - Pods
 - SwiftLint/Common/3rdPartyLib
+line_length:
+    warning: 150
+    error: 200
+    ignores_interpolated_strings: true
+    ignores_comments: true
+identifier_name:
+    min_length: 2
 reporter: "xcode"
