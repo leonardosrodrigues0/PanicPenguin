@@ -1,20 +1,33 @@
 import SceneKit
+import GameplayKit
 
-class Ground: SCNNode {
+class Ground: GKEntity {
+
+    static var geometry: SCNGeometry {
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.yellow
+        let geometry = SCNFloor()
+        geometry.reflectivity = 0.5
+        geometry.materials = [material]
+        return geometry
+    }
+
+    static var physicsBody: SCNPhysicsBody {
+        let body = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: geometry, options: nil))
+        body.categoryBitMask = PhysicsCategory.ground.rawValue
+        body.contactTestBitMask = PhysicsCategory.obstacle.rawValue
+        body.collisionBitMask = PhysicsCategory.bitMask(forCategories: [
+            PhysicsCategory.obstacle,
+            PhysicsCategory.player
+        ])
+
+        return body
+    }
+
     override init() {
         super.init()
-        let groundGeometry = SCNFloor()
-        groundGeometry.reflectivity = 0.5
-        let groundMaterial = SCNMaterial()
-        groundMaterial.diffuse.contents = UIColor.yellow
-        groundGeometry.materials = [groundMaterial]
-        self.geometry = groundGeometry
-        self.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: groundGeometry, options: nil))
-        self.physicsBody!.categoryBitMask = PhysicsCategory.ground.rawValue
-        self.physicsBody!.contactTestBitMask = PhysicsCategory.obstacle.rawValue
-        self.physicsBody!.collisionBitMask =
-            PhysicsCategory.obstacle.rawValue |
-            PhysicsCategory.player.rawValue
+        addComponent(GeometryComponent(geometry: Self.geometry))
+        addComponent(PhysicsComponent(withBody: Self.physicsBody))
     }
 
     required init?(coder: NSCoder) {

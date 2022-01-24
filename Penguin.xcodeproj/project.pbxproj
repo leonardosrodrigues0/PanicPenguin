@@ -17,15 +17,16 @@
 		A74BA76527998CB200B0711C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A74BA76427998CB200B0711C /* .swiftlint.yml */; };
 		A75717E9279ACEF4004A4C9B /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717E8279ACEF4004A4C9B /* PhysicsCategory.swift */; };
 		A75717EB279AD336004A4C9B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717EA279AD336004A4C9B /* Player.swift */; };
-		A75717ED279AD353004A4C9B /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717EC279AD353004A4C9B /* Obstacle.swift */; };
-		A75717EF279AD395004A4C9B /* PlayerControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717EE279AD395004A4C9B /* PlayerControllable.swift */; };
 		A75717F1279AD4F8004A4C9B /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717F0279AD4F8004A4C9B /* Tree.swift */; };
-		A75717F3279AD681004A4C9B /* TouchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717F2279AD681004A4C9B /* TouchController.swift */; };
-		A75717F5279AD68D004A4C9B /* MotionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717F4279AD68D004A4C9B /* MotionController.swift */; };
+		A75717F5279AD68D004A4C9B /* DeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717F4279AD68D004A4C9B /* DeviceMotion.swift */; };
 		A75717F7279AD6A9004A4C9B /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717F6279AD6A9004A4C9B /* Menu.swift */; };
 		A75717F9279AD6C0004A4C9B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717F8279AD6C0004A4C9B /* GameScene.swift */; };
 		A75717FB279AD6F2004A4C9B /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717FA279AD6F2004A4C9B /* Ground.swift */; };
 		A75717FD279AD80B004A4C9B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717FC279AD80B004A4C9B /* Camera.swift */; };
+		A76ECC9C279B27780024B3A7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76ECC9B279B27780024B3A7 /* Config.swift */; };
+		A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */; };
+		A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */; };
+		A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5F279B403400F96F0F /* CameraComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,15 +41,16 @@
 		A74BA76427998CB200B0711C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A75717E8279ACEF4004A4C9B /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		A75717EA279AD336004A4C9B /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		A75717EC279AD353004A4C9B /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
-		A75717EE279AD395004A4C9B /* PlayerControllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControllable.swift; sourceTree = "<group>"; };
 		A75717F0279AD4F8004A4C9B /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
-		A75717F2279AD681004A4C9B /* TouchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchController.swift; sourceTree = "<group>"; };
-		A75717F4279AD68D004A4C9B /* MotionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionController.swift; sourceTree = "<group>"; };
+		A75717F4279AD68D004A4C9B /* DeviceMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMotion.swift; sourceTree = "<group>"; };
 		A75717F6279AD6A9004A4C9B /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		A75717F8279AD6C0004A4C9B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A75717FA279AD6F2004A4C9B /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
 		A75717FC279AD80B004A4C9B /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		A76ECC9B279B27780024B3A7 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
+		A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryComponent.swift; sourceTree = "<group>"; };
+		A783CF5F279B403400F96F0F /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				A74BA76B2799A81F00B0711C /* Scenes */,
 				A74BA7692799A7FF00B0711C /* Entities */,
 				A74BA74D27998C1D00B0711C /* AppDelegate.swift */,
+				A76ECC9B279B27780024B3A7 /* Config.swift */,
 				A74BA75327998C1D00B0711C /* Main.storyboard */,
 				A74BA75627998C1E00B0711C /* Assets.xcassets */,
 				A74BA75827998C1E00B0711C /* LaunchScreen.storyboard */,
@@ -137,10 +140,9 @@
 		A74BA76C2799A83E00B0711C /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A75717EC279AD353004A4C9B /* Obstacle.swift */,
-				A75717EE279AD395004A4C9B /* PlayerControllable.swift */,
-				A75717F2279AD681004A4C9B /* TouchController.swift */,
-				A75717F4279AD68D004A4C9B /* MotionController.swift */,
+				A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */,
+				A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */,
+				A783CF5F279B403400F96F0F /* CameraComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -148,6 +150,7 @@
 		A74BA76D2799A88E00B0711C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A75717F4279AD68D004A4C9B /* DeviceMotion.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -271,18 +274,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */,
+				A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */,
 				A75717F1279AD4F8004A4C9B /* Tree.swift in Sources */,
 				A75717EB279AD336004A4C9B /* Player.swift in Sources */,
-				A75717EF279AD395004A4C9B /* PlayerControllable.swift in Sources */,
 				A75717E9279ACEF4004A4C9B /* PhysicsCategory.swift in Sources */,
-				A75717F5279AD68D004A4C9B /* MotionController.swift in Sources */,
+				A75717F5279AD68D004A4C9B /* DeviceMotion.swift in Sources */,
 				A75717F7279AD6A9004A4C9B /* Menu.swift in Sources */,
 				A75717F9279AD6C0004A4C9B /* GameScene.swift in Sources */,
-				A75717ED279AD353004A4C9B /* Obstacle.swift in Sources */,
 				A74BA75227998C1D00B0711C /* GameViewController.swift in Sources */,
+				A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */,
 				A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */,
 				A75717FD279AD80B004A4C9B /* Camera.swift in Sources */,
-				A75717F3279AD681004A4C9B /* TouchController.swift in Sources */,
+				A76ECC9C279B27780024B3A7 /* Config.swift in Sources */,
 				A75717FB279AD6F2004A4C9B /* Ground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
