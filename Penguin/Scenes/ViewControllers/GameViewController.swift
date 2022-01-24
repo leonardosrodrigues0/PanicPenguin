@@ -17,5 +17,13 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         super.viewDidLoad()
         scene.physicsWorld.contactDelegate = self
         sceneView.scene = scene
+        sceneView.delegate = self
+    }
+}
+
+extension GameViewController: SCNSceneRendererDelegate {
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        guard let scene = scene as? GameScene else { return }
+        scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
     }
 }

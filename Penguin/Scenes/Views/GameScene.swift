@@ -3,7 +3,7 @@ import GameplayKit
 
 class GameScene: SCNScene {
 
-    private var entities = Set<GKEntity>()
+    var entities = Set<GKEntity>()
 
     func add(_ entity: GKEntity) {
         entities.insert(entity)
