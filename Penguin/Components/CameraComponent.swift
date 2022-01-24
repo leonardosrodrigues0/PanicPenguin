@@ -3,14 +3,10 @@ import SceneKit
 
 class CameraComponent: GKComponent {
 
-    var geometryComponent: GeometryComponent? {
-        entity?.component(ofType: GeometryComponent.self)
-    }
-
-    init(orientation: SCNVector3) {
+    init(orientation: SCNVector3, geometry: GeometryComponent) {
         super.init()
         let camera = SCNCamera()
-        geometryComponent?.addCamera(camera, withOrientation: orientation)
+        geometry.addCamera(camera, withOrientation: orientation)
     }
 
     required init?(coder: NSCoder) {
