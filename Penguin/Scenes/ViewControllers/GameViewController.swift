@@ -21,6 +21,38 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scene.physicsWorld.contactDelegate = self
         sceneView.scene = scene
         sceneView.delegate = self
+
+        DispatchQueue.main.async {
+            let alert = self.buildControllerChoiceAlert()
+            self.present(alert, animated: true)
+        }
+    }
+
+    func buildControllerChoiceAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Choose your Controller Scheme", message: nil, preferredStyle: .actionSheet)
+
+        let setMotionControllerAction = UIAlertAction(title: "Motion", style: .default) { _ in
+            self.gameScene.entities.forEach {
+                if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
+                    playerController.controller = .motion
+                    playerController.entity?.addComponent(MotionControllerComponent())
+                }
+            }
+        }
+
+        let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
+            self.gameScene.entities.forEach {
+                if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
+                    playerController.controller = .touch
+                    playerController.entity?.addComponent(TouchControllerComponent())
+                }
+            }
+        }
+
+        alert.addAction(setTouchControllerAction)
+        alert.addAction(setMotionControllerAction)
+
+        return alert
     }
 
 
