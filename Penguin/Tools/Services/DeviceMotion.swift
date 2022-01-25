@@ -3,7 +3,7 @@ import CoreMotion
 class DeviceMotion {
     static let shared = DeviceMotion()
 
-    private let motion = CMMotionManager()
+    let motion = CMMotionManager()
     var data: CMDeviceMotion? {
         motion.deviceMotion
     }

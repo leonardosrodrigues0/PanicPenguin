@@ -27,6 +27,7 @@
 		A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */; };
 		A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */; };
 		A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5F279B403400F96F0F /* CameraComponent.swift */; };
+		D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */; };
 		D7A94958279EE6A30090CD26 /* MotionControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryComponent.swift; sourceTree = "<group>"; };
 		A783CF5F279B403400F96F0F /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
+		D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 		D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionControllerComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,7 +125,7 @@
 		A74BA76A2799A81100B0711C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				A74BA76E2799A89700B0711C /* Extensions */,
+				D73C1A8F27A0194C007C8549 /* Extensions */,
 				A74BA76D2799A88E00B0711C /* Services */,
 				A75717E8279ACEF4004A4C9B /* PhysicsCategory.swift */,
 			);
@@ -158,13 +160,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		A74BA76E2799A89700B0711C /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		A74BA76F2799A8D100B0711C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +175,14 @@
 				A74BA75127998C1D00B0711C /* GameViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D73C1A8F27A0194C007C8549 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +291,7 @@
 				A74BA75227998C1D00B0711C /* GameViewController.swift in Sources */,
 				A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */,
 				A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */,
+				D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */,
 				A75717FD279AD80B004A4C9B /* Camera.swift in Sources */,
 				A76ECC9C279B27780024B3A7 /* Config.swift in Sources */,
 				D7A94958279EE6A30090CD26 /* MotionControllerComponent.swift in Sources */,

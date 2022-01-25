@@ -27,7 +27,7 @@ class Player: GKEntity {
 
     override init() {
         super.init()
-        let position = SCNVector3(-4, 0.25, -25)
+        let position = SCNVector3(0, 0.25, -25)
         addComponent(GeometryComponent(geometry: Self.geometry, position: position))
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(MotionControllerComponent())
