@@ -28,6 +28,7 @@
 		A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */; };
 		A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5F279B403400F96F0F /* CameraComponent.swift */; };
 		D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */; };
+		D73C1A9327A02149007C8549 /* TouchControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */; };
 		D7A94958279EE6A30090CD26 /* MotionControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryComponent.swift; sourceTree = "<group>"; };
 		A783CF5F279B403400F96F0F /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 		D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
+		D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchControllerComponent.swift; sourceTree = "<group>"; };
 		D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionControllerComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 				A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */,
 				A783CF5F279B403400F96F0F /* CameraComponent.swift */,
 				D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */,
+				D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */,
 				A75717F1279AD4F8004A4C9B /* Tree.swift in Sources */,
 				A75717EB279AD336004A4C9B /* Player.swift in Sources */,
+				D73C1A9327A02149007C8549 /* TouchControllerComponent.swift in Sources */,
 				A75717E9279ACEF4004A4C9B /* PhysicsCategory.swift in Sources */,
 				A75717F5279AD68D004A4C9B /* DeviceMotion.swift in Sources */,
 				A75717F7279AD6A9004A4C9B /* Menu.swift in Sources */,

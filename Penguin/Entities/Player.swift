@@ -30,7 +30,8 @@ class Player: GKEntity {
         let position = SCNVector3(0, 0.25, -25)
         addComponent(GeometryComponent(geometry: Self.geometry, position: position))
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
-        addComponent(MotionControllerComponent())
+//        addComponent(MotionControllerComponent())
+        addComponent(TouchControllerComponent())
     }
 
     required init?(coder: NSCoder) {
