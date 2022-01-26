@@ -4,6 +4,15 @@ import GameplayKit
 class GameScene: SCNScene {
     
     var entities = Set<GKEntity>()
+
+    override init() {
+        super.init()
+        physicsWorld.contactDelegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func add(_ entity: GKEntity) {
         entities.insert(entity)
@@ -33,3 +42,19 @@ class GameScene: SCNScene {
     }
 }
 
+extension GameScene: SCNPhysicsContactDelegate {
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        guard
+            let contactComponentA = contact.nodeA.entity?.component(ofType: ContactComponent.self),
+            let contactComponentB = contact.nodeB.entity?.component(ofType: ContactComponent.self)
+        else {
+            return
+        }
+        
+        // Trigger the action of each entity
+        contactComponentA.action()
+        contactComponentB.action()
+        
+        // IMPORTANT: - The action of an obstacle needs to set its contactTestBitMask of to 0, so this function is called only once
+    }
+}

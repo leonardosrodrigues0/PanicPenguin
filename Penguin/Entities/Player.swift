@@ -19,7 +19,7 @@ class Player: GKEntity {
         body.categoryBitMask = PhysicsCategory.player.rawValue
         body.collisionBitMask = PhysicsCategory.bitMask(forCategories: [
             PhysicsCategory.ground,
-            PhysicsCategory.obstacle
+//            PhysicsCategory.obstacle
         ])
 
         return body
@@ -31,6 +31,11 @@ class Player: GKEntity {
         addComponent(GeometryComponent(geometry: Self.geometry, position: position))
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(PlayerMovementComponent())
+        addComponent(PlayerHealthComponent())
+        addComponent(ContactComponent(with: [.obstacle], {
+            // Here you can lower the speed of our player
+            print("contato")
+        }))
     }
 
     required init?(coder: NSCoder) {
