@@ -18,11 +18,6 @@ class PhysicsComponent: GKComponent {
         geometryComponent?.setPhysicsBody(physicsBody)
     }
 
-    override func willRemoveFromEntity() {
-        physicsBody.contactTestBitMask = 0
-        physicsBody.collisionBitMask = 0
-    }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

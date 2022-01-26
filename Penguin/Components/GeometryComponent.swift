@@ -25,6 +25,6 @@ class GeometryComponent: GKComponent {
     }
 
     override func willRemoveFromEntity() {
-        node.geometry = nil 
+        node.removeFromParentNode()
     }
 }
