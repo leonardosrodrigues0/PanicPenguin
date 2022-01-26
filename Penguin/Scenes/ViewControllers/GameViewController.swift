@@ -111,14 +111,8 @@ extension GameViewController: SCNSceneRendererDelegate {
         // without this scene doesnt run update???
         // TODO: Fix this
         sceneView.isPlaying = true
-<<<<<<< HEAD
+
+        guard GameManager.shared.state == .playing else { return }
         gameScene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
-=======
-
-        guard GameManager.shared.state == .playing,
-              let scene = scene as? GameScene else { return }
-
-        scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
->>>>>>> develop
     }
 }
