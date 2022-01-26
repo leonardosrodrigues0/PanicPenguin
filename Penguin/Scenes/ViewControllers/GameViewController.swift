@@ -10,6 +10,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     private var scene: SCNScene = {
         let scene = GameScene()
+        scene.add(GameManager())
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
@@ -36,6 +37,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
                     playerController.controller = .motion
                     playerController.entity?.addComponent(MotionControllerComponent())
+                    GameManager.shared.state = .playing
                 }
             }
         }
@@ -45,6 +47,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
                     playerController.controller = .touch
                     playerController.entity?.addComponent(TouchControllerComponent())
+                    GameManager.shared.state = .playing
                 }
             }
         }
@@ -54,7 +57,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
         return alert
     }
-
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let position = touches.first?.location(in: sceneView) {
@@ -96,11 +98,12 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
 extension GameViewController: SCNSceneRendererDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        guard GameManager.shared.state == .playing else { return }
         // without this scene doesnt run update???
         // TODO: Fix this
         sceneView.isPlaying = true
         
         guard let scene = scene as? GameScene else { return }
-        scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time); print($0) } }
+        scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
     }
 }
