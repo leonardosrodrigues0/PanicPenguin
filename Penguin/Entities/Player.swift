@@ -31,6 +31,7 @@ class Player: GKEntity {
         addComponent(GeometryComponent(geometry: Self.geometry, position: position))
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(PlayerMovementComponent())
+        addComponent(PlayerHealthComponent())
         addComponent(ContactComponent(with: [.obstacle], {
             // Here you can lower the speed of our player
             print("contato")
