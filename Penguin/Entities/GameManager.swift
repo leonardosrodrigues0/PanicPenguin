@@ -21,7 +21,6 @@ class GameManager: GKEntity {
     var scene: GameScene?
     lazy var currentSpeed = speed.currentSpeed
 
-
     var playerHealth: PlayerHealthComponent? {
         didSet {
             speed.playerHealth = playerHealth

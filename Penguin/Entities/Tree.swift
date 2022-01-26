@@ -18,8 +18,8 @@ class Tree: GKEntity {
         body.angularVelocityFactor = SCNVector3(1, 0, 0)
         body.categoryBitMask = PhysicsCategory.obstacle.rawValue
         body.collisionBitMask = PhysicsCategory.bitMask(forCategories: [
-            PhysicsCategory.ground,
-            PhysicsCategory.player
+            PhysicsCategory.ground
+//            PhysicsCategory.player
         ])
 
         return body
@@ -28,9 +28,13 @@ class Tree: GKEntity {
     override init() {
         super.init()
         let position = SCNVector3(0, 0.25, -25)
-        addComponent(GeometryComponent(geometry: Self.geometry,position: position))
+        addComponent(GeometryComponent(geometry: Self.geometry, position: position))
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(ObstacleMovementComponent())
+        addComponent(ContactComponent(with: [.player]) {
+            print("Tree died")
+            self.removeComponent(ofType: PhysicsComponent.self)
+        })
     }
 
     required init?(coder: NSCoder) {

@@ -15,7 +15,7 @@ class Ground: GKEntity {
     static var physicsBody: SCNPhysicsBody {
         let body = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: geometry, options: nil))
         body.categoryBitMask = PhysicsCategory.ground.rawValue
-        body.contactTestBitMask = PhysicsCategory.obstacle.rawValue
+//        body.contactTestBitMask = PhysicsCategory.ground.rawValue
         body.collisionBitMask = PhysicsCategory.bitMask(forCategories: [
             PhysicsCategory.obstacle,
             PhysicsCategory.player

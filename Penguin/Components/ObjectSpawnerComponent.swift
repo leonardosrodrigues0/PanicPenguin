@@ -32,7 +32,7 @@ class ObjectSpawnerComponent: GKComponent {
     }
 
     func spawnThing() {
-        entityToSpawn.spawn(at: SCNVector3(Float.random(in: -5.5...5.5), 0.25, -200))
+        entityToSpawn.spawn(at: SCNVector3(Float.random(in: Config.xRange), 0.25, -100))
     }
 
     override func update(deltaTime currentTime: TimeInterval) {
