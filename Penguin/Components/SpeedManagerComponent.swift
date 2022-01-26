@@ -1,10 +1,3 @@
-//
-//  SpeedManagerComponent.swift
-//  Penguin
-//
-//  Created by Erick Manaroulas Felipe on 26/01/22.
-//
-
 import GameplayKit
 
 enum Speed: Int {

@@ -28,7 +28,7 @@
 		A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */; };
 		A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */; };
 		A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5F279B403400F96F0F /* CameraComponent.swift */; };
-		A7EE405F27A168650073DD3F /* ScoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE405E27A168650073DD3F /* ScoreTracker.swift */; };
+		A7EE406127A182CD0073DD3F /* ScoreManagerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */; };
 		D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */; };
 		D73C1A9327A02149007C8549 /* TouchControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */; };
 		D73C1A9527A02ED0007C8549 /* PlayerMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9427A02ED0007C8549 /* PlayerMovementComponent.swift */; };
@@ -61,7 +61,7 @@
 		A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryComponent.swift; sourceTree = "<group>"; };
 		A783CF5F279B403400F96F0F /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
-		A7EE405E27A168650073DD3F /* ScoreTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTracker.swift; sourceTree = "<group>"; };
+		A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManagerComponent.swift; sourceTree = "<group>"; };
 		D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 		D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchControllerComponent.swift; sourceTree = "<group>"; };
 		D73C1A9427A02ED0007C8549 /* PlayerMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMovementComponent.swift; sourceTree = "<group>"; };
@@ -143,7 +143,6 @@
 				D73C1A8F27A0194C007C8549 /* Extensions */,
 				A74BA76D2799A88E00B0711C /* Services */,
 				A75717E8279ACEF4004A4C9B /* PhysicsCategory.swift */,
-				A7EE405E27A168650073DD3F /* ScoreTracker.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -169,6 +168,7 @@
 				D7F9B17327A164DC00275F94 /* SpeedManagerComponent.swift */,
 				D7F9B17527A16A8000275F94 /* PlayerHealthComponent.swift */,
 				3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */,
+				A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -302,13 +302,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */,
-				A7EE405F27A168650073DD3F /* ScoreTracker.swift in Sources */,
 				A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */,
 				A75717F1279AD4F8004A4C9B /* Tree.swift in Sources */,
 				3F0FD7F027A16CE000E618CE /* ContactComponent.swift in Sources */,
 				A75717EB279AD336004A4C9B /* Player.swift in Sources */,
 				D73C1A9327A02149007C8549 /* TouchControllerComponent.swift in Sources */,
 				D73C1A9527A02ED0007C8549 /* PlayerMovementComponent.swift in Sources */,
+				A7EE406127A182CD0073DD3F /* ScoreManagerComponent.swift in Sources */,
 				A75717E9279ACEF4004A4C9B /* PhysicsCategory.swift in Sources */,
 				A75717F5279AD68D004A4C9B /* DeviceMotion.swift in Sources */,
 				A75717F7279AD6A9004A4C9B /* Menu.swift in Sources */,

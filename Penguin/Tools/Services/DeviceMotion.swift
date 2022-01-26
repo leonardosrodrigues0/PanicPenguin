@@ -14,7 +14,7 @@ class DeviceMotion {
             return nil
         }
 
-        motion.deviceMotionUpdateInterval = Config.gameUpdateInterval
+        motion.deviceMotionUpdateInterval = Config.interval
     }
 
     func startUpdates() {

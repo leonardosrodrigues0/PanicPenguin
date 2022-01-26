@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,9 +36,18 @@
                                     <action selector="pause" destination="BV1-FR-VrT" eventType="touchUpInside" id="X9z-ut-YrK"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ZF-SL-w4f">
+                                <rect key="frame" x="186" y="184" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y9u-QD-Jh1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="5ZF-SL-w4f" firstAttribute="centerX" secondItem="qbq-pZ-hgE" secondAttribute="centerX" id="2zV-UB-utY"/>
+                            <constraint firstItem="5ZF-SL-w4f" firstAttribute="top" secondItem="GoJ-CS-cG9" secondAttribute="bottom" constant="20" id="6uA-Ir-xsl"/>
                             <constraint firstItem="GoJ-CS-cG9" firstAttribute="top" secondItem="cu5-KJ-o9B" secondAttribute="bottom" constant="12" id="C5P-jr-1gB"/>
                             <constraint firstItem="GoJ-CS-cG9" firstAttribute="centerX" secondItem="qbq-pZ-hgE" secondAttribute="centerX" id="COD-wt-cia"/>
                             <constraint firstItem="XCu-mk-8Gc" firstAttribute="top" secondItem="qbq-pZ-hgE" secondAttribute="top" id="Kb1-qY-VMw"/>
@@ -51,6 +61,7 @@
                     <connections>
                         <outlet property="sceneView" destination="XCu-mk-8Gc" id="4Sl-Zw-gtO"/>
                         <outlet property="scoreLabel" destination="cu5-KJ-o9B" id="r8V-ih-2pd"/>
+                        <outlet property="speedLabel" destination="5ZF-SL-w4f" id="jf0-V8-Oqo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

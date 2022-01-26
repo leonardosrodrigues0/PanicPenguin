@@ -1,24 +1,17 @@
-//
-//  PlayerHealthComponent.swift
-//  Penguin
-//
-//  Created by Erick Manaroulas Felipe on 26/01/22.
-//
-
 import GameplayKit
 
 class PlayerHealthComponent: GKComponent {
-    var gm = GameManager.shared
+    var gameManager = GameManager.shared
 
     var timeSinceLastHit: Double = 0
     
     func hit() {
-        gm.speed.decrementSpeed()
+        gameManager.speedManager.decrementSpeed()
         timeSinceLastHit = 0
     }
 
     override func didAddToEntity() {
-        gm.playerHealth = self
+        gameManager.playerHealth = self
     }
 
     override func update(deltaTime currentTime: TimeInterval) {
@@ -28,8 +21,8 @@ class PlayerHealthComponent: GKComponent {
 
         let deltaTime = currentTime - timeSinceLastHit
 
-        if deltaTime >= gm.currentSpeed.timeRequiredToIncrement {
-            gm.speed.incrementSpeed()
+        if deltaTime >= gameManager.currentSpeed.timeRequiredToIncrement {
+            gameManager.speedManager.incrementSpeed()
             timeSinceLastHit = currentTime
         }
     }

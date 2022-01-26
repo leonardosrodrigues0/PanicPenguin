@@ -6,14 +6,16 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     @IBOutlet private var sceneView: SCNView!
     @IBOutlet private var scoreLabel: UILabel!
+    @IBOutlet private var speedLabel: UILabel!
 
     @IBAction private func pause() {
-        gameScene.togglePaused()
+        GameManager.shared.toggleState()
     }
 
     private var gameScene: GameScene = {
         let scene = GameScene()
-        scene.add(GameManager())
+        GameManager.shared.scene = scene
+        scene.add(GameManager.shared)
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
@@ -32,8 +34,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             self.gameScene.play()
         }
 
-        Timer.scheduledTimer(withTimeInterval: Config.scoreUpdateInterval, repeats: true) { _ in
-            self.scoreLabel.text = "\(self.gameScene.score)"
+        Timer.scheduledTimer(withTimeInterval: Config.interval, repeats: true) { _ in
+            self.scoreLabel.text = "\(GameManager.shared.currentScore)"
+            self.speedLabel.text = "\(GameManager.shared.currentSpeed)"
         }
     }
 
@@ -47,8 +50,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                     playerController.entity?.addComponent(MotionControllerComponent())
                 }
             }
-            GameManager.shared.state = .playing
 
+            GameManager.shared.state = .playing
         }
 
         let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
@@ -58,8 +61,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                     playerController.entity?.addComponent(TouchControllerComponent())
                 }
             }
-            GameManager.shared.state = .playing
 
+            GameManager.shared.state = .playing
         }
 
         alert.addAction(setTouchControllerAction)

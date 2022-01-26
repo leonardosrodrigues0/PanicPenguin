@@ -1,10 +1,3 @@
-//
-//  GameManager.swift
-//  Penguin
-//
-//  Created by Erick Manaroulas Felipe on 26/01/22.
-//
-
 import GameplayKit
 import SceneKit
 
@@ -16,24 +9,52 @@ enum GameState {
 class GameManager: GKEntity {
 
     static let shared = GameManager()
-    var speed = SpeedManagerComponent()
-    var state: GameState = .paused
-    lazy var currentSpeed = speed.currentSpeed
 
+    weak var scene: GameScene?
+    let speedManager = SpeedManagerComponent()
+    let scoreManager = ScoreManagerComponent()
+
+    var currentSpeed: Speed {
+        speedManager.currentSpeed
+    }
+
+    var currentScore: Int {
+        scoreManager.score
+    }
+
+    var state: GameState = .paused {
+       didSet {
+           switch state {
+           case .paused:
+               scene?.pause()
+           case .playing:
+               scene?.play()
+           }
+       }
+    }
 
     var playerHealth: PlayerHealthComponent? {
         didSet {
-            speed.playerHealth = playerHealth
+            speedManager.playerHealth = playerHealth
         }
     }
 
-    override init() {
+    private override init() {
         super.init()
-        addComponent(speed)
+        addComponent(speedManager)
+        addComponent(scoreManager)
+    }
+
+    func toggleState() {
+        switch state {
+        case .paused:
+            state = .playing
+        case .playing:
+            state = .paused
+        }
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
