@@ -5,14 +5,6 @@ class GameScene: SCNScene {
 
     var entities = Set<GKEntity>()
 
-    func play() {
-        self.isPaused = false
-    }
-
-    func pause() {
-        self.isPaused = true
-    }
-
     override init() {
         super.init()
         physicsWorld.contactDelegate = self

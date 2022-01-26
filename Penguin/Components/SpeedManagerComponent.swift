@@ -14,12 +14,11 @@ enum Speed: Int {
 }
 
 class SpeedManagerComponent: GKComponent {
-    var playerHealth: PlayerHealthComponent?
-
+    
     private(set) var currentSpeed: Speed = .v2 {
         didSet {
             if currentSpeed == .v0 {
-                playerHealth?.die()
+                GameManager.shared.playerHealth?.die()
             }
         }
     }

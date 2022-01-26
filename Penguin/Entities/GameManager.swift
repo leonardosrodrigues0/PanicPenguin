@@ -13,6 +13,7 @@ class GameManager: GKEntity {
     weak var scene: GameScene?
     let speedManager = SpeedManagerComponent()
     let scoreManager = ScoreManagerComponent()
+    var playerHealth: PlayerHealthComponent?
 
     var currentSpeed: Speed {
         speedManager.currentSpeed
@@ -23,19 +24,13 @@ class GameManager: GKEntity {
     }
 
     var state: GameState = .paused {
-       didSet {
-           switch state {
-           case .paused:
-               scene?.pause()
-           case .playing:
-               scene?.play()
-           }
-       }
-    }
-
-    var playerHealth: PlayerHealthComponent? {
         didSet {
-            speedManager.playerHealth = playerHealth
+            switch state {
+            case .paused:
+                scene?.isPaused = true
+            case .playing:
+                scene?.isPaused = false
+            }
         }
     }
 

@@ -1,17 +1,16 @@
 import GameplayKit
 
 class PlayerHealthComponent: GKComponent {
-    var gameManager = GameManager.shared
 
     var timeSinceLastHit: Double = 0
     
     func hit() {
-        gameManager.speedManager.decrementSpeed()
+        GameManager.shared.speedManager.decrementSpeed()
         timeSinceLastHit = 0
     }
 
     override func didAddToEntity() {
-        gameManager.playerHealth = self
+        GameManager.shared.playerHealth = self
     }
 
     override func update(deltaTime currentTime: TimeInterval) {
@@ -21,8 +20,8 @@ class PlayerHealthComponent: GKComponent {
 
         let deltaTime = currentTime - timeSinceLastHit
 
-        if deltaTime >= gameManager.currentSpeed.timeRequiredToIncrement {
-            gameManager.speedManager.incrementSpeed()
+        if deltaTime >= GameManager.shared.currentSpeed.timeRequiredToIncrement {
+            GameManager.shared.speedManager.incrementSpeed()
             timeSinceLastHit = currentTime
         }
     }

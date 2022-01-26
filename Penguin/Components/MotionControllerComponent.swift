@@ -4,24 +4,22 @@ import CoreMotion
 
 class MotionControllerComponent: GKComponent {
 
-    let motionManager = DeviceMotion.shared
-
     override func didAddToEntity() {
-        motionManager?.startUpdates()
+        DeviceMotion.shared?.startUpdates()
     }
 
     override func willRemoveFromEntity() {
-        motionManager?.stopUpdates()
+        DeviceMotion.shared?.stopUpdates()
     }
 
     var player: PlayerMovementComponent? {
         return entity?.component(ofType: PlayerMovementComponent.self)
     }
 
-    func acelerometer() {
+    private func accelerometer() {
         guard
             let player = player,
-            let motion = motionManager?.motion
+            let motion = DeviceMotion.shared?.motion
         else {
             return
         }
@@ -36,6 +34,6 @@ class MotionControllerComponent: GKComponent {
     }
 
     override func update(deltaTime seconds: TimeInterval) {
-        acelerometer()
+        accelerometer()
     }
 }

@@ -7,7 +7,7 @@ enum ControllerType {
     case touch
     case none
 
-    var dampemFactor: Float {
+    var dampenFactor: Float {
         switch self {
         case .motion:
             return 0.8
@@ -45,7 +45,7 @@ class PlayerMovementComponent: GKComponent {
             return
         }
 
-        let distance = Float(acceleration * controller.dampemFactor)
+        let distance = Float(acceleration * controller.dampenFactor)
 
         // Motion reading minimum requirements
         guard acceleration > 0.15 || acceleration < -0.15 else { return }

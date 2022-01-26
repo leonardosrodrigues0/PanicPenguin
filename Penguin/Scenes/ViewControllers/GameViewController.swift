@@ -32,7 +32,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         DispatchQueue.main.async {
             let alert = self.buildControllerChoiceAlert()
             self.present(alert, animated: true)
-            self.gameScene.play()
         }
 
         Timer.scheduledTimer(withTimeInterval: Config.interval, repeats: true) { _ in
