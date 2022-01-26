@@ -25,6 +25,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         DispatchQueue.main.async {
             let alert = self.buildControllerChoiceAlert()
             self.present(alert, animated: true)
+            self.gameScene.play()
         }
     }
 
@@ -54,7 +55,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
         return alert
     }
-
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let position = touches.first?.location(in: sceneView) {
@@ -101,6 +101,6 @@ extension GameViewController: SCNSceneRendererDelegate {
         sceneView.isPlaying = true
         
         guard let scene = scene as? GameScene else { return }
-        scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time); print($0) } }
+        scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
     }
 }

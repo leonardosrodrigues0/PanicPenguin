@@ -1,10 +1,3 @@
-//
-//  PlayerMovementComponent.swift
-//  Penguin
-//
-//  Created by Erick Manaroulas Felipe on 25/01/22.
-//
-
 import SceneKit
 import GameplayKit
 import CoreMotion
@@ -45,8 +38,12 @@ class PlayerMovementComponent: GKComponent {
     }
 
     func move(by acceleration: Float, towards direction: Float) {
-        guard let geometry = geometry,
-              !geometry.node.hasActions else { return }
+        guard
+            let geometry = geometry,
+            !geometry.node.hasActions
+        else {
+            return
+        }
 
         let distance = Float(acceleration * controller.dampemFactor)
 

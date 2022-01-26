@@ -1,4 +1,3 @@
-
 import SceneKit
 import GameplayKit
 import CoreMotion
@@ -20,8 +19,12 @@ class MotionControllerComponent: GKComponent {
     }
 
     func acelerometer() {
-        guard let player = player,
-              let motion = motionManager?.motion else { return }
+        guard
+            let player = player,
+            let motion = motionManager?.motion
+        else {
+            return
+        }
 
         motion.startAccelerometerUpdates(to: .main) { (data, error) in
             guard let data = data, error == nil else { return }
