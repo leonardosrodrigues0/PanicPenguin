@@ -27,6 +27,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         gameScene.physicsWorld.contactDelegate = self
         sceneView.scene = gameScene
         sceneView.delegate = self
+        sceneView.isPlaying = true
 
         DispatchQueue.main.async {
             let alert = self.buildControllerChoiceAlert()
@@ -111,10 +112,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
 extension GameViewController: SCNSceneRendererDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        // without this scene doesnt run update???
-        // TODO: Fix this
-        sceneView.isPlaying = true
-
         guard GameManager.shared.state == .playing else { return }
         gameScene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
     }
