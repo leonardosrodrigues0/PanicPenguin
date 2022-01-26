@@ -13,6 +13,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     private var gameScene: GameScene = {
         let scene = GameScene()
+        scene.add(GameManager())
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
@@ -46,6 +47,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                     playerController.entity?.addComponent(MotionControllerComponent())
                 }
             }
+            GameManager.shared.state = .playing
+
         }
 
         let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
@@ -55,6 +58,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                     playerController.entity?.addComponent(TouchControllerComponent())
                 }
             }
+            GameManager.shared.state = .playing
+
         }
 
         alert.addAction(setTouchControllerAction)
@@ -106,6 +111,14 @@ extension GameViewController: SCNSceneRendererDelegate {
         // without this scene doesnt run update???
         // TODO: Fix this
         sceneView.isPlaying = true
+<<<<<<< HEAD
         gameScene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
+=======
+
+        guard GameManager.shared.state == .playing,
+              let scene = scene as? GameScene else { return }
+
+        scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
+>>>>>>> develop
     }
 }

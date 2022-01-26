@@ -11,7 +11,7 @@ class GeometryComponent: GKComponent {
         super.init()
     }
 
-    func updatePhysicsBody(_ body: SCNPhysicsBody) {
+    func setPhysicsBody(_ body: SCNPhysicsBody) {
         node.physicsBody = body
     }
 

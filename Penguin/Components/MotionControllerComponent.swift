@@ -30,7 +30,6 @@ class MotionControllerComponent: GKComponent {
             guard let data = data, error == nil else { return }
 
             let acceleration = data.acceleration.x
-            let direction = acceleration
 
             player.move(by: Float(acceleration), towards: 1.0)
         }
