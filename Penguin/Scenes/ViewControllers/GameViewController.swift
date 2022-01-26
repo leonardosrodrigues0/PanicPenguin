@@ -19,7 +19,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        scene.physicsWorld.contactDelegate = self
         sceneView.scene = scene
         sceneView.delegate = self
 
