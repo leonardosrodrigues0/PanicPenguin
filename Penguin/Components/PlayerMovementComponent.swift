@@ -55,7 +55,7 @@ class PlayerMovementComponent: GKComponent {
         // Make player respect bounds
         guard newPosition.x >= -5.5 && newPosition.x <= 5.5 else { return }
 
-        let moveAction = SCNAction.move(to: newPosition, duration: Config.interval)
+        let moveAction = SCNAction.move(to: newPosition, duration: Config.gameUpdateInterval)
 
         // Angle is passed in rads, so we convert it and divide by 2 to get about 15 at
         // max distance
@@ -70,7 +70,7 @@ class PlayerMovementComponent: GKComponent {
             }
         }
 
-        let rotateAction = SCNAction.rotateBy(x: 0, y: spinDirection / 180 * .pi / 2, z: 0, duration: Config.interval)
+        let rotateAction = SCNAction.rotateBy(x: 0, y: spinDirection / 180 * .pi / 2, z: 0, duration: Config.gameUpdateInterval)
 
         geometry.node.runAction(rotateAction)
         geometry.node.runAction(moveAction)

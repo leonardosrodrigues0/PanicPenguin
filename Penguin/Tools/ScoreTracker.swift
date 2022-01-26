@@ -5,7 +5,7 @@ class ScoreTracker {
     private var scoreTimer: Timer?
 
     func startScoreUpdates() {
-        scoreTimer = Timer.scheduledTimer(withTimeInterval: Config.interval, repeats: true, block: { _ in
+        scoreTimer = Timer.scheduledTimer(withTimeInterval: Config.scoreUpdateInterval, repeats: true, block: { _ in
             self.updateScore()
         })
     }

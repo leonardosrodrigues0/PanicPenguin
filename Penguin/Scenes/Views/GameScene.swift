@@ -6,6 +6,18 @@ class GameScene: SCNScene {
     var entities = Set<GKEntity>()
     private let scoreTracker = ScoreTracker()
 
+    var score: Int {
+        scoreTracker.score
+    }
+
+    func togglePaused() {
+        if self.isPaused {
+            play()
+        } else {
+            pause()
+        }
+    }
+
     func play() {
         self.isPaused = false
         scoreTracker.startScoreUpdates()

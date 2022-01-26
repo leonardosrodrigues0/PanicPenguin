@@ -5,10 +5,13 @@ import SceneKit
 class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     @IBOutlet private var sceneView: SCNView!
+    @IBOutlet private var scoreLabel: UILabel!
 
-    lazy var gameScene: GameScene = scene as! GameScene
+    @IBAction private func pause() {
+        gameScene.togglePaused()
+    }
 
-    private var scene: SCNScene = {
+    private var gameScene: GameScene = {
         let scene = GameScene()
         scene.add(Player())
         scene.add(Ground())
@@ -18,14 +21,18 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        scene.physicsWorld.contactDelegate = self
-        sceneView.scene = scene
+        gameScene.physicsWorld.contactDelegate = self
+        sceneView.scene = gameScene
         sceneView.delegate = self
 
         DispatchQueue.main.async {
             let alert = self.buildControllerChoiceAlert()
             self.present(alert, animated: true)
             self.gameScene.play()
+        }
+
+        Timer.scheduledTimer(withTimeInterval: Config.scoreUpdateInterval, repeats: true) { _ in
+            self.scoreLabel.text = "\(self.gameScene.score)"
         }
     }
 
@@ -99,8 +106,6 @@ extension GameViewController: SCNSceneRendererDelegate {
         // without this scene doesnt run update???
         // TODO: Fix this
         sceneView.isPlaying = true
-        
-        guard let scene = scene as? GameScene else { return }
-        scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
+        gameScene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
     }
 }

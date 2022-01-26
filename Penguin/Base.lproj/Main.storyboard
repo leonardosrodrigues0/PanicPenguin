@@ -11,16 +11,46 @@
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Penguin" customModuleProvider="target" sceneMemberID="viewController">
-                    <sceneKitView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qbq-pZ-hgE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCu-mk-8Gc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BV1-FR-VrT" id="IIm-Aa-PyZ"/>
+                                </connections>
+                            </sceneKitView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cu5-KJ-o9B">
+                                <rect key="frame" x="185" y="100" width="44.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoJ-CS-cG9">
+                                <rect key="frame" x="175.5" y="133" width="63.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Pause"/>
+                                <connections>
+                                    <action selector="pause" destination="BV1-FR-VrT" eventType="touchUpInside" id="X9z-ut-YrK"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <connections>
-                            <outlet property="delegate" destination="BV1-FR-VrT" id="Zlx-BB-syy"/>
-                        </connections>
-                    </sceneKitView>
+                        <constraints>
+                            <constraint firstItem="GoJ-CS-cG9" firstAttribute="top" secondItem="cu5-KJ-o9B" secondAttribute="bottom" constant="12" id="C5P-jr-1gB"/>
+                            <constraint firstItem="GoJ-CS-cG9" firstAttribute="centerX" secondItem="qbq-pZ-hgE" secondAttribute="centerX" id="COD-wt-cia"/>
+                            <constraint firstItem="XCu-mk-8Gc" firstAttribute="top" secondItem="qbq-pZ-hgE" secondAttribute="top" id="Kb1-qY-VMw"/>
+                            <constraint firstAttribute="trailing" secondItem="XCu-mk-8Gc" secondAttribute="trailing" id="O9y-nS-epL"/>
+                            <constraint firstItem="cu5-KJ-o9B" firstAttribute="top" secondItem="qbq-pZ-hgE" secondAttribute="topMargin" constant="100" id="Tg3-PH-30O"/>
+                            <constraint firstAttribute="bottom" secondItem="XCu-mk-8Gc" secondAttribute="bottom" id="gHd-Ud-vpH"/>
+                            <constraint firstItem="XCu-mk-8Gc" firstAttribute="leading" secondItem="qbq-pZ-hgE" secondAttribute="leading" id="tFh-fQ-Nlc"/>
+                            <constraint firstItem="cu5-KJ-o9B" firstAttribute="centerX" secondItem="qbq-pZ-hgE" secondAttribute="centerX" id="zSs-DK-ud3"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <outlet property="sceneView" destination="3se-qz-xqx" id="Ap1-3q-Kaz"/>
+                        <outlet property="sceneView" destination="XCu-mk-8Gc" id="4Sl-Zw-gtO"/>
+                        <outlet property="scoreLabel" destination="cu5-KJ-o9B" id="r8V-ih-2pd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
