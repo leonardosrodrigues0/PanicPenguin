@@ -14,7 +14,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
-        scene.spawnThing()
+        scene.add(Spawner(object: Tree()))
+
+        GameManager.shared.scene = scene
         return scene
     }()
 

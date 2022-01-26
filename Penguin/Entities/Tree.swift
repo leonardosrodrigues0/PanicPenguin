@@ -37,3 +37,11 @@ class Tree: GKEntity {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension Tree: SpawnableObject {
+    func spawn(at position: SCNVector3) {
+        let obj = Tree()
+        obj.component(ofType: GeometryComponent.self)?.node.position = position
+        GameManager.shared.scene?.add(obj)
+    }
+}

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */; };
 		3F0FD7F027A16CE000E618CE /* ContactComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */; };
+		60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */; };
 		A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA74D27998C1D00B0711C /* AppDelegate.swift */; };
 		A74BA75227998C1D00B0711C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA75127998C1D00B0711C /* GameViewController.swift */; };
 		A74BA75527998C1D00B0711C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A74BA75327998C1D00B0711C /* Main.storyboard */; };
@@ -36,11 +36,13 @@
 		D7F9B17227A1644300275F94 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17127A1644300275F94 /* GameManager.swift */; };
 		D7F9B17427A164DC00275F94 /* SpeedManagerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17327A164DC00275F94 /* SpeedManagerComponent.swift */; };
 		D7F9B17627A16A8100275F94 /* PlayerHealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17527A16A8000275F94 /* PlayerHealthComponent.swift */; };
+		D7F9B17A27A1826400275F94 /* ObjectSpawnerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17927A1826400275F94 /* ObjectSpawnerComponent.swift */; };
+		D7F9B17E27A1899900275F94 /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17D27A1899900275F94 /* Spawner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleMovementComponent.swift; sourceTree = "<group>"; };
 		3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactComponent.swift; sourceTree = "<group>"; };
+		60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleMovementComponent.swift; sourceTree = "<group>"; };
 		A74BA74A27998C1D00B0711C /* Penguin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Penguin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74BA74D27998C1D00B0711C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A74BA75127998C1D00B0711C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,8 @@
 		D7F9B17127A1644300275F94 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		D7F9B17327A164DC00275F94 /* SpeedManagerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedManagerComponent.swift; sourceTree = "<group>"; };
 		D7F9B17527A16A8000275F94 /* PlayerHealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHealthComponent.swift; sourceTree = "<group>"; };
+		D7F9B17927A1826400275F94 /* ObjectSpawnerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSpawnerComponent.swift; sourceTree = "<group>"; };
+		D7F9B17D27A1899900275F94 /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,7 @@
 				A75717FA279AD6F2004A4C9B /* Ground.swift */,
 				A75717FC279AD80B004A4C9B /* Camera.swift */,
 				D7F9B17127A1644300275F94 /* GameManager.swift */,
+				D7F9B17D27A1899900275F94 /* Spawner.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 				D7F9B17327A164DC00275F94 /* SpeedManagerComponent.swift */,
 				D7F9B17527A16A8000275F94 /* PlayerHealthComponent.swift */,
 				3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */,
+				D7F9B17927A1826400275F94 /* ObjectSpawnerComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */,
+				D7F9B17A27A1826400275F94 /* ObjectSpawnerComponent.swift in Sources */,
 				60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */,
 				A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */,
 				A75717F1279AD4F8004A4C9B /* Tree.swift in Sources */,
@@ -311,6 +318,7 @@
 				D73C1A9527A02ED0007C8549 /* PlayerMovementComponent.swift in Sources */,
 				A75717E9279ACEF4004A4C9B /* PhysicsCategory.swift in Sources */,
 				A75717F5279AD68D004A4C9B /* DeviceMotion.swift in Sources */,
+				D7F9B17E27A1899900275F94 /* Spawner.swift in Sources */,
 				A75717F7279AD6A9004A4C9B /* Menu.swift in Sources */,
 				D7F9B17427A164DC00275F94 /* SpeedManagerComponent.swift in Sources */,
 				A75717F9279AD6C0004A4C9B /* GameScene.swift in Sources */,

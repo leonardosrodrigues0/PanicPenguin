@@ -18,6 +18,7 @@ class GameManager: GKEntity {
     static let shared = GameManager()
     var speed = SpeedManagerComponent()
     var state: GameState = .paused
+    var scene: GameScene?
     lazy var currentSpeed = speed.currentSpeed
 
 
