@@ -37,9 +37,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
                     playerController.controller = .motion
                     playerController.entity?.addComponent(MotionControllerComponent())
-                    GameManager.shared.state = .playing
                 }
             }
+            GameManager.shared.state = .playing
+
         }
 
         let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
@@ -47,9 +48,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
                     playerController.controller = .touch
                     playerController.entity?.addComponent(TouchControllerComponent())
-                    GameManager.shared.state = .playing
                 }
             }
+            GameManager.shared.state = .playing
+
         }
 
         alert.addAction(setTouchControllerAction)
@@ -98,12 +100,13 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
 extension GameViewController: SCNSceneRendererDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        guard GameManager.shared.state == .playing else { return }
         // without this scene doesnt run update???
         // TODO: Fix this
         sceneView.isPlaying = true
-        
-        guard let scene = scene as? GameScene else { return }
+
+        guard GameManager.shared.state == .playing,
+              let scene = scene as? GameScene else { return }
+
         scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
     }
 }
