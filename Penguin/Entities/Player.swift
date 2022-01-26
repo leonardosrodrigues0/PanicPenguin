@@ -33,8 +33,15 @@ class Player: GKEntity {
         addComponent(PlayerMovementComponent())
         addComponent(PlayerHealthComponent())
         addComponent(ContactComponent(with: [.obstacle], {
-            // Here you can lower the speed of our player
-            print("contato")
+            let geometry = self.component(ofType: GeometryComponent.self)
+            let scaleAction = SCNAction.sequence([SCNAction.scale(to: 1.1, duration: 0.1),
+                                                  SCNAction.scale(to: 0.9, duration: 0.1),
+                                                  SCNAction.scale(to: 1, duration: 0.05)])
+            let shakeAction = SCNAction.sequence([SCNAction.rotateBy(x: 0, y: 5.0 / 180 * .pi, z: 0, duration: 0.1),
+                                                  SCNAction.rotateBy(x: 0, y: -10.0 / 180 * .pi, z: 0, duration: 0.1),
+                                                  SCNAction.rotateBy(x: 0, y: 5.0 / 180 * .pi, z: 0, duration: 0.05)])
+            geometry?.node.runAction(scaleAction)
+            geometry?.node.runAction(shakeAction)
         }))
     }
 

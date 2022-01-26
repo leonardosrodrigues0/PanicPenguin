@@ -2,7 +2,7 @@ import GameplayKit
 
 class ContactComponent: GKComponent {
     private let obstacles: [PhysicsCategory]
-    let action: () -> Void
+    var action: () -> Void
     
     /// Implement an `action` to the entity when it hits with any `obstacles
     init(with obstacles: [PhysicsCategory], _ action: @escaping () -> Void) {
@@ -21,5 +21,9 @@ class ContactComponent: GKComponent {
         }
         
         physicsBody.contactTestBitMask = PhysicsCategory.bitMask(forCategories: obstacles)
+    }
+
+    override func willRemoveFromEntity() {
+        action = {}
     }
 }

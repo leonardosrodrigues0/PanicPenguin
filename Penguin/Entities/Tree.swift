@@ -32,8 +32,9 @@ class Tree: GKEntity {
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(ObstacleMovementComponent())
         addComponent(ContactComponent(with: [.player]) {
-            print("Tree died")
             self.removeComponent(ofType: PhysicsComponent.self)
+            self.removeComponent(ofType: ContactComponent.self)
+            self.removeComponent(ofType: GeometryComponent.self)
         })
     }
 
