@@ -13,6 +13,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
+        scene.spawnThing()
         return scene
     }()
 
