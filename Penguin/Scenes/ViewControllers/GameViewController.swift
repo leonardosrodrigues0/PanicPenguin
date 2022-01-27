@@ -8,13 +8,13 @@ class GameViewController: UIViewController {
     @IBOutlet private var scoreLabel: UILabel!
     @IBOutlet private var speedLabel: UILabel!
 
-    var gameScene: GameScene {
-        return scene as! GameScene
     @IBAction private func pause() {
-        GameManager.shared.toggleState()
+        GameManager.shared.togglePause()
     }
 
-    private var gameScene: GameScene = {
+    lazy private var gameScene: GameScene = buildNewScene()
+
+    private func buildNewScene() -> GameScene {
         let scene = GameScene()
         GameManager.shared.scene = scene
         scene.add(GameManager.shared)
@@ -23,9 +23,8 @@ class GameViewController: UIViewController {
         scene.add(Camera())
         scene.add(Spawner(object: Tree()))
 
-        GameManager.shared.scene = scene
         return scene
-    }()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,12 +135,10 @@ extension GameViewController: ManagerDelegate {
 
         let resetGameAction = UIAlertAction(title: "Reset Game", style: .default) { _ in
 
-            // TODO: Encapsulate reset state
-            GameManager.shared.state = .paused
-            GameManager.shared.speed.changeSpeed(to: .v2)
+            GameManager.shared.reset()
 
             let scene = self.buildNewScene()
-            self.scene = scene
+            self.gameScene = scene
             self.sceneView.scene = scene
             self.viewDidLoad()
         }
@@ -149,17 +146,5 @@ extension GameViewController: ManagerDelegate {
         alert.addAction(resetGameAction)
 
         return alert
-    }
-
-    private func buildNewScene() -> SCNScene {
-        let scene = GameScene()
-        scene.add(GameManager())
-        scene.add(Player())
-        scene.add(Ground())
-        scene.add(Camera())
-        scene.add(Spawner(object: Tree()))
-
-        GameManager.shared.scene = scene
-        return scene
     }
 }

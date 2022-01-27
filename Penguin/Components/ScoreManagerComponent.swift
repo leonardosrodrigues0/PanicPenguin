@@ -13,4 +13,8 @@ class ScoreManagerComponent: GKComponent {
         let speedFactor = Double(GameManager.shared.currentSpeed.rawValue)
         realScore += Config.baseScore * speedFactor
     }
+
+    func resetScore() {
+        realScore = 0
+    }
 }

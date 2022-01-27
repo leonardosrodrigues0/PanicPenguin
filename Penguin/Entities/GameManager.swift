@@ -28,7 +28,7 @@ class GameManager: GKEntity {
         }
     }
 
-    var delegate: ManagerDelegate?
+    weak var delegate: ManagerDelegate?
 
     weak var scene: GameScene?
 
@@ -51,13 +51,21 @@ class GameManager: GKEntity {
         addComponent(scoreManager)
     }
 
-    func toggleState() {
+    func togglePause() {
         switch state {
         case .paused:
             state = .playing
         case .playing:
             state = .paused
+        case .dead:
+            return
         }
+    }
+
+    func reset() {
+        state = .paused
+        speedManager.changeSpeed(to: .v2)
+        scoreManager.resetScore()
     }
 
     required init?(coder: NSCoder) {
