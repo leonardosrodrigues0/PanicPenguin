@@ -2,10 +2,10 @@ import GameplayKit
 
 class ContactComponent: GKComponent {
     private let obstacles: [PhysicsCategory]
-    var action: () -> Void
+    var action: (PhysicsCategory?) -> Void
     
     /// Implement an `action` to the entity when it hits any `obstacles
-    init(with obstacles: [PhysicsCategory], _ action: @escaping () -> Void) {
+    init(with obstacles: [PhysicsCategory], _ action: @escaping (PhysicsCategory?) -> Void) {
         self.obstacles = obstacles
         self.action = action
         super.init()

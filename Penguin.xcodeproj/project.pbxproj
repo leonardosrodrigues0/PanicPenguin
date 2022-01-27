@@ -33,6 +33,7 @@
 		D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */; };
 		D73C1A9327A02149007C8549 /* TouchControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */; };
 		D73C1A9527A02ED0007C8549 /* PlayerMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9427A02ED0007C8549 /* PlayerMovementComponent.swift */; };
+		D7A389C027A2C46B00748137 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A389BF27A2C46B00748137 /* Coin.swift */; };
 		D7A94958279EE6A30090CD26 /* MotionControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */; };
 		D7CA81AE27A2B3E5006DC4EA /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CA81AD27A2B3E5006DC4EA /* Math.swift */; };
 		D7F9B17227A1644300275F94 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17127A1644300275F94 /* GameManager.swift */; };
@@ -70,6 +71,7 @@
 		D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 		D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchControllerComponent.swift; sourceTree = "<group>"; };
 		D73C1A9427A02ED0007C8549 /* PlayerMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMovementComponent.swift; sourceTree = "<group>"; };
+		D7A389BF27A2C46B00748137 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionControllerComponent.swift; sourceTree = "<group>"; };
 		D7CA81AD27A2B3E5006DC4EA /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		D7F9B17127A1644300275F94 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				A75717FC279AD80B004A4C9B /* Camera.swift */,
 				D7F9B17127A1644300275F94 /* GameManager.swift */,
 				D7F9B17D27A1899900275F94 /* Spawner.swift */,
+				D7A389BF27A2C46B00748137 /* Coin.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */,
 				A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */,
 				A75717F1279AD4F8004A4C9B /* Tree.swift in Sources */,
+				D7A389C027A2C46B00748137 /* Coin.swift in Sources */,
 				3F0FD7F027A16CE000E618CE /* ContactComponent.swift in Sources */,
 				A75717EB279AD336004A4C9B /* Player.swift in Sources */,
 				D73C1A9327A02149007C8549 /* TouchControllerComponent.swift in Sources */,

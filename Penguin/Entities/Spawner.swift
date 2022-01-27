@@ -8,9 +8,9 @@
 import GameplayKit
 
 class Spawner: GKEntity {
-    init(object: SpawnableObject) {
+    init(object: SpawnableObject, type: SpawnedObjectType) {
         super.init()
-        addComponent(ObjectSpawnerComponent(object: object))
+        addComponent(ObjectSpawnerComponent(object: object, type: type))
     }
 
     required init?(coder: NSCoder) {

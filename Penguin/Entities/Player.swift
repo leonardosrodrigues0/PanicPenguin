@@ -6,14 +6,14 @@ class Player: GKEntity {
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
         material.reflective.contents = UIColor.blue
-        material.diffuse.contents = UIColor.lightGray
+        material.diffuse.contents = UIColor.blue
         let geometry = SCNBox(width: 3, height: 0.5, length: 3, chamferRadius: 0.2)
         geometry.materials = [material]
         return geometry
     }
 
     static var physicsBody: SCNPhysicsBody {
-        let body = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
+        let body = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
         body.velocityFactor = SCNVector3(0, 1, 0)
         body.angularVelocityFactor = SCNVector3(1, 0, 0)
         body.categoryBitMask = PhysicsCategory.player.rawValue
@@ -32,21 +32,37 @@ class Player: GKEntity {
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(PlayerMovementComponent())
         addComponent(PlayerHealthComponent())
-        addComponent(ContactComponent(with: [.obstacle], {
-            let geometry = self.component(ofType: GeometryComponent.self)
-            let scaleAction = SCNAction.sequence([SCNAction.scale(to: 1.1, duration: 0.1),
-                                                  SCNAction.scale(to: 0.9, duration: 0.1),
-                                                  SCNAction.scale(to: 1, duration: 0.05)])
-            let shakeAction = SCNAction.sequence([SCNAction.rotateBy(x: 0, y: 5.0.toRad, z: 0, duration: 0.1),
-                                                  SCNAction.rotateBy(x: 0, y: -10.0.toRad, z: 0, duration: 0.1),
-                                                  SCNAction.rotateBy(x: 0, y: 5.0.toRad, z: 0, duration: 0.05)])
-            geometry?.node.runAction(scaleAction)
-            geometry?.node.runAction(shakeAction)
+        addComponent(ContactComponent(with: [.obstacle, .collectable], { category in
+            switch category {
+            case .obstacle:
+                self.collideWithObstacle()
+            case .collectable:
+                self.collideWithCollectable()
+            default:
+                return
+            }
 
-            let health = self.component(ofType: PlayerHealthComponent.self)
-            health?.hit()
 
         }))
+    }
+
+    func collideWithCollectable() {
+        GameManager.shared.scoreManager.collectCoin()
+    }
+
+    func collideWithObstacle() {
+        let geometry = self.component(ofType: GeometryComponent.self)
+        let scaleAction = SCNAction.sequence([SCNAction.scale(to: 1.1, duration: 0.1),
+                                              SCNAction.scale(to: 0.9, duration: 0.1),
+                                              SCNAction.scale(to: 1, duration: 0.05)])
+        let shakeAction = SCNAction.sequence([SCNAction.rotateBy(x: 0, y: 5.0.toRad, z: 0, duration: 0.1),
+                                              SCNAction.rotateBy(x: 0, y: -10.0.toRad, z: 0, duration: 0.1),
+                                              SCNAction.rotateBy(x: 0, y: 5.0.toRad, z: 0, duration: 0.05)])
+        geometry?.node.runAction(scaleAction)
+        geometry?.node.runAction(shakeAction)
+
+        let health = self.component(ofType: PlayerHealthComponent.self)
+        health?.hit()
     }
 
     required init?(coder: NSCoder) {

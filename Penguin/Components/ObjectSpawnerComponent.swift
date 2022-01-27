@@ -21,9 +21,11 @@ class ObjectSpawnerComponent: GKComponent {
 
     var entityToSpawn: SpawnableObject
     var timeSinceLastSpawn: Double = 0
+    var spawnType: SpawnedObjectType
 
-    init(object: SpawnableObject) {
+    init(object: SpawnableObject, type: SpawnedObjectType) {
         entityToSpawn = object
+        self.spawnType = type
         super.init()
     }
 
@@ -42,7 +44,7 @@ class ObjectSpawnerComponent: GKComponent {
 
         let deltaTime = currentTime - timeSinceLastSpawn
 
-        if deltaTime >= 1 {
+        if deltaTime >= Config.timer(for: spawnType) {
             spawnThing()
             timeSinceLastSpawn = currentTime
         }
