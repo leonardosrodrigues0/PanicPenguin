@@ -6,7 +6,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     @IBOutlet private var sceneView: SCNView!
 
-    lazy var gameScene: GameScene = scene as! GameScene
+    var gameScene: GameScene {
+        return scene as! GameScene
+    }
 
     private var scene: SCNScene = {
         let scene = GameScene()
@@ -24,6 +26,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         super.viewDidLoad()
         sceneView.scene = scene
         sceneView.delegate = self
+
+        GameManager.shared.delegate = self
 
         DispatchQueue.main.async {
             let alert = self.buildControllerChoiceAlert()
@@ -110,5 +114,47 @@ extension GameViewController: SCNSceneRendererDelegate {
               let scene = scene as? GameScene else { return }
 
         scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
+    }
+}
+
+extension GameViewController: ManagerDelegate {
+    func didEnterDeathState() {
+        let alert = buildResetGameAlert()
+
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+
+    private func buildResetGameAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "You are now deceased.", message: nil, preferredStyle: .actionSheet)
+
+        let resetGameAction = UIAlertAction(title: "Reset Game", style: .default) { _ in
+
+            // TODO: Encapsulate reset state
+            GameManager.shared.state = .paused
+            GameManager.shared.speed.changeSpeed(to: .v2)
+
+            let scene = self.buildNewScene()
+            self.scene = scene
+            self.sceneView.scene = scene
+            self.viewDidLoad()
+        }
+
+        alert.addAction(resetGameAction)
+
+        return alert
+    }
+
+    private func buildNewScene() -> SCNScene {
+        let scene = GameScene()
+        scene.add(GameManager())
+        scene.add(Player())
+        scene.add(Ground())
+        scene.add(Camera())
+        scene.add(Spawner(object: Tree()))
+
+        GameManager.shared.scene = scene
+        return scene
     }
 }

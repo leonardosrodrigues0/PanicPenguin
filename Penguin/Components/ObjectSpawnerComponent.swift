@@ -42,7 +42,7 @@ class ObjectSpawnerComponent: GKComponent {
 
         let deltaTime = currentTime - timeSinceLastSpawn
 
-        if deltaTime >= 0.3 {
+        if deltaTime >= 1 {
             spawnThing()
             timeSinceLastSpawn = currentTime
         }

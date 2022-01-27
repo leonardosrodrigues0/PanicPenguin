@@ -14,19 +14,26 @@ enum GameState {
     case dead
 }
 
+protocol ManagerDelegate: NSObject {
+    func didEnterDeathState()
+}
+
 class GameManager: GKEntity {
 
     static let shared = GameManager()
+
     var speed = SpeedManagerComponent()
     var state: GameState = .paused {
         didSet {
             if state == .dead {
-                scene.
+                delegate?.didEnterDeathState()
             }
         }
     }
-    var scene: GameScene?
     lazy var currentSpeed = speed.currentSpeed
+
+    var scene: GameScene?
+    var delegate: ManagerDelegate?
 
     var playerHealth: PlayerHealthComponent? {
         didSet {
