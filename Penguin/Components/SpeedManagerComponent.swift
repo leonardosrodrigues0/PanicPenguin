@@ -49,4 +49,8 @@ class SpeedManagerComponent: GKComponent {
     func changeSpeed(to newSpeed: Speed) {
         currentSpeed = newSpeed
     }
+    
+    func powerUpSpeed() {
+        currentSpeed = .v5
+    }
 }

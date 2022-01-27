@@ -1,20 +1,19 @@
 //
-//  Coin.swift
+//  PowerUp.swift
 //  Penguin
 //
-//  Created by Erick Manaroulas Felipe on 27/01/22.
+//  Created by Matheus Vicente on 27/01/22.
 //
-
 import GameplayKit
 import SceneKit
 
-class Coin: GKEntity {
+class SpeedPowerUp: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.reflective.contents = UIColor.yellow
-        material.diffuse.contents = UIColor.yellow
-        let geometry = SCNSphere(radius: 0.75)
+        material.reflective.contents = UIColor.blue
+        material.diffuse.contents = UIColor.blue
+        let geometry = SCNSphere(radius: 1.0)
         geometry.materials = [material]
         return geometry
     }
@@ -44,15 +43,15 @@ class Coin: GKEntity {
     }
 }
 
-extension Coin {
+extension SpeedPowerUp {
     func collideWithPlayer() {
         self.removeComponent(ofType: PhysicsComponent.self)
         self.removeComponent(ofType: ContactComponent.self)
         self.removeComponent(ofType: GeometryComponent.self)
-        GameManager.shared.scoreManager.collectCoin()
+        GameManager.shared.speedManager.powerUpSpeed()
     }
 }
 
-extension Coin: SpawnableObject {
-    static let spawnType: SpawnedObjectType = .coin
+extension SpeedPowerUp: SpawnableObject {
+    static let spawnType: SpawnedObjectType = .powerup
 }

@@ -36,18 +36,12 @@ class Player: GKEntity {
             switch category {
             case .obstacle:
                 self.collideWithObstacle()
-            case .collectable:
-                self.collideWithCollectable()
             default:
                 return
             }
         }))
     }
-
-    func collideWithCollectable() {
-        GameManager.shared.scoreManager.collectCoin()
-    }
-
+    
     func collideWithObstacle() {
         let geometry = self.component(ofType: GeometryComponent.self)
         let scaleAction = SCNAction.sequence([
