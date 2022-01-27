@@ -20,4 +20,5 @@ class GameScene: SCNScene {
 
         entities.remove(entity)
     }
+    
 }
