@@ -21,8 +21,8 @@ class GameViewController: UIViewController {
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
-        scene.add(Spawner(object: Tree(), type: .obstacle))
-        scene.add(Spawner(object: Coin(), type: .coin))
+        scene.add(Spawner<Tree>(type: .obstacle))
+        scene.add(Spawner<Coin>(type: .coin))
 
         return scene
     }

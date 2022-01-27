@@ -1,16 +1,9 @@
-//
-//  Spawner.swift
-//  Penguin
-//
-//  Created by Erick Manaroulas Felipe on 26/01/22.
-//
-
 import GameplayKit
 
-class Spawner: GKEntity {
-    init(object: SpawnableObject, type: SpawnedObjectType) {
+class Spawner<T: SpawnableObject>: GKEntity {
+    override init(type: SpawnedObjectType) {
         super.init()
-        addComponent(ObjectSpawnerComponent(object: object, type: type))
+        addComponent(ObjectSpawnerComponent<T>(type: type))
     }
 
     required init?(coder: NSCoder) {
