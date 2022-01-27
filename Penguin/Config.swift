@@ -9,6 +9,10 @@ enum Config {
     
     static let baseScore: Double = 0.1
 
+    static var coinValue: Double {
+        return Double(GameManager.shared.currentSpeed.rawValue * 5)
+    }
+
     static func timer(for type: SpawnedObjectType) -> Double {
         // timers may not be divisible between each other
         switch type {
