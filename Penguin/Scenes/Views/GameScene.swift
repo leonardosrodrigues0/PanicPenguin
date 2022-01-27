@@ -2,7 +2,7 @@ import SceneKit
 import GameplayKit
 
 class GameScene: SCNScene {
-
+    
     var entities = Set<GKEntity>()
 
     override init() {
@@ -16,17 +16,19 @@ class GameScene: SCNScene {
     
     func add(_ entity: GKEntity) {
         entities.insert(entity)
-
+        
         if let node = entity.component(ofType: GeometryComponent.self)?.node {
             rootNode.addChildNode(node)
+            node.entity = entity
         }
     }
-
+    
     func remove(_ entity: GKEntity) {
         if let node = entity.component(ofType: GeometryComponent.self)?.node {
             node.removeFromParentNode()
+            node.entity = nil
         }
-
+        
         entities.remove(entity)
     }
 }

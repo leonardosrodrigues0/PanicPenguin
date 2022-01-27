@@ -53,7 +53,7 @@ class PlayerMovementComponent: GKComponent {
         let newPosition = geometry.node.position + SCNVector3Make(distance * direction, 0, 0)
 
         // Make player respect bounds
-        guard newPosition.x >= -5.5 && newPosition.x <= 5.5 else { return }
+        guard newPosition.x >= Config.minXPosition && newPosition.x <= Config.maxXPosition else { return }
 
         let moveAction = SCNAction.move(to: newPosition, duration: Config.interval)
 
@@ -70,7 +70,7 @@ class PlayerMovementComponent: GKComponent {
             }
         }
 
-        let rotateAction = SCNAction.rotateBy(x: 0, y: spinDirection / 180 * .pi / 2, z: 0, duration: Config.interval)
+        let rotateAction = SCNAction.rotateBy(x: 0, y: spinDirection.toRad / 2, z: 0, duration: Config.interval)
 
         geometry.node.runAction(rotateAction)
         geometry.node.runAction(moveAction)

@@ -9,24 +9,30 @@ class GameViewController: UIViewController {
     @IBOutlet private var speedLabel: UILabel!
 
     @IBAction private func pause() {
-        GameManager.shared.toggleState()
+        GameManager.shared.togglePause()
     }
 
-    private var gameScene: GameScene = {
+    lazy private var gameScene: GameScene = buildNewScene()
+
+    private func buildNewScene() -> GameScene {
         let scene = GameScene()
         GameManager.shared.scene = scene
         scene.add(GameManager.shared)
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
+        scene.add(Spawner<Tree>())
+
         return scene
-    }()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.scene = gameScene
         sceneView.delegate = self
         sceneView.isPlaying = true
+
+        GameManager.shared.delegate = self
 
         DispatchQueue.main.async {
             let alert = self.buildControllerChoiceAlert()
@@ -112,5 +118,33 @@ extension GameViewController: SCNSceneRendererDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         guard GameManager.shared.state == .playing else { return }
         gameScene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
+    }
+}
+
+extension GameViewController: ManagerDelegate {
+    func didEnterDeathState() {
+        let alert = buildResetGameAlert()
+
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+
+    private func buildResetGameAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "You are now deceased.", message: nil, preferredStyle: .actionSheet)
+
+        let resetGameAction = UIAlertAction(title: "Reset Game", style: .default) { _ in
+
+            GameManager.shared.reset()
+
+            let scene = self.buildNewScene()
+            self.gameScene = scene
+            self.sceneView.scene = scene
+            self.viewDidLoad()
+        }
+
+        alert.addAction(resetGameAction)
+
+        return alert
     }
 }

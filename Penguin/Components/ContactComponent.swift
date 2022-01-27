@@ -4,7 +4,7 @@ class ContactComponent: GKComponent {
     private let obstacles: [PhysicsCategory]
     let action: () -> Void
     
-    /// Implement an `action` to the entity when it hits with any `obstacles
+    /// Implement an `action` to the entity when it hits any `obstacles
     init(with obstacles: [PhysicsCategory], _ action: @escaping () -> Void) {
         self.obstacles = obstacles
         self.action = action

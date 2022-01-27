@@ -3,17 +3,19 @@ import SceneKit
 
 class PhysicsComponent: GKComponent {
     
-    var physicsBody: SCNPhysicsBody? {
-        geometryComponent?.node.physicsBody
-    }
+    var physicsBody: SCNPhysicsBody
 
     private var geometryComponent: GeometryComponent? {
         entity?.component(ofType: GeometryComponent.self)
     }
 
     init(withBody body: SCNPhysicsBody) {
+        physicsBody = body
         super.init()
-        geometryComponent?.setPhysicsBody(body)
+    }
+
+    override func didAddToEntity() {
+        geometryComponent?.setPhysicsBody(physicsBody)
     }
 
     required init?(coder: NSCoder) {

@@ -43,6 +43,7 @@ class SpeedManagerComponent: GKComponent {
         default:
             currentSpeed = .v2
         }
+        print("decelerating to \(currentSpeed)")
     }
 
     func changeSpeed(to newSpeed: Speed) {

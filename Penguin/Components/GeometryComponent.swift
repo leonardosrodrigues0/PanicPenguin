@@ -23,4 +23,8 @@ class GeometryComponent: GKComponent {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func willRemoveFromEntity() {
+        node.removeFromParentNode()
+    }
 }
