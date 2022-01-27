@@ -33,6 +33,7 @@
 		D73C1A9327A02149007C8549 /* TouchControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */; };
 		D73C1A9527A02ED0007C8549 /* PlayerMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9427A02ED0007C8549 /* PlayerMovementComponent.swift */; };
 		D7A94958279EE6A30090CD26 /* MotionControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */; };
+		D7CA81AE27A2B3E5006DC4EA /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CA81AD27A2B3E5006DC4EA /* Math.swift */; };
 		D7F9B17227A1644300275F94 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17127A1644300275F94 /* GameManager.swift */; };
 		D7F9B17427A164DC00275F94 /* SpeedManagerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17327A164DC00275F94 /* SpeedManagerComponent.swift */; };
 		D7F9B17627A16A8100275F94 /* PlayerHealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17527A16A8000275F94 /* PlayerHealthComponent.swift */; };
@@ -68,6 +69,7 @@
 		D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchControllerComponent.swift; sourceTree = "<group>"; };
 		D73C1A9427A02ED0007C8549 /* PlayerMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMovementComponent.swift; sourceTree = "<group>"; };
 		D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionControllerComponent.swift; sourceTree = "<group>"; };
+		D7CA81AD27A2B3E5006DC4EA /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		D7F9B17127A1644300275F94 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		D7F9B17327A164DC00275F94 /* SpeedManagerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedManagerComponent.swift; sourceTree = "<group>"; };
 		D7F9B17527A16A8000275F94 /* PlayerHealthComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHealthComponent.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */,
+				D7CA81AD27A2B3E5006DC4EA /* Math.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */,
+				D7CA81AE27A2B3E5006DC4EA /* Math.swift in Sources */,
 				D7F9B17A27A1826400275F94 /* ObjectSpawnerComponent.swift in Sources */,
 				60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */,
 				A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */,

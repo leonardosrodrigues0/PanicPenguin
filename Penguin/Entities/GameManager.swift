@@ -11,13 +11,20 @@ import SceneKit
 enum GameState {
     case paused
     case playing
+    case dead
 }
 
 class GameManager: GKEntity {
 
     static let shared = GameManager()
     var speed = SpeedManagerComponent()
-    var state: GameState = .paused
+    var state: GameState = .paused {
+        didSet {
+            if state == .dead {
+                scene.
+            }
+        }
+    }
     var scene: GameScene?
     lazy var currentSpeed = speed.currentSpeed
 

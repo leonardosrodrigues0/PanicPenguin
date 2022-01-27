@@ -73,7 +73,7 @@ class PlayerMovementComponent: GKComponent {
             }
         }
 
-        let rotateAction = SCNAction.rotateBy(x: 0, y: spinDirection / 180 * .pi / 2, z: 0, duration: Config.interval)
+        let rotateAction = SCNAction.rotateBy(x: 0, y: spinDirection.toRad / 2, z: 0, duration: Config.interval)
 
         geometry.node.runAction(rotateAction)
         geometry.node.runAction(moveAction)
