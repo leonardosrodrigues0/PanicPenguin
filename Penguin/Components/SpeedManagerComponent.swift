@@ -1,10 +1,3 @@
-//
-//  SpeedManagerComponent.swift
-//  Penguin
-//
-//  Created by Erick Manaroulas Felipe on 26/01/22.
-//
-
 import GameplayKit
 
 enum Speed: Int {
@@ -21,12 +14,11 @@ enum Speed: Int {
 }
 
 class SpeedManagerComponent: GKComponent {
-    var playerHealth: PlayerHealthComponent?
-
+    
     private(set) var currentSpeed: Speed = .v2 {
         didSet {
             if currentSpeed == .v0 {
-                playerHealth?.die()
+                GameManager.shared.playerHealth?.die()
             }
         }
     }

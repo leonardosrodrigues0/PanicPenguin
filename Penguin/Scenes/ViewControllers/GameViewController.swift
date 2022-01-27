@@ -2,15 +2,20 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-class GameViewController: UIViewController, SCNPhysicsContactDelegate {
+class GameViewController: UIViewController {
 
     @IBOutlet private var sceneView: SCNView!
+    @IBOutlet private var scoreLabel: UILabel!
+    @IBOutlet private var speedLabel: UILabel!
 
-    lazy var gameScene: GameScene = scene as! GameScene
+    @IBAction private func pause() {
+        GameManager.shared.toggleState()
+    }
 
-    private var scene: SCNScene = {
+    private var gameScene: GameScene = {
         let scene = GameScene()
-        scene.add(GameManager())
+        GameManager.shared.scene = scene
+        scene.add(GameManager.shared)
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
@@ -19,12 +24,18 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sceneView.scene = scene
+        sceneView.scene = gameScene
         sceneView.delegate = self
+        sceneView.isPlaying = true
 
         DispatchQueue.main.async {
             let alert = self.buildControllerChoiceAlert()
             self.present(alert, animated: true)
+        }
+
+        Timer.scheduledTimer(withTimeInterval: Config.interval, repeats: true) { _ in
+            self.scoreLabel.text = "\(GameManager.shared.currentScore)"
+            self.speedLabel.text = "\(GameManager.shared.currentSpeed)"
         }
     }
 
@@ -38,8 +49,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                     playerController.entity?.addComponent(MotionControllerComponent())
                 }
             }
-            GameManager.shared.state = .playing
 
+            GameManager.shared.state = .playing
         }
 
         let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
@@ -49,8 +60,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                     playerController.entity?.addComponent(TouchControllerComponent())
                 }
             }
-            GameManager.shared.state = .playing
 
+            GameManager.shared.state = .playing
         }
 
         alert.addAction(setTouchControllerAction)
@@ -99,13 +110,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
 extension GameViewController: SCNSceneRendererDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        // without this scene doesnt run update???
-        // TODO: Fix this
-        sceneView.isPlaying = true
-
-        guard GameManager.shared.state == .playing,
-              let scene = scene as? GameScene else { return }
-
-        scene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
+        guard GameManager.shared.state == .playing else { return }
+        gameScene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
     }
 }
