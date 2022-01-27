@@ -17,4 +17,9 @@ class ScoreManagerComponent: GKComponent {
     func resetScore() {
         realScore = 0
     }
+
+    func collectCoin() {
+        print("coin collected")
+        realScore += 10 
+    }
 }

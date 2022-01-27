@@ -8,4 +8,16 @@ enum Config {
     static let xRange = (minXPosition...maxXPosition)
     
     static let baseScore: Double = 0.1
+
+    static func timer(for type: SpawnedObjectType) -> Double {
+        // timers may not be divisible between each other
+        switch type {
+        case .powerup:
+            return 5
+        case .coin:
+            return 1.8
+        case .obstacle:
+            return 0.5
+        }
+    }
 }

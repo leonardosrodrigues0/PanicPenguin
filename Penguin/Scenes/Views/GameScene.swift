@@ -41,10 +41,13 @@ extension GameScene: SCNPhysicsContactDelegate {
         else {
             return
         }
+
+        let nodeACategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0)
+        let nodeBCategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0)
         
         // Trigger the action of each entity
-        contactComponentA.action()
-        contactComponentB.action()
+        contactComponentA.action(nodeBCategory)
+        contactComponentB.action(nodeACategory)
         
         // IMPORTANT: - The action of an obstacle needs to set its contactTestBitMask of to 0, so this function is called only once
     }

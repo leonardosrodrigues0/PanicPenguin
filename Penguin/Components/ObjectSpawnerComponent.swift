@@ -2,6 +2,15 @@ import GameplayKit
 
 protocol SpawnableObject: GKEntity {
     static func spawn(at position: SCNVector3)
+    static var spawnType: SpawnedObjectType { get }
+}
+
+extension SpawnableObject {
+    static func spawn(at position: SCNVector3) {
+        let obj = self.init()
+        obj.component(ofType: GeometryComponent.self)?.node.position = position
+        GameManager.shared.scene?.add(obj)
+    }
 }
 
 enum SpawnedObjectType {
@@ -24,7 +33,7 @@ class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
 
         let deltaTime = currentTime - timeSinceLastSpawn
 
-        if deltaTime >= 1 {
+        if deltaTime >= Config.timer(for: T.spawnType) {
             spawnThing()
             timeSinceLastSpawn = currentTime
         }
