@@ -2,14 +2,20 @@ import GameplayKit
 import SceneKit
 
 class PhysicsComponent: GKComponent {
+    
+    var physicsBody: SCNPhysicsBody
 
-    var geometryComponent: GeometryComponent? {
+    private var geometryComponent: GeometryComponent? {
         entity?.component(ofType: GeometryComponent.self)
     }
 
     init(withBody body: SCNPhysicsBody) {
+        physicsBody = body
         super.init()
-        geometryComponent?.updatePhysicsBody(body)
+    }
+
+    override func didAddToEntity() {
+        geometryComponent?.setPhysicsBody(physicsBody)
     }
 
     required init?(coder: NSCoder) {

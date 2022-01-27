@@ -5,7 +5,8 @@ class Ground: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.yellow
+        material.diffuse.contents = UIColor.lightGray
+        material.reflective.contents = UIColor.lightGray
         let geometry = SCNFloor()
         geometry.reflectivity = 0.5
         geometry.materials = [material]
@@ -15,7 +16,7 @@ class Ground: GKEntity {
     static var physicsBody: SCNPhysicsBody {
         let body = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: geometry, options: nil))
         body.categoryBitMask = PhysicsCategory.ground.rawValue
-        body.contactTestBitMask = PhysicsCategory.obstacle.rawValue
+//        body.contactTestBitMask = PhysicsCategory.ground.rawValue
         body.collisionBitMask = PhysicsCategory.bitMask(forCategories: [
             PhysicsCategory.obstacle,
             PhysicsCategory.player

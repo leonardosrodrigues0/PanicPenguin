@@ -1,10 +1,3 @@
-//
-//  SCNVector3+Extensions.swift
-//  Penguin
-//
-//  Created by Erick Manaroulas Felipe on 25/01/22.
-//
-
 import SceneKit
 
 extension SCNVector3 {

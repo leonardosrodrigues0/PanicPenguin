@@ -1,10 +1,3 @@
-//
-//  TouchControllerComponent.swift
-//  Penguin
-//
-//  Created by Erick Manaroulas Felipe on 25/01/22.
-//
-
 import SceneKit
 import GameplayKit
 
@@ -28,9 +21,7 @@ class TouchControllerComponent: GKComponent {
     }
 
     override func update(deltaTime seconds: TimeInterval) {
-        if let touchPosition = touchPosition,
-           let frame = frame,
-           isTouchingScreen {
+        if let touchPosition = touchPosition, let frame = frame, isTouchingScreen {
             handleTouch(at: touchPosition, in: frame)
         }
     }

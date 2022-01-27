@@ -11,16 +11,15 @@ class GeometryComponent: GKComponent {
         super.init()
     }
 
-    func updatePhysicsBody(_ body: SCNPhysicsBody) {
+    func setPhysicsBody(_ body: SCNPhysicsBody) {
         node.physicsBody = body
-    }
-
-    func addCamera(_ camera: SCNCamera, withOrientation orientation: SCNVector3) {
-        node.camera = camera
-        node.eulerAngles = orientation
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func willRemoveFromEntity() {
+        node.removeFromParentNode()
     }
 }

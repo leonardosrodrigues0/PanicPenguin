@@ -1,20 +1,26 @@
+//
+//  PowerUp.swift
+//  Penguin
+//
+//  Created by Matheus Vicente on 27/01/22.
+//
 import GameplayKit
 import SceneKit
 
-class Tree: GKEntity {
+class SpeedPowerUp: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.reflective.contents = UIColor.red
-        material.diffuse.contents = UIColor.red
-        let geometry = SCNBox(width: 1.5, height: 0.5, length: 1.5, chamferRadius: 0.2)
+        material.reflective.contents = UIColor.blue
+        material.diffuse.contents = UIColor.blue
+        let geometry = SCNSphere(radius: 1.0)
         geometry.materials = [material]
         return geometry
     }
 
     static var physicsBody: SCNPhysicsBody {
         let body = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
-        body.categoryBitMask = PhysicsCategory.obstacle.rawValue
+        body.categoryBitMask = PhysicsCategory.collectable.rawValue
 
         return body
     }
@@ -22,7 +28,9 @@ class Tree: GKEntity {
     override init() {
         super.init()
         let position = SCNVector3(0, 0.25, -25)
-        addComponent(GeometryComponent(geometry: Self.geometry, position: position))
+        let geometryComponent = GeometryComponent(geometry: Self.geometry, position: position)
+        geometryComponent.node.scale.y = 0.5
+        addComponent(geometryComponent)
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(ObstacleMovementComponent())
         addComponent(ContactComponent(with: [.player]) { _ in
@@ -35,14 +43,15 @@ class Tree: GKEntity {
     }
 }
 
-extension Tree {
+extension SpeedPowerUp {
     func collideWithPlayer() {
         self.removeComponent(ofType: PhysicsComponent.self)
         self.removeComponent(ofType: ContactComponent.self)
         self.removeComponent(ofType: GeometryComponent.self)
+        GameManager.shared.speedManager.changeSpeed(to: .v5)
     }
 }
 
-extension Tree: SpawnableObject {
-    static let spawnType: SpawnedObjectType = .obstacle
+extension SpeedPowerUp: SpawnableObject {
+    static let spawnType: SpawnedObjectType = .powerup
 }
