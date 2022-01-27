@@ -53,9 +53,5 @@ extension Coin {
 }
 
 extension Coin: SpawnableObject {
-    func spawn(at position: SCNVector3) {
-        let obj = Coin()
-        obj.component(ofType: GeometryComponent.self)?.node.position = position
-        GameManager.shared.scene?.add(obj)
-    }
+    static let spawnType: SpawnedObjectType = .coin
 }

@@ -44,9 +44,5 @@ extension Tree {
 }
 
 extension Tree: SpawnableObject {
-    static func spawn(at position: SCNVector3) {
-        let obj = Tree()
-        obj.component(ofType: GeometryComponent.self)?.node.position = position
-        GameManager.shared.scene?.add(obj)
-    }
+    static let spawnType: SpawnedObjectType = .obstacle
 }
