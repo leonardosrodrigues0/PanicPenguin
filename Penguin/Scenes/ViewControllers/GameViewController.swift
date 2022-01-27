@@ -23,6 +23,7 @@ class GameViewController: UIViewController {
         scene.add(Camera())
         scene.add(Spawner<Tree>())
         scene.add(Spawner<Coin>())
+        scene.add(Spawner<SpeedPowerUp>())
 
         return scene
     }
