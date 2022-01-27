@@ -41,8 +41,6 @@ class Player: GKEntity {
             default:
                 return
             }
-
-
         }))
     }
 
