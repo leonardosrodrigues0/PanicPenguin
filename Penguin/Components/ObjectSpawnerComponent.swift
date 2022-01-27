@@ -1,14 +1,7 @@
-//
-//  ObjectSpawnerComponent.swift
-//  Penguin
-//
-//  Created by Erick Manaroulas Felipe on 26/01/22.
-//
-
 import GameplayKit
 
 protocol SpawnableObject: GKEntity {
-    func spawn(at position: SCNVector3)
+    static func spawn(at position: SCNVector3)
 }
 
 enum SpawnedObjectType {
@@ -17,22 +10,11 @@ enum SpawnedObjectType {
     case obstacle
 }
 
-class ObjectSpawnerComponent: GKComponent {
-
-    var entityToSpawn: SpawnableObject
+class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
     var timeSinceLastSpawn: Double = 0
 
-    init(object: SpawnableObject) {
-        entityToSpawn = object
-        super.init()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     func spawnThing() {
-        entityToSpawn.spawn(at: SCNVector3(Float.random(in: Config.xRange), 0.25, -100))
+        T.spawn(at: SCNVector3(Float.random(in: Config.xRange), 0.25, -100))
     }
 
     override func update(deltaTime currentTime: TimeInterval) {
