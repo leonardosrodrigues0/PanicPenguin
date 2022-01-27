@@ -15,11 +15,6 @@ class GeometryComponent: GKComponent {
         node.physicsBody = body
     }
 
-    func addCamera(_ camera: SCNCamera, withOrientation orientation: SCNVector3) {
-        node.camera = camera
-        node.eulerAngles = orientation
-    }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
