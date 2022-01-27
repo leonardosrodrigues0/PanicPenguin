@@ -2,7 +2,7 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-class GameViewController: UIViewController, SCNPhysicsContactDelegate {
+class GameViewController: UIViewController {
 
     @IBOutlet private var sceneView: SCNView!
     @IBOutlet private var scoreLabel: UILabel!
@@ -24,7 +24,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        gameScene.physicsWorld.contactDelegate = self
         sceneView.scene = gameScene
         sceneView.delegate = self
         sceneView.isPlaying = true
