@@ -16,8 +16,10 @@ class ObstacleMovementComponent: GKComponent {
     }
     
     func move() {
-        guard let geometry = geometry,
-              !geometry.node.hasActions else { return }
+        guard
+            let geometry = geometry,
+            !geometry.node.hasActions
+        else { return }
         
         let newPosition = geometry.node.position + SCNVector3Make(0.0, 0.0, 1)
         let moveAction = SCNAction.move(to: newPosition, duration: Config.interval)
