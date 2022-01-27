@@ -7,7 +7,7 @@ enum GameState {
     case dead
 }
 
-protocol ManagerDelegate: NSObject {
+protocol ManagerDelegate: AnyObject {
     func didEnterDeathState()
 }
 
