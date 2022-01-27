@@ -48,7 +48,7 @@ extension SpeedPowerUp {
         self.removeComponent(ofType: PhysicsComponent.self)
         self.removeComponent(ofType: ContactComponent.self)
         self.removeComponent(ofType: GeometryComponent.self)
-        GameManager.shared.speedManager.powerUpSpeed()
+        GameManager.shared.speedManager.changeSpeed(to: .v5)
     }
 }
 

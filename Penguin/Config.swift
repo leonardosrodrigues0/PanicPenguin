@@ -17,11 +17,11 @@ enum Config {
         // timers may not be divisible between each other
         switch type {
         case .powerup:
-            return 5.0
+            return 4.9
         case .coin:
-            return 1.8
+            return 2.1
         case .obstacle:
-            return 0.5
+            return 0.6
         }
     }
 }
