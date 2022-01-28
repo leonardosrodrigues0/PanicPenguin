@@ -15,6 +15,7 @@ class GameViewController: UIViewController {
     
     private var starCountText: SKLabelNode = SKLabelNode(text: "000")
     private var speedometerText: SKLabelNode = SKLabelNode(text: "000")
+    private let pauseIcon: SKSpriteNode = SKSpriteNode(texture: SKTexture.init(image: UIImage(systemName: "pause.fill")!))
     private var didGameStart: Bool = false
 
     private func buildNewScene() -> GameScene {
@@ -81,10 +82,7 @@ class GameViewController: UIViewController {
         speedometerText.fontName = "AvenirNext-HeavyItalic"
         speedometerText.fontColor = UIColor.black
         
-        let pauseIcon = 
-        SKSpriteNode(texture: SKTexture.init(image: UIImage(systemName: "pause.fill")!))
-        
-        pauseIcon.size = CGSize(width: 15, height: 15)
+        pauseIcon.size = CGSize(width: 20, height: 20)
         pauseIcon.position = CGPoint(x: 140, y: 0)
         
         speedometerIcon.addChild(speedometerText)
@@ -149,6 +147,13 @@ class GameViewController: UIViewController {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        let touchLocation = touch!.location(in: sceneView)
+        if pauseIcon.contains(touchLocation) {
+            print("Pause1! : \(touchLocation): \(pauseIcon.frame.origin)")
+        }
+        print("Pause2! : \(touchLocation): \(pauseIcon.frame.origin)")
+        
         gameScene.entities.forEach {
             if let touchController = $0.component(ofType: TouchControllerComponent.self) {
                 touchController.setup(shouldUpdate: false)
