@@ -14,6 +14,10 @@ class GameViewController: UIViewController {
     }
 
     lazy private var gameScene: GameScene = buildNewScene()
+    
+    private var starCountText: SKLabelNode = SKLabelNode(text: "000")
+    private var speedometerText: SKLabelNode = SKLabelNode(text: "000")
+    private var didGameStart: Bool = false
 
     private func buildNewScene() -> GameScene {
         let scene = GameScene()
@@ -42,12 +46,16 @@ class GameViewController: UIViewController {
             self.present(alert, animated: true)
         }
         
-        sceneView.overlaySKScene = buildHud()
+        if !didGameStart {
+            sceneView.overlaySKScene = buildHud()
+            sceneView.overlaySKScene?.isUserInteractionEnabled = false
+            didGameStart = true
+        }
 
         // TODO: Remove timer
         Timer.scheduledTimer(withTimeInterval: Config.interval, repeats: true) { _ in
-            self.scoreLabel.text = "\(GameManager.shared.currentScore)"
-            self.speedLabel.text = "\(GameManager.shared.currentSpeed)"
+            self.starCountText.text = "\(GameManager.shared.currentScore)"
+            self.speedometerText.text = "\(GameManager.shared.currentSpeed)"
         }
     }
 
@@ -59,7 +67,6 @@ class GameViewController: UIViewController {
         starIcon.size = CGSize(width: 20, height: 20)
         starIcon.position = CGPoint(x: 40, y: sceneView.frame.height - 90)
         
-        let starCountText = SKLabelNode(text: "000")
         starCountText.verticalAlignmentMode = .center
         starCountText.fontSize = CGFloat(16)
         starCountText.position = CGPoint(x: 30, y: 0)
@@ -70,7 +77,6 @@ class GameViewController: UIViewController {
         speedometerIcon.size = CGSize(width: 20, height: 20)
         speedometerIcon.position = CGPoint(x: 70, y: 0)
         
-        let speedometerText = SKLabelNode(text: "000")
         speedometerText.verticalAlignmentMode = .center
         speedometerText.fontSize = CGFloat(16)
         speedometerText.position = CGPoint(x: 30, y: 0)
@@ -90,6 +96,7 @@ class GameViewController: UIViewController {
         
         return overlayScene
     }
+    
     func buildControllerChoiceAlert() -> UIAlertController {
         let alert = UIAlertController(title: "Choose your Controller Scheme", message: nil, preferredStyle: .actionSheet)
 
