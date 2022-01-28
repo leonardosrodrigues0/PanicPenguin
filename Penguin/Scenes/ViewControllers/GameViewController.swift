@@ -6,12 +6,10 @@ import SpriteKit
 class GameViewController: UIViewController {
 
     @IBOutlet private var sceneView: SCNView!
-    @IBOutlet private var scoreLabel: UILabel!
-    @IBOutlet private var speedLabel: UILabel!
 
-    @IBAction private func pause() {
-        GameManager.shared.togglePause()
-    }
+//    @IBAction private func pause() {
+//        GameManager.shared.togglePause()
+//    }
 
     lazy private var gameScene: GameScene = buildNewScene()
     
@@ -83,7 +81,8 @@ class GameViewController: UIViewController {
         speedometerText.fontName = "AvenirNext-HeavyItalic"
         speedometerText.fontColor = UIColor.black
         
-        let pauseIcon = SKSpriteNode(texture: SKTexture.init(image: UIImage(systemName: "pause.fill")!))
+        let pauseIcon = 
+        SKSpriteNode(texture: SKTexture.init(image: UIImage(systemName: "pause.fill")!))
         
         pauseIcon.size = CGSize(width: 15, height: 15)
         pauseIcon.position = CGPoint(x: 140, y: 0)
