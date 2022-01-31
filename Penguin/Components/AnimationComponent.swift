@@ -1,8 +1,10 @@
 import GameplayKit
 
-enum ActionType {
+enum ActionType: String {
     case hit
     case idle
+    case move
+    case rotate
 }
 
 class AnimationComponent: GKComponent {
@@ -23,15 +25,15 @@ class AnimationComponent: GKComponent {
             return
         }
         
-        node?.runAction(animation)
+        node?.runAction(animation, forKey: type.rawValue)
     }
     
-    func move(to position: SCNVector3) {
-        node?.runAction(.move(to: position, duration: Config.interval))
+    func move(by delta: SCNVector3) {
+        node?.runAction(.move(by: delta, duration: Config.interval), forKey: ActionType.move.rawValue)
     }
     
     func rotate(by angle: CGFloat) {
-        node?.runAction(.rotateBy(x: 0, y: angle, z: 0, duration: Config.interval))
+        node?.runAction(.rotateBy(x: 0, y: angle, z: 0, duration: Config.interval), forKey: ActionType.rotate.rawValue)
     }
     
     override func didAddToEntity() {

@@ -41,8 +41,8 @@ class Player: GKEntity {
             ]),
             .idle: .repeatForever(
                 .sequence([
-                    .moveBy(x: 0, y: 0.5, z: 0, duration: 0.5),
-                    .moveBy(x: 0, y: -0.5, z: 0, duration: 0.5)
+                    .moveBy(x: 0, y: 0.45, z: 0, duration: 0.35),
+                    .moveBy(x: 0, y: -0.45, z: 0, duration: 0.35)
                 ])
             )
         ])
