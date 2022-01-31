@@ -26,6 +26,14 @@ class AnimationComponent: GKComponent {
         node?.runAction(animation)
     }
     
+    func move(to position: SCNVector3) {
+        node?.runAction(.move(to: position, duration: Config.interval))
+    }
+    
+    func rotate(by angle: CGFloat) {
+        node?.runAction(.rotateBy(x: 0, y: angle, z: 0, duration: Config.interval))
+    }
+    
     override func didAddToEntity() {
         guard let node = entity?.component(ofType: GeometryComponent.self)?.node else {
             return
