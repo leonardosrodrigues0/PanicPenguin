@@ -9,5 +9,5 @@ enum Config {
     
     static let baseScore: Double = 0.01
 
-    static var baseCoinValue: Int = 5
+    static var baseCoinValue: Int = 20
 }

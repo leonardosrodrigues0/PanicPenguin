@@ -22,11 +22,11 @@ enum SpawnedObjectType {
         // distances may not be divisible between each other
         switch self {
         case .powerUp:
-            return 4.123
+            return 11.082
         case .coin:
-            return 2.190
+            return 4.190
         case .obstacle:
-            return 0.553
+            return 0.667
         }
     }
 }
