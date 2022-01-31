@@ -46,7 +46,7 @@ class GameManager: GKEntity {
     }
 
     var coinValue: Int {
-        currentSpeed.rawValue * Config.baseCoinValue
+        Int(currentSpeed.rawValue) * Config.baseCoinValue
     }
 
     private override init() {

@@ -45,7 +45,7 @@ class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
 
         let deltaTime = currentTime - timeSinceLastSpawn
 
-        if deltaTime >= T.spawnType.spawnDistance / GameManager.shared.currentSpeed.speed {
+        if deltaTime >= T.spawnType.spawnDistance / GameManager.shared.currentSpeed.rawValue {
             spawnThing()
             timeSinceLastSpawn = currentTime
         }

@@ -7,7 +7,7 @@ enum Config {
     static let maxXPosition: Double = 5.5
     static let xRange = (minXPosition...maxXPosition)
     
-    static let baseScore: Double = 0.1
+    static let baseScore: Double = 0.01
 
     static var baseCoinValue: Int = 5
 }

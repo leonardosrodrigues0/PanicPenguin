@@ -1,27 +1,44 @@
 import GameplayKit
 
-enum Speed: Int {
-    case v0
-    case v1
-    case v2
-    case v3
-    case v4
-    case v5
+enum Speed: Double {
+    case v0 = 0.0
+    case v1 = 1.0
+    case v2 = 1.2
+    case v3 = 1.5
+    case v4 = 1.9
+    case v5 = 2.4
 
-    var speed: Double {
+    var next: Speed? {
         switch self {
         case .v0:
-            return 1.0
+            return .v1
         case .v1:
-            return 1.0
+            return .v2
         case .v2:
-            return 1.5
+            return .v3
         case .v3:
-            return 2.0
+            return .v4
         case .v4:
-            return 2.5
+            return .v5
         case .v5:
-            return 3.0
+            return nil
+        }
+    }
+
+    var previous: Speed? {
+        switch self {
+        case .v0:
+            return nil
+        case .v1:
+            return .v0
+        case .v2:
+            return .v1
+        case .v3:
+            return .v2
+        case .v4:
+            return .v3
+        case .v5:
+            return .v4
         }
     }
 
@@ -56,7 +73,7 @@ class SpeedManagerComponent: GKComponent {
     func incrementSpeed() {
         if currentSpeed == .v4 { return }
 
-        if let newSpeed = Speed(rawValue: currentSpeed.rawValue + 1) {
+        if let newSpeed = currentSpeed.next {
             currentSpeed = newSpeed
             print("accelerating to \(currentSpeed)")
         }
