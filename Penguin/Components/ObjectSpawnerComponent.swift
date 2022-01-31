@@ -14,14 +14,14 @@ extension SpawnableObject {
 }
 
 enum SpawnedObjectType {
-    case powerup
+    case powerUp
     case coin
     case obstacle
 
     var spawnDistance: Double {
         // distances may not be divisible between each other
         switch self {
-        case .powerup:
+        case .powerUp:
             return 4.123
         case .coin:
             return 2.190
