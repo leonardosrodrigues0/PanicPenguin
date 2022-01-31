@@ -7,7 +7,7 @@ enum ControllerType {
     case touch
     case none
 
-    var dampenFactor: Float {
+    var dampenFactor: Double {
         switch self {
         case .motion:
             return 0.8
@@ -37,7 +37,7 @@ class PlayerMovementComponent: GKComponent {
         }
     }
 
-    func move(by acceleration: Float, towards direction: Float) {
+    func move(by acceleration: Double, towards direction: Double) {
         guard
             let geometry = geometry,
             !geometry.node.hasActions
@@ -45,15 +45,15 @@ class PlayerMovementComponent: GKComponent {
             return
         }
 
-        let distance = Float(acceleration * controller.dampenFactor)
+        let distance = acceleration * controller.dampenFactor
 
         // Motion reading minimum requirements
         guard acceleration > 0.15 || acceleration < -0.15 else { return }
 
-        let newPosition = geometry.node.position + SCNVector3Make(distance * direction, 0, 0)
+        let newPosition = geometry.node.position + SCNVector3(distance * direction, 0, 0)
 
         // Make player respect bounds
-        guard newPosition.x >= Config.minXPosition && newPosition.x <= Config.maxXPosition else { return }
+        guard Double(newPosition.x) >= Config.minXPosition && Double(newPosition.x) <= Config.maxXPosition else { return }
 
         let moveAction = SCNAction.move(to: newPosition, duration: Config.interval)
 

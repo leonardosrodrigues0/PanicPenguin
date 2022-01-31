@@ -29,7 +29,7 @@ class MotionControllerComponent: GKComponent {
 
             let acceleration = data.acceleration.x
 
-            player.move(by: Float(acceleration), towards: 1.0)
+            player.move(by: acceleration, towards: 1.0)
         }
     }
 

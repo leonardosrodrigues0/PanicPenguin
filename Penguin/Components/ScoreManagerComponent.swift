@@ -19,7 +19,7 @@ class ScoreManagerComponent: GKComponent {
     }
 
     func collectCoin() {
-        realScore += Config.coinValue
-        print("collected \(Config.coinValue) coins")
+        realScore += Double(GameManager.shared.coinValue)
+        print("collected \(GameManager.shared.coinValue) coins")
     }
 }
