@@ -48,12 +48,17 @@ class Player: GKEntity {
         addComponent(PlayerMovementComponent())
         let healthComponent = PlayerHealthComponent()
         addComponent(healthComponent)
-        addComponent(ContactComponent(with: [.obstacle, .collectable], { category in
+        addComponent(animationComponent)
+        addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
             switch category {
             case .obstacle:
                 self.animationComponent.run(.shake)
                 self.animationComponent.run(.scale)
                 healthComponent.hit()
+            case .powerUp:
+                GameManager.shared.speedManager.changeSpeed(to: .v5)
+            case .coin:
+                GameManager.shared.scoreManager.collectCoin()
             default:
                 return
             }
