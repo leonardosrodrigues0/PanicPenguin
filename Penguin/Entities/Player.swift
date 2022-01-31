@@ -27,16 +27,24 @@ class Player: GKEntity {
     
     lazy private var animationComponent: AnimationComponent = {
         let component = AnimationComponent(animations: [
-            .shake: .sequence([
-                SCNAction.rotateBy(x: 0, y: 5.0.toRad, z: 0, duration: 0.1),
-                SCNAction.rotateBy(x: 0, y: -10.0.toRad, z: 0, duration: 0.1),
-                SCNAction.rotateBy(x: 0, y: 5.0.toRad, z: 0, duration: 0.05)
+            .hit: .group([
+                .sequence([
+                    SCNAction.rotateBy(x: 0, y: 5.0.toRad, z: 0, duration: 0.1),
+                    SCNAction.rotateBy(x: 0, y: -10.0.toRad, z: 0, duration: 0.1),
+                    SCNAction.rotateBy(x: 0, y: 5.0.toRad, z: 0, duration: 0.05)
+                ]),
+                .sequence([
+                    SCNAction.scale(to: 1.1, duration: 0.1),
+                    SCNAction.scale(to: 0.9, duration: 0.1),
+                    SCNAction.scale(to: 1, duration: 0.05)
+                ])
             ]),
-            .scale: .sequence([
-                SCNAction.scale(to: 1.1, duration: 0.1),
-                SCNAction.scale(to: 0.9, duration: 0.1),
-                SCNAction.scale(to: 1, duration: 0.05)
-            ])
+            .idle: .repeatForever(
+                .sequence([
+                    .moveBy(x: 0, y: 0.5, z: 0, duration: 0.5),
+                    .moveBy(x: 0, y: -0.5, z: 0, duration: 0.5)
+                ])
+            )
         ])
         return component
     }()
@@ -52,8 +60,7 @@ class Player: GKEntity {
         addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
             switch category {
             case .obstacle:
-                self.animationComponent.run(.shake)
-                self.animationComponent.run(.scale)
+                self.animationComponent.run(.hit)
                 healthComponent.hit()
             case .powerUp:
                 GameManager.shared.speedManager.changeSpeed(to: .v5)

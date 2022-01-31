@@ -40,7 +40,6 @@ class PlayerMovementComponent: GKComponent {
     func move(by acceleration: Float, towards direction: Float) {
         guard
             let geometry = geometry,
-            !geometry.node.hasActions,
             let animationComponent = entity?.component(ofType: AnimationComponent.self)
         else {
             return

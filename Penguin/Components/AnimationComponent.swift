@@ -1,8 +1,8 @@
 import GameplayKit
 
 enum ActionType {
-    case shake
-    case scale
+    case hit
+    case idle
 }
 
 class AnimationComponent: GKComponent {
@@ -40,5 +40,6 @@ class AnimationComponent: GKComponent {
         }
         
         self.node = node
+        run(.idle)
     }
 }
