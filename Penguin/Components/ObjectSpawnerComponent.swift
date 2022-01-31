@@ -17,6 +17,18 @@ enum SpawnedObjectType {
     case powerup
     case coin
     case obstacle
+
+    var spawnDistance: Double {
+        // distances may not be divisible between each other
+        switch self {
+        case .powerup:
+            return 4.123
+        case .coin:
+            return 2.190
+        case .obstacle:
+            return 0.553
+        }
+    }
 }
 
 class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
@@ -33,7 +45,7 @@ class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
 
         let deltaTime = currentTime - timeSinceLastSpawn
 
-        if deltaTime >= Config.spawnTimeInterval(for: T.spawnType) {
+        if deltaTime >= T.spawnType.spawnDistance / GameManager.shared.currentSpeed.speed {
             spawnThing()
             timeSinceLastSpawn = currentTime
         }

@@ -8,8 +8,38 @@ enum Speed: Int {
     case v4
     case v5
 
+    var speed: Double {
+        switch self {
+        case .v0:
+            return 1.0
+        case .v1:
+            return 1.0
+        case .v2:
+            return 1.5
+        case .v3:
+            return 2.0
+        case .v4:
+            return 2.5
+        case .v5:
+            return 3.0
+        }
+    }
+
     var timeRequiredToIncrement: Double {
-        return 5
+        switch self {
+        case .v0:
+            return 3.0
+        case .v1:
+            return 3.0
+        case .v2:
+            return 5.0
+        case .v3:
+            return 7.0
+        case .v4:
+            return 10.0
+        case .v5:
+            return 1.0
+        }
     }
 }
 
