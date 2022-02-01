@@ -45,45 +45,53 @@ class GameViewController: UIViewController {
             self.present(alert, animated: true)
         }
         
-        if !didGameStart {
-            sceneView.overlaySKScene = buildHud()
-            sceneView.overlaySKScene?.isUserInteractionEnabled = false
-            didGameStart = true
-        }
-
         // TODO: Remove timer
         Timer.scheduledTimer(withTimeInterval: Config.interval, repeats: true) { _ in
             self.starCountText.text = "\(GameManager.shared.currentScore)"
             self.speedometerText.text = "\(GameManager.shared.currentSpeed)"
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        if !didGameStart {
+            sceneView.overlaySKScene = buildHud()
+            sceneView.overlaySKScene?.isUserInteractionEnabled = false
+            didGameStart = true
+        }
+    }
 
     func buildHud() -> SKScene {
+
         let overlayScene = SKScene(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
         let textureAtlas = SKTextureAtlas(named: "HUD")
         
         let starIcon = SKSpriteNode(texture: textureAtlas.textureNamed("star"))
         starIcon.size = CGSize(width: 20, height: 20)
         starIcon.position = CGPoint(x: 40, y: sceneView.frame.height - 90)
+        starIcon.name = "starIcon"
         
         starCountText.verticalAlignmentMode = .center
         starCountText.fontSize = CGFloat(16)
         starCountText.position = CGPoint(x: 30, y: 0)
         starCountText.fontName = "AvenirNext-HeavyItalic"
         starCountText.fontColor = UIColor.black
+        starCountText.name = "starCountText"
         
         let speedometerIcon = SKSpriteNode(texture: textureAtlas.textureNamed("speedometer"))
         speedometerIcon.size = CGSize(width: 20, height: 20)
         speedometerIcon.position = CGPoint(x: 70, y: 0)
+        speedometerIcon.name = "speedometerIcon"
         
         speedometerText.verticalAlignmentMode = .center
         speedometerText.fontSize = CGFloat(16)
         speedometerText.position = CGPoint(x: 30, y: 0)
         speedometerText.fontName = "AvenirNext-HeavyItalic"
         speedometerText.fontColor = UIColor.black
+        speedometerText.name = "speedometerText"
         
         pauseIcon.size = CGSize(width: 20, height: 20)
         pauseIcon.position = CGPoint(x: 140, y: 0)
+        pauseIcon.name = "pauseIcon"
         
         speedometerIcon.addChild(speedometerText)
         starIcon.addChild(starCountText)
@@ -149,10 +157,22 @@ class GameViewController: UIViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let touchLocation = touch!.location(in: sceneView)
-        if pauseIcon.contains(touchLocation) {
-            print("Pause1! : \(touchLocation): \(pauseIcon.frame.origin)")
+        
+        let pauseIconLocation = (sceneView.overlaySKScene?.childNode(withName: "starIcon")!.childNode(withName: "pauseIcon")!.position)!
+        let starIconLocation = (sceneView.overlaySKScene?.childNode(withName: "starIcon")!.position)!
+
+        let sumStarPause = CGPoint(x: starIconLocation.x + pauseIconLocation.x, y: sceneView.frame.height - starIconLocation.y)
+        print(sumStarPause)
+        print(touchLocation)
+        
+        if touchLocation.x > sumStarPause.x &&
+            touchLocation.x < sumStarPause.x + pauseIcon.frame.width &&
+            touchLocation.y > sumStarPause.y &&
+            touchLocation.y < sumStarPause.y + pauseIcon.frame.height {
+            print("Pause")
         }
-        print("Pause2! : \(touchLocation): \(pauseIcon.frame.origin)")
+        
+        
         
         gameScene.entities.forEach {
             if let touchController = $0.component(ofType: TouchControllerComponent.self) {
