@@ -2,11 +2,11 @@ import GameplayKit
 
 enum Speed: Double {
     case v0 = 0.0
-    case v1 = 1.0
-    case v2 = 1.2
-    case v3 = 1.5
-    case v4 = 1.9
-    case v5 = 2.4
+    case v1 = 0.7
+    case v2 = 0.9
+    case v3 = 1.2
+    case v4 = 1.6
+    case v5 = 2.1
 
     var next: Speed? {
         switch self {
