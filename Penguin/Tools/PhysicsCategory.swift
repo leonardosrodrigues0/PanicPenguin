@@ -5,7 +5,7 @@ enum PhysicsCategory: Int {
     case obstacle = 2
     case ground = 4
     case coin = 8
-    case powerUp
+    case powerUp = 16
 
     static func bitMask(forCategories categories: [PhysicsCategory]) -> Int {
         categories.reduce(0) { partialResult, category in
