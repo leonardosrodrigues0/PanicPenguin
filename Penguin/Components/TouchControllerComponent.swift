@@ -17,7 +17,7 @@ class TouchControllerComponent: GKComponent {
         let direction = position.x > frame.width/2 ? 1 : -1
         let acceleration = 1.0
         
-        player.move(by: Float(acceleration), towards: Float(direction))
+        player.move(by: acceleration, towards: Double(direction))
     }
 
     override func update(deltaTime seconds: TimeInterval) {

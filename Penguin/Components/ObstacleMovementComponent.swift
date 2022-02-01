@@ -20,8 +20,8 @@ class ObstacleMovementComponent: GKComponent {
             let geometry = geometry,
             !geometry.node.hasActions
         else { return }
-        
-        let newPosition = geometry.node.position + SCNVector3Make(0.0, 0.0, 1)
+
+        let newPosition = geometry.node.position + SCNVector3(0.0, 0.0, GameManager.shared.currentSpeed.rawValue)
         let moveAction = SCNAction.move(to: newPosition, duration: Config.interval)
         geometry.node.runAction(moveAction)
     }

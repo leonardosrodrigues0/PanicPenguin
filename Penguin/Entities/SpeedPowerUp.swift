@@ -52,5 +52,5 @@ extension SpeedPowerUp {
 }
 
 extension SpeedPowerUp: SpawnableObject {
-    static let spawnType: SpawnedObjectType = .powerup
+    static let spawnType: SpawnedObjectType = .powerUp
 }

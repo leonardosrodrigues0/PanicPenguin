@@ -14,16 +14,28 @@ extension SpawnableObject {
 }
 
 enum SpawnedObjectType {
-    case powerup
+    case powerUp
     case coin
     case obstacle
+
+    var spawnDistance: Double {
+        // distances may not be divisible between each other
+        switch self {
+        case .powerUp:
+            return 11.082
+        case .coin:
+            return 4.190
+        case .obstacle:
+            return 0.667
+        }
+    }
 }
 
 class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
     var timeSinceLastSpawn: Double = 0
 
     func spawnThing() {
-        T.spawn(at: SCNVector3(Float.random(in: Config.xRange), 0.25, -100))
+        T.spawn(at: SCNVector3(Double.random(in: Config.xRange), 0.25, -100))
     }
 
     override func update(deltaTime currentTime: TimeInterval) {
@@ -33,7 +45,7 @@ class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
 
         let deltaTime = currentTime - timeSinceLastSpawn
 
-        if deltaTime >= Config.timer(for: T.spawnType) {
+        if deltaTime >= T.spawnType.spawnDistance / GameManager.shared.currentSpeed.rawValue {
             spawnThing()
             timeSinceLastSpawn = currentTime
         }

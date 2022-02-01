@@ -45,6 +45,10 @@ class GameManager: GKEntity {
         scoreManager.score
     }
 
+    var coinValue: Int {
+        Int(currentSpeed.rawValue) * Config.baseCoinValue
+    }
+
     private override init() {
         super.init()
         addComponent(speedManager)
