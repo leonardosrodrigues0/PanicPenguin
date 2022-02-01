@@ -1,5 +1,6 @@
 import GameplayKit
 
+/// Defines commons types of actions to be animated
 enum ActionType: String {
     case hit
     case idle
@@ -20,8 +21,10 @@ class AnimationComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Execute animations defined in the entity's initializer
     func run(_ type: ActionType) {
         guard let animation = animations[type]  else {
+            print("Animation of type \(type.rawValue) not defined in entity")
             return
         }
         
