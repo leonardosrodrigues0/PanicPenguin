@@ -162,17 +162,13 @@ class GameViewController: UIViewController {
         let starIconLocation = (sceneView.overlaySKScene?.childNode(withName: "starIcon")!.position)!
 
         let sumStarPause = CGPoint(x: starIconLocation.x + pauseIconLocation.x, y: sceneView.frame.height - starIconLocation.y)
-        print(sumStarPause)
-        print(touchLocation)
         
-        if touchLocation.x > sumStarPause.x &&
-            touchLocation.x < sumStarPause.x + pauseIcon.frame.width &&
-            touchLocation.y > sumStarPause.y &&
-            touchLocation.y < sumStarPause.y + pauseIcon.frame.height {
-            print("Pause")
+        if touchLocation.x > sumStarPause.x - pauseIcon.frame.width / 2 &&
+            touchLocation.x < sumStarPause.x + pauseIcon.frame.width / 2 &&
+            touchLocation.y > sumStarPause.y - pauseIcon.frame.height / 2 &&
+            touchLocation.y < sumStarPause.y + pauseIcon.frame.height / 2 {
+            GameManager.shared.togglePause()
         }
-        
-        
         
         gameScene.entities.forEach {
             if let touchController = $0.component(ofType: TouchControllerComponent.self) {
