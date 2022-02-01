@@ -51,7 +51,7 @@ class PlayerMovementComponent: GKComponent {
         // Motion reading minimum requirements
         guard acceleration > 0.15 || acceleration < -0.15 else { return }
 
-        let deltaPosition = SCNVector3Make(distance * direction, 0, 0)
+        let deltaPosition = SCNVector3(distance * direction, 0, 0)
         let newPosition = geometry.node.position + deltaPosition
 
         // Make player respect bounds
