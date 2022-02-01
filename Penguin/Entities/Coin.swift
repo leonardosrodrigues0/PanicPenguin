@@ -21,7 +21,7 @@ class Coin: GKEntity {
 
     static var physicsBody: SCNPhysicsBody {
         let body = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
-        body.categoryBitMask = PhysicsCategory.collectable.rawValue
+        body.categoryBitMask = PhysicsCategory.coin.rawValue
 
         return body
     }
@@ -49,7 +49,6 @@ extension Coin {
         self.removeComponent(ofType: PhysicsComponent.self)
         self.removeComponent(ofType: ContactComponent.self)
         self.removeComponent(ofType: GeometryComponent.self)
-        GameManager.shared.scoreManager.collectCoin()
     }
 }
 

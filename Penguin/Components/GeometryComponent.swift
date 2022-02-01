@@ -15,6 +15,12 @@ class GeometryComponent: GKComponent {
         node.physicsBody = body
     }
 
+    override func update(deltaTime seconds: TimeInterval) {
+        if node.position.z > 0 {
+            GameManager.shared.scene?.remove(self.entity!)
+        }
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
