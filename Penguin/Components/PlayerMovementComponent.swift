@@ -40,7 +40,8 @@ class PlayerMovementComponent: GKComponent {
     func move(by acceleration: Float, towards direction: Float) {
         guard
             let geometry = geometry,
-            !geometry.node.hasActions
+            geometry.node.action(forKey: ActionType.move.rawValue) == nil,
+            let animationComponent = entity?.component(ofType: AnimationComponent.self)
         else {
             return
         }
@@ -50,12 +51,11 @@ class PlayerMovementComponent: GKComponent {
         // Motion reading minimum requirements
         guard acceleration > 0.15 || acceleration < -0.15 else { return }
 
-        let newPosition = geometry.node.position + SCNVector3Make(distance * direction, 0, 0)
+        let deltaPosition = SCNVector3Make(distance * direction, 0, 0)
+        let newPosition = geometry.node.position + deltaPosition
 
         // Make player respect bounds
         guard newPosition.x >= Config.minXPosition && newPosition.x <= Config.maxXPosition else { return }
-
-        let moveAction = SCNAction.move(to: newPosition, duration: Config.interval)
 
         // Angle is passed in rads, so we convert it and divide by 2 to get about 15 at
         // max distance
@@ -70,10 +70,8 @@ class PlayerMovementComponent: GKComponent {
             }
         }
 
-        let rotateAction = SCNAction.rotateBy(x: 0, y: spinDirection.toRad / 2, z: 0, duration: Config.interval)
-
-        geometry.node.runAction(rotateAction)
-        geometry.node.runAction(moveAction)
+        animationComponent.move(by: deltaPosition)
+        animationComponent.rotate(by: spinDirection.toRad / 2)
     }
 
 }
