@@ -11,6 +11,7 @@
 		3FC0D23627A82C16004FD5E8 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */; };
 		6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */; };
 		60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */; };
+		A74276DD27A9D6210097CC7C /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74276DC27A9D6210097CC7C /* ClosedRange.swift */; };
 		A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA74D27998C1D00B0711C /* AppDelegate.swift */; };
 		A74BA75227998C1D00B0711C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA75127998C1D00B0711C /* GameViewController.swift */; };
 		A74BA75527998C1D00B0711C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A74BA75327998C1D00B0711C /* Main.storyboard */; };
@@ -31,12 +32,13 @@
 		A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */; };
 		A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */; };
 		A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5F279B403400F96F0F /* CameraComponent.swift */; };
+		A7B66F5727A972D900281AA4 /* MovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B66F5627A972D900281AA4 /* MovementManager.swift */; };
 		A7EE406127A182CD0073DD3F /* ScoreManagerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */; };
 		D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */; };
-		D73C1A9327A02149007C8549 /* TouchControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */; };
+		D73C1A9327A02149007C8549 /* TouchMovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9227A02149007C8549 /* TouchMovementManager.swift */; };
 		D73C1A9527A02ED0007C8549 /* PlayerMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9427A02ED0007C8549 /* PlayerMovementComponent.swift */; };
 		D7A389C027A2C46B00748137 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A389BF27A2C46B00748137 /* Coin.swift */; };
-		D7A94958279EE6A30090CD26 /* MotionControllerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */; };
+		D7A94958279EE6A30090CD26 /* MotionMovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A94957279EE6A30090CD26 /* MotionMovementManager.swift */; };
 		D7CA81AE27A2B3E5006DC4EA /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CA81AD27A2B3E5006DC4EA /* Math.swift */; };
 		D7F9B17227A1644300275F94 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17127A1644300275F94 /* GameManager.swift */; };
 		D7F9B17427A164DC00275F94 /* SpeedManagerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9B17327A164DC00275F94 /* SpeedManagerComponent.swift */; };
@@ -50,6 +52,7 @@
 		3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
 		6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPowerUp.swift; sourceTree = "<group>"; };
 		60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleMovementComponent.swift; sourceTree = "<group>"; };
+		A74276DC27A9D6210097CC7C /* ClosedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRange.swift; sourceTree = "<group>"; };
 		A74BA74A27998C1D00B0711C /* Penguin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Penguin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74BA74D27998C1D00B0711C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A74BA75127998C1D00B0711C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -71,12 +74,13 @@
 		A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryComponent.swift; sourceTree = "<group>"; };
 		A783CF5F279B403400F96F0F /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
+		A7B66F5627A972D900281AA4 /* MovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementManager.swift; sourceTree = "<group>"; };
 		A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManagerComponent.swift; sourceTree = "<group>"; };
 		D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
-		D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchControllerComponent.swift; sourceTree = "<group>"; };
+		D73C1A9227A02149007C8549 /* TouchMovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchMovementManager.swift; sourceTree = "<group>"; };
 		D73C1A9427A02ED0007C8549 /* PlayerMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMovementComponent.swift; sourceTree = "<group>"; };
 		D7A389BF27A2C46B00748137 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
-		D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionControllerComponent.swift; sourceTree = "<group>"; };
+		D7A94957279EE6A30090CD26 /* MotionMovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionMovementManager.swift; sourceTree = "<group>"; };
 		D7CA81AD27A2B3E5006DC4EA /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		D7F9B17127A1644300275F94 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		D7F9B17327A164DC00275F94 /* SpeedManagerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedManagerComponent.swift; sourceTree = "<group>"; };
@@ -157,9 +161,12 @@
 		A74BA76A2799A81100B0711C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				A75717E8279ACEF4004A4C9B /* PhysicsCategory.swift */,
+				A7B66F5627A972D900281AA4 /* MovementManager.swift */,
+				D7A94957279EE6A30090CD26 /* MotionMovementManager.swift */,
+				D73C1A9227A02149007C8549 /* TouchMovementManager.swift */,
 				D73C1A8F27A0194C007C8549 /* Extensions */,
 				A74BA76D2799A88E00B0711C /* Services */,
-				A75717E8279ACEF4004A4C9B /* PhysicsCategory.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -179,8 +186,6 @@
 				A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */,
 				A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */,
 				A783CF5F279B403400F96F0F /* CameraComponent.swift */,
-				D7A94957279EE6A30090CD26 /* MotionControllerComponent.swift */,
-				D73C1A9227A02149007C8549 /* TouchControllerComponent.swift */,
 				D73C1A9427A02ED0007C8549 /* PlayerMovementComponent.swift */,
 				60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */,
 				D7F9B17327A164DC00275F94 /* SpeedManagerComponent.swift */,
@@ -223,6 +228,7 @@
 			children = (
 				D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */,
 				D7CA81AD27A2B3E5006DC4EA /* Math.swift */,
+				A74276DC27A9D6210097CC7C /* ClosedRange.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -333,7 +339,7 @@
 				D7A389C027A2C46B00748137 /* Coin.swift in Sources */,
 				3F0FD7F027A16CE000E618CE /* ContactComponent.swift in Sources */,
 				A75717EB279AD336004A4C9B /* Player.swift in Sources */,
-				D73C1A9327A02149007C8549 /* TouchControllerComponent.swift in Sources */,
+				D73C1A9327A02149007C8549 /* TouchMovementManager.swift in Sources */,
 				D73C1A9527A02ED0007C8549 /* PlayerMovementComponent.swift in Sources */,
 				A7EE406127A182CD0073DD3F /* ScoreManagerComponent.swift in Sources */,
 				A75717E9279ACEF4004A4C9B /* PhysicsCategory.swift in Sources */,
@@ -350,7 +356,9 @@
 				D7F9B17227A1644300275F94 /* GameManager.swift in Sources */,
 				A75717FD279AD80B004A4C9B /* Camera.swift in Sources */,
 				A76ECC9C279B27780024B3A7 /* Config.swift in Sources */,
-				D7A94958279EE6A30090CD26 /* MotionControllerComponent.swift in Sources */,
+				D7A94958279EE6A30090CD26 /* MotionMovementManager.swift in Sources */,
+				A7B66F5727A972D900281AA4 /* MovementManager.swift in Sources */,
+				A74276DD27A9D6210097CC7C /* ClosedRange.swift in Sources */,
 				A75717FB279AD6F2004A4C9B /* Ground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,7 +537,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 4FRA3TQ955;
+				DEVELOPMENT_TEAM = 3W2GZBLUSM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

@@ -35,7 +35,7 @@ class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
     var timeSinceLastSpawn: Double = 0
 
     func spawnThing() {
-        T.spawn(at: SCNVector3(Double.random(in: Config.xRange), 0.25, -100))
+        T.spawn(at: SCNVector3(Double.random(in: Config.xMovementRange), 0.25, -100))
     }
 
     override func update(deltaTime currentTime: TimeInterval) {
