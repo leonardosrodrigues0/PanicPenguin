@@ -1,10 +1,3 @@
-//
-//  MusicComponent.swift
-//  Penguin
-//
-//  Created by Matheus Vicente on 02/02/22.
-//
-
 import SceneKit
 import GameplayKit
 
