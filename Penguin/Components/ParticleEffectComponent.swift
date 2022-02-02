@@ -1,16 +1,20 @@
 import GameplayKit
 
+/// Defines types of particle effects
 enum ParticleEffectType: String {
     case snowTrail
 }
 
+/// Implement an specific type of particle effect
 class ParticleEffectComponent: GKComponent {
     private static let particlesAssetPath = "Particles.scnassets/"
     private static let particlesAssetExtension = ".scn"
     
     private let particleNode: SCNNode
-    private let particleSystem: SCNParticleSystem
     private let attachment: AttachPosition
+    
+    /// Define the characteristics of the effect
+    var particleSystem: SCNParticleSystem
     
     init!(_ effect: ParticleEffectType, at attachment: AttachPosition = .init(.mid, .mid, .mid)) {
         let path = Self.particlesAssetPath + effect.rawValue + Self.particlesAssetExtension

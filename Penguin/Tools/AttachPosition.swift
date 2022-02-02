@@ -1,5 +1,6 @@
 import SceneKit
 
+/// Defines common positions of geometry relative to scene camera
 enum GeometryPosition {
     enum Y {
         case top, bottom, mid
@@ -12,6 +13,7 @@ enum GeometryPosition {
     }
 }
 
+/// Define a struct that represents a position inside a node
 struct AttachPosition {
     fileprivate let x: GeometryPosition.X
     fileprivate let y: GeometryPosition.Y
