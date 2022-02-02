@@ -57,7 +57,7 @@ class Player: GKEntity {
         let healthComponent = PlayerHealthComponent()
         addComponent(healthComponent)
         addComponent(animationComponent)
-        addComponent(ParticleEffectComponent(.snowTrail))
+        addComponent(ParticleEffectComponent(.snowTrail, at: .init(.mid, .bottom, .back)))
         addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
             switch category {
             case .obstacle:

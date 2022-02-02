@@ -11,6 +11,7 @@
 		3FC0D23627A82C16004FD5E8 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */; };
 		3FEA03DA27AAA6DA006F4E39 /* Particles.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */; };
 		3FEA03DC27AAA73C006F4E39 /* ParticleEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */; };
+		3FEA03DE27AAC3D5006F4E39 /* AttachPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */; };
 		6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */; };
 		60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */; };
 		A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA74D27998C1D00B0711C /* AppDelegate.swift */; };
@@ -52,6 +53,7 @@
 		3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
 		3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Particles.scnassets; sourceTree = "<group>"; };
 		3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleEffectComponent.swift; sourceTree = "<group>"; };
+		3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPosition.swift; sourceTree = "<group>"; };
 		6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPowerUp.swift; sourceTree = "<group>"; };
 		60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleMovementComponent.swift; sourceTree = "<group>"; };
 		A74BA74A27998C1D00B0711C /* Penguin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Penguin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +167,7 @@
 				D73C1A8F27A0194C007C8549 /* Extensions */,
 				A74BA76D2799A88E00B0711C /* Services */,
 				A75717E8279ACEF4004A4C9B /* PhysicsCategory.swift */,
+				3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				A75717F9279AD6C0004A4C9B /* GameScene.swift in Sources */,
 				A74BA75227998C1D00B0711C /* GameViewController.swift in Sources */,
 				D7F9B17627A16A8100275F94 /* PlayerHealthComponent.swift in Sources */,
+				3FEA03DE27AAC3D5006F4E39 /* AttachPosition.swift in Sources */,
 				A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */,
 				A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */,
 				D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */,

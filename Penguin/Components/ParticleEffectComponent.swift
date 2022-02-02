@@ -8,9 +8,11 @@ class ParticleEffectComponent: GKComponent {
     private static let particlesAssetPath = "Particles.scnassets/"
     private static let particlesAssetExtension = ".scn"
     
-    let particleSystem: SCNParticleSystem
+    private let particleNode: SCNNode
+    private let particleSystem: SCNParticleSystem
+    private let attachment: AttachPosition
     
-    init!(_ effect: ParticleEffectType) {
+    init!(_ effect: ParticleEffectType, at attachment: AttachPosition = .init(.mid, .mid, .mid)) {
         let path = Self.particlesAssetPath + effect.rawValue + Self.particlesAssetExtension
         
         guard
@@ -22,7 +24,9 @@ class ParticleEffectComponent: GKComponent {
             return nil
         }
         
+        self.particleNode = particleNode
         self.particleSystem = particleSystem
+        self.attachment = attachment
         super.init()
     }
     
@@ -34,7 +38,7 @@ class ParticleEffectComponent: GKComponent {
         guard let node = entity?.component(ofType: GeometryComponent.self)?.node else {
             return
         }
-        
-        node.addParticleSystem(particleSystem)
+
+        node.addChildNode(particleNode, at: attachment)
     }
 }
