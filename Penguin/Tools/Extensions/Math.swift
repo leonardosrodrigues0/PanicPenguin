@@ -12,6 +12,10 @@ extension Double {
     var toRad: Double {
         return self / 180 * Self.pi
     }
+
+    var toDegree: Double {
+        return self * 180 / Self.pi
+    }
 }
 
 extension Float {

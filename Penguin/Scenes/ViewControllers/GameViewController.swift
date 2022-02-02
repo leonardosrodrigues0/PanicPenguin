@@ -51,24 +51,12 @@ class GameViewController: UIViewController {
         let alert = UIAlertController(title: "Choose your Controller Scheme", message: nil, preferredStyle: .actionSheet)
 
         let setMotionControllerAction = UIAlertAction(title: "Motion", style: .default) { _ in
-            self.gameScene.entities.forEach {
-                if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
-                    playerController.controller = .motion
-                    playerController.entity?.addComponent(MotionControllerComponent())
-                }
-            }
-
+            GameManager.shared.playerMovement?.controllerType = .motion
             GameManager.shared.state = .playing
         }
 
         let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
-            self.gameScene.entities.forEach {
-                if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
-                    playerController.controller = .touch
-                    playerController.entity?.addComponent(TouchControllerComponent())
-                }
-            }
-
+            GameManager.shared.playerMovement?.controllerType = .touch
             GameManager.shared.state = .playing
         }
 
@@ -78,41 +66,34 @@ class GameViewController: UIViewController {
         return alert
     }
 
+    // MARK: - Touches Handling Methods
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let position = touches.first?.location(in: sceneView) {
-            gameScene.entities.forEach {
-                if let touchController = $0.component(ofType: TouchControllerComponent.self) {
-                    touchController.setup(position, sceneView.frame, shouldUpdate: true)
-                }
-            }
-        }
-    }
-
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let position = touches.first?.location(in: sceneView) {
-            gameScene.entities.forEach {
-                if let touchController = $0.component(ofType: TouchControllerComponent.self) {
-                    touchController.setup(position, sceneView.frame, shouldUpdate: true)
-                }
-            }
-        }
-
+        GameManager.shared.playerMovement?.movementManager?.touchesBegan(
+            touches,
+            with: event,
+            view: sceneView
+        )
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        gameScene.entities.forEach {
-            if let touchController = $0.component(ofType: TouchControllerComponent.self) {
-                touchController.setup(shouldUpdate: false)
-            }
-        }
+        GameManager.shared.playerMovement?.movementManager?.touchesEnded(
+            touches,
+            with: event,
+            view: sceneView
+        )
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        GameManager.shared.playerMovement?.movementManager?.touchesMoved(
+            touches,
+            with: event,
+            view: sceneView
+        )
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        gameScene.entities.forEach {
-            if let touchController = $0.component(ofType: TouchControllerComponent.self) {
-                touchController.setup(shouldUpdate: false)
-            }
-        }
+        touchesEnded(touches, with: event)
     }
 }
 
@@ -123,7 +104,7 @@ extension GameViewController: SCNSceneRendererDelegate {
     }
 }
 
-extension GameViewController: ManagerDelegate {
+extension GameViewController: GameManagerDelegate {
     func didEnterDeathState() {
         let alert = buildResetGameAlert()
 

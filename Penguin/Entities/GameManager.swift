@@ -7,7 +7,7 @@ enum GameState {
     case dead
 }
 
-protocol ManagerDelegate: AnyObject {
+protocol GameManagerDelegate: AnyObject {
     func didEnterDeathState()
 }
 
@@ -28,7 +28,7 @@ class GameManager: GKEntity {
         }
     }
 
-    weak var delegate: ManagerDelegate?
+    weak var delegate: GameManagerDelegate?
 
     weak var scene: GameScene?
 
@@ -36,6 +36,7 @@ class GameManager: GKEntity {
     let scoreManager = ScoreManagerComponent()
 
     var playerHealth: PlayerHealthComponent?
+    var playerMovement: PlayerMovementComponent?
 
     var currentSpeed: Speed {
         speedManager.currentSpeed
