@@ -11,6 +11,8 @@
 		3FC0D23627A82C16004FD5E8 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */; };
 		6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */; };
 		60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */; };
+		60B0E16A27AAA53300672CAA /* MusicComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B0E16927AAA53300672CAA /* MusicComponent.swift */; };
+		60CC25AC27AAA6D900D35A61 /* JazzRush.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 60CC25AB27AAA6D900D35A61 /* JazzRush.mp3 */; };
 		A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA74D27998C1D00B0711C /* AppDelegate.swift */; };
 		A74BA75227998C1D00B0711C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA75127998C1D00B0711C /* GameViewController.swift */; };
 		A74BA75527998C1D00B0711C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A74BA75327998C1D00B0711C /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 		3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
 		6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPowerUp.swift; sourceTree = "<group>"; };
 		60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleMovementComponent.swift; sourceTree = "<group>"; };
+		60B0E16927AAA53300672CAA /* MusicComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicComponent.swift; sourceTree = "<group>"; };
+		60CC25AB27AAA6D900D35A61 /* JazzRush.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JazzRush.mp3; sourceTree = "<group>"; };
 		A74BA74A27998C1D00B0711C /* Penguin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Penguin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74BA74D27998C1D00B0711C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A74BA75127998C1D00B0711C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		A74BA7682799A79E00B0711C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				60CC25AB27AAA6D900D35A61 /* JazzRush.mp3 */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				D7F9B17927A1826400275F94 /* ObjectSpawnerComponent.swift */,
 				A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */,
 				3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */,
+				60B0E16927AAA53300672CAA /* MusicComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60CC25AC27AAA6D900D35A61 /* JazzRush.mp3 in Resources */,
 				A74BA75A27998C1E00B0711C /* LaunchScreen.storyboard in Resources */,
 				A74BA76127998C9300B0711C /* README.md in Resources */,
 				A74BA76527998CB200B0711C /* .swiftlint.yml in Resources */,
@@ -348,6 +355,7 @@
 				A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */,
 				D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */,
 				D7F9B17227A1644300275F94 /* GameManager.swift in Sources */,
+				60B0E16A27AAA53300672CAA /* MusicComponent.swift in Sources */,
 				A75717FD279AD80B004A4C9B /* Camera.swift in Sources */,
 				A76ECC9C279B27780024B3A7 /* Config.swift in Sources */,
 				D7A94958279EE6A30090CD26 /* MotionControllerComponent.swift in Sources */,
@@ -500,7 +508,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 4FRA3TQ955;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -509,12 +517,13 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.geppetto.penguin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.geppetto.penguin.Matheus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -529,7 +538,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 4FRA3TQ955;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -538,12 +547,13 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.geppetto.penguin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.geppetto.penguin.Matheus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

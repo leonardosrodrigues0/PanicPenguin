@@ -70,6 +70,7 @@ class Player: GKEntity {
                 return
             }
         }))
+        addComponent(MusicComponent())
     }
 
     required init?(coder: NSCoder) {
