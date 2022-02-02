@@ -10,9 +10,19 @@ class ParticleEffectComponent: GKComponent {
     
     let particleSystem: SCNParticleSystem
     
-    init(_ effect: ParticleEffectType) {
-        let scene = SCNScene(named: Self.particlesAssetPath + effect.rawValue + Self.particlesAssetExtension)
-        particleSystem = (scene!.rootNode.childNode(withName: "particles", recursively: true)?.particleSystems?.first)!
+    init!(_ effect: ParticleEffectType) {
+        let path = Self.particlesAssetPath + effect.rawValue + Self.particlesAssetExtension
+        
+        guard
+            let scene = SCNScene(named: path),
+            let particleNode = scene.rootNode.childNode(withName: "particles", recursively: true),
+            let particleSystem = particleNode.particleSystems?.first
+        else {
+            print("Could not find particle system in \(path)")
+            return nil
+        }
+        
+        self.particleSystem = particleSystem
         super.init()
     }
     
