@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3114416127ABFAE200EEB671 /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3114416027ABFAE200EEB671 /* Hud.swift */; };
 		3F0FD7F027A16CE000E618CE /* ContactComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */; };
 		3FC0D23627A82C16004FD5E8 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */; };
 		6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3114416027ABFAE200EEB671 /* Hud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
 		3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactComponent.swift; sourceTree = "<group>"; };
 		3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
 		6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPowerUp.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				A75717F6279AD6A9004A4C9B /* Menu.swift */,
 				A75717F8279AD6C0004A4C9B /* GameScene.swift */,
+				3114416027ABFAE200EEB671 /* Hud.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				D7F9B17A27A1826400275F94 /* ObjectSpawnerComponent.swift in Sources */,
 				60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */,
 				A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */,
+				3114416127ABFAE200EEB671 /* Hud.swift in Sources */,
 				6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */,
 				3FC0D23627A82C16004FD5E8 /* AnimationComponent.swift in Sources */,
 				A75717F1279AD4F8004A4C9B /* Tree.swift in Sources */,
@@ -428,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -483,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -500,7 +504,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 4FRA3TQ955;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -529,7 +532,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 4FRA3TQ955;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

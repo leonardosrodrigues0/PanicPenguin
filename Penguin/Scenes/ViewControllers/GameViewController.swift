@@ -12,10 +12,8 @@ class GameViewController: UIViewController {
 //    }
 
     lazy private var gameScene: GameScene = buildNewScene()
+    private var hud: Hud = Hud()
     
-    private var starCountText: SKLabelNode = SKLabelNode(text: "000")
-    private var speedometerText: SKLabelNode = SKLabelNode(text: "000")
-    private let pauseIcon: SKSpriteNode = SKSpriteNode(texture: SKTexture.init(image: UIImage(systemName: "pause.fill")!))
     private var didGameStart: Bool = false
 
     private func buildNewScene() -> GameScene {
@@ -47,59 +45,16 @@ class GameViewController: UIViewController {
         
         // TODO: Remove timer
         Timer.scheduledTimer(withTimeInterval: Config.interval, repeats: true) { _ in
-            self.starCountText.text = "\(GameManager.shared.currentScore)"
-            self.speedometerText.text = "\(GameManager.shared.currentSpeed)"
+            self.hud.updateLabels(currentScore: GameManager.shared.currentScore, currentSpeed: GameManager.shared.currentSpeed)
         }
     }
     
     override func viewDidLayoutSubviews() {
         if !didGameStart {
-            sceneView.overlaySKScene = buildHud()
+            sceneView.overlaySKScene = hud.buildHud(sceneWidth: sceneView.frame.width, sceneHeight: sceneView.frame.height)
             sceneView.overlaySKScene?.isUserInteractionEnabled = false
             didGameStart = true
         }
-    }
-
-    func buildHud() -> SKScene {
-
-        let overlayScene = SKScene(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
-        let textureAtlas = SKTextureAtlas(named: "HUD")
-        
-        let starIcon = SKSpriteNode(texture: textureAtlas.textureNamed("star"))
-        starIcon.size = CGSize(width: 20, height: 20)
-        starIcon.position = CGPoint(x: 40, y: sceneView.frame.height - 90)
-        starIcon.name = "starIcon"
-        
-        starCountText.verticalAlignmentMode = .center
-        starCountText.fontSize = CGFloat(16)
-        starCountText.position = CGPoint(x: 30, y: 0)
-        starCountText.fontName = "AvenirNext-HeavyItalic"
-        starCountText.fontColor = UIColor.black
-        starCountText.name = "starCountText"
-        
-        let speedometerIcon = SKSpriteNode(texture: textureAtlas.textureNamed("speedometer"))
-        speedometerIcon.size = CGSize(width: 20, height: 20)
-        speedometerIcon.position = CGPoint(x: 70, y: 0)
-        speedometerIcon.name = "speedometerIcon"
-        
-        speedometerText.verticalAlignmentMode = .center
-        speedometerText.fontSize = CGFloat(16)
-        speedometerText.position = CGPoint(x: 30, y: 0)
-        speedometerText.fontName = "AvenirNext-HeavyItalic"
-        speedometerText.fontColor = UIColor.black
-        speedometerText.name = "speedometerText"
-        
-        pauseIcon.size = CGSize(width: 20, height: 20)
-        pauseIcon.position = CGPoint(x: 140, y: 0)
-        pauseIcon.name = "pauseIcon"
-        
-        speedometerIcon.addChild(speedometerText)
-        starIcon.addChild(starCountText)
-        starIcon.addChild(speedometerIcon)
-        starIcon.addChild(pauseIcon)
-        overlayScene.addChild(starIcon)
-        
-        return overlayScene
     }
     
     func buildControllerChoiceAlert() -> UIAlertController {
@@ -163,10 +118,10 @@ class GameViewController: UIViewController {
 
         let sumStarPause = CGPoint(x: starIconLocation.x + pauseIconLocation.x, y: sceneView.frame.height - starIconLocation.y)
         
-        if touchLocation.x > sumStarPause.x - pauseIcon.frame.width / 2 &&
-            touchLocation.x < sumStarPause.x + pauseIcon.frame.width / 2 &&
-            touchLocation.y > sumStarPause.y - pauseIcon.frame.height / 2 &&
-            touchLocation.y < sumStarPause.y + pauseIcon.frame.height / 2 {
+        if touchLocation.x > sumStarPause.x - hud.getPauseIconWidth() / 2 &&
+            touchLocation.x < sumStarPause.x + hud.getPauseIconWidth() / 2 &&
+            touchLocation.y > sumStarPause.y - hud.getPauseIconHeight() / 2 &&
+            touchLocation.y < sumStarPause.y + hud.getPauseIconHeight() / 2 {
             GameManager.shared.togglePause()
         }
         
