@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3F0FD7F027A16CE000E618CE /* ContactComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */; };
 		3FC0D23627A82C16004FD5E8 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */; };
+		3FEA03DA27AAA6DA006F4E39 /* Particles.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */; };
+		3FEA03DC27AAA73C006F4E39 /* ParticleEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */; };
+		3FEA03DE27AAC3D5006F4E39 /* AttachPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */; };
 		6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */; };
 		60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */; };
 		A74276DD27A9D6210097CC7C /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74276DC27A9D6210097CC7C /* ClosedRange.swift */; };
@@ -50,6 +53,9 @@
 /* Begin PBXFileReference section */
 		3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactComponent.swift; sourceTree = "<group>"; };
 		3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
+		3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Particles.scnassets; sourceTree = "<group>"; };
+		3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleEffectComponent.swift; sourceTree = "<group>"; };
+		3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPosition.swift; sourceTree = "<group>"; };
 		6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPowerUp.swift; sourceTree = "<group>"; };
 		60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleMovementComponent.swift; sourceTree = "<group>"; };
 		A74276DC27A9D6210097CC7C /* ClosedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRange.swift; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 		A74BA7682799A79E00B0711C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -162,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A75717E8279ACEF4004A4C9B /* PhysicsCategory.swift */,
+				3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */,
 				A7B66F5627A972D900281AA4 /* MovementManager.swift */,
 				D7A94957279EE6A30090CD26 /* MotionMovementManager.swift */,
 				D73C1A9227A02149007C8549 /* TouchMovementManager.swift */,
@@ -194,6 +202,7 @@
 				D7F9B17927A1826400275F94 /* ObjectSpawnerComponent.swift */,
 				A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */,
 				3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */,
+				3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -295,6 +304,7 @@
 				A74BA75A27998C1E00B0711C /* LaunchScreen.storyboard in Resources */,
 				A74BA76127998C9300B0711C /* README.md in Resources */,
 				A74BA76527998CB200B0711C /* .swiftlint.yml in Resources */,
+				3FEA03DA27AAA6DA006F4E39 /* Particles.scnassets in Resources */,
 				A74BA75727998C1E00B0711C /* Assets.xcassets in Resources */,
 				A74BA76327998C9F00B0711C /* .gitignore in Resources */,
 				A74BA75527998C1D00B0711C /* Main.storyboard in Resources */,
@@ -341,6 +351,7 @@
 				A75717EB279AD336004A4C9B /* Player.swift in Sources */,
 				D73C1A9327A02149007C8549 /* TouchMovementManager.swift in Sources */,
 				D73C1A9527A02ED0007C8549 /* PlayerMovementComponent.swift in Sources */,
+				3FEA03DC27AAA73C006F4E39 /* ParticleEffectComponent.swift in Sources */,
 				A7EE406127A182CD0073DD3F /* ScoreManagerComponent.swift in Sources */,
 				A75717E9279ACEF4004A4C9B /* PhysicsCategory.swift in Sources */,
 				A75717F5279AD68D004A4C9B /* DeviceMotion.swift in Sources */,
@@ -350,6 +361,7 @@
 				A75717F9279AD6C0004A4C9B /* GameScene.swift in Sources */,
 				A74BA75227998C1D00B0711C /* GameViewController.swift in Sources */,
 				D7F9B17627A16A8100275F94 /* PlayerHealthComponent.swift in Sources */,
+				3FEA03DE27AAC3D5006F4E39 /* AttachPosition.swift in Sources */,
 				A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */,
 				A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */,
 				D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */,
