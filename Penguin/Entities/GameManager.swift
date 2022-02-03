@@ -46,10 +46,13 @@ class GameManager: GKEntity {
             switch state {
             case .paused:
                 scene?.isPaused = true
+                print("Game paused")
             case .playing:
                 scene?.isPaused = false
+                print("Game unpaused")
             case .dead:
                 delegate?.didEnterDeathState()
+                print("Player died.")
             }
         }
     }
@@ -59,19 +62,16 @@ class GameManager: GKEntity {
             // Empty last call so that playTime won't update
             lastRendererCall = nil
             state = .playing
-            print("Game unpaused")
         }
     }
 
     func pause() {
         if state == .playing {
             state = .paused
-            print("Game paused")
         }
     }
 
     func die() {
-        print("Player died.")
         state = .dead
     }
 
