@@ -16,4 +16,7 @@ line_length:
     ignores_comments: true
 identifier_name:
     min_length: 2
+    excluded: ["x", "y", "z"]
+type_name:
+    excluded: ["X", "Y", "Z"]
 reporter: "xcode"
