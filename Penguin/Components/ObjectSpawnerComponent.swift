@@ -32,22 +32,18 @@ enum SpawnedObjectType {
 }
 
 class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
-    var timeSinceLastSpawn: Double = 0
+    private var timeSinceLastSpawn: Double = 0
 
     func spawnThing() {
         T.spawn(at: SCNVector3(Double.random(in: Config.xMovementRange), 0.25, -100))
     }
 
-    override func update(deltaTime currentTime: TimeInterval) {
-        if timeSinceLastSpawn == 0 {
-            timeSinceLastSpawn = currentTime
-        }
+    override func update(deltaTime seconds: TimeInterval) {
+        timeSinceLastSpawn += seconds
 
-        let deltaTime = currentTime - timeSinceLastSpawn
-
-        if deltaTime >= T.spawnType.spawnDistance / GameManager.shared.currentSpeed.rawValue {
+        if timeSinceLastSpawn >= T.spawnType.spawnDistance / GameManager.shared.currentSpeed.rawValue {
             spawnThing()
-            timeSinceLastSpawn = currentTime
+            timeSinceLastSpawn = 0
         }
     }
 }

@@ -59,16 +59,19 @@ class GameManager: GKEntity {
             // Empty last call so that playTime won't update
             lastRendererCall = nil
             state = .playing
+            print("Game unpaused")
         }
     }
 
     func pause() {
         if state == .playing {
             state = .paused
+            print("Game paused")
         }
     }
 
     func die() {
+        print("Player died.")
         state = .dead
     }
 
@@ -125,12 +128,12 @@ extension GameManager: SCNSceneRendererDelegate {
         // Do not update playTime if a pause just happened
         if let lastTime = lastRendererCall {
             playTime += time - lastTime
+
+            scene?.entities.forEach { entity in
+                entity.update(deltaTime: time - lastTime)
+            }
         }
 
         lastRendererCall = time
-
-        scene?.entities.forEach { entity in
-            entity.update(deltaTime: time)
-        }
     }
 }

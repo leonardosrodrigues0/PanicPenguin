@@ -65,7 +65,7 @@ class SpeedManagerComponent: GKComponent {
     private(set) var currentSpeed: Speed = .v2 {
         didSet {
             if currentSpeed == .v0 {
-                GameManager.shared.playerHealth?.die()
+                GameManager.shared.die()
             }
         }
     }
