@@ -28,6 +28,6 @@ class PlayerHealthComponent: GKComponent {
 
     func die() {
         print("Player died.")
-        GameManager.shared.state = .dead
+        GameManager.shared.die()
     }
 }

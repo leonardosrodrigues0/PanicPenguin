@@ -52,12 +52,12 @@ class GameViewController: UIViewController {
 
         let setMotionControllerAction = UIAlertAction(title: "Motion", style: .default) { _ in
             GameManager.shared.playerMovement?.controllerType = .motion
-            GameManager.shared.state = .playing
+            GameManager.shared.unpause()
         }
 
         let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
             GameManager.shared.playerMovement?.controllerType = .touch
-            GameManager.shared.state = .playing
+            GameManager.shared.unpause()
         }
 
         alert.addAction(setTouchControllerAction)

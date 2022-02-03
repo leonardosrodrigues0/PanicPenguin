@@ -38,7 +38,10 @@ class GameManager: GKEntity {
     weak var delegate: GameManagerDelegate?
     weak var scene: GameScene?
 
-    var state: GameState = .paused {
+    private var lastRendererCall: TimeInterval?
+    private var playTime: TimeInterval = 0
+
+    private(set) var state: GameState = .paused {
         didSet {
             switch state {
             case .paused:
@@ -51,12 +54,30 @@ class GameManager: GKEntity {
         }
     }
 
+    func unpause() {
+        if state == .paused {
+            // Empty last call so that playTime won't update
+            lastRendererCall = nil
+            state = .playing
+        }
+    }
+
+    func pause() {
+        if state == .playing {
+            state = .paused
+        }
+    }
+
+    func die() {
+        state = .dead
+    }
+
     func togglePause() {
         switch state {
         case .paused:
-            state = .playing
+            unpause()
         case .playing:
-            state = .paused
+            pause()
         case .dead:
             return
         }
@@ -66,6 +87,8 @@ class GameManager: GKEntity {
         state = .paused
         speedManager.changeSpeed(to: .v2)
         scoreManager.resetScore()
+        playTime = 0
+        lastRendererCall = nil
     }
 
     // MARK: - Access to game information
@@ -98,6 +121,13 @@ extension GameManager: SCNSceneRendererDelegate {
         guard GameManager.shared.state == .playing else {
             return
         }
+
+        // Do not update playTime if a pause just happened
+        if let lastTime = lastRendererCall {
+            playTime += time - lastTime
+        }
+
+        lastRendererCall = time
 
         scene?.entities.forEach { entity in
             entity.update(deltaTime: time)
