@@ -2,7 +2,7 @@ import GameplayKit
 
 class PlayerHealthComponent: GKComponent {
 
-    var timeSinceLastHit: Double = 0
+    private var timeSinceLastHit: Double = 0
     
     func hit() {
         GameManager.shared.speedManager.decrementSpeed()
@@ -13,21 +13,12 @@ class PlayerHealthComponent: GKComponent {
         GameManager.shared.playerHealth = self
     }
 
-    override func update(deltaTime currentTime: TimeInterval) {
-        if timeSinceLastHit == 0 {
-            timeSinceLastHit = currentTime
-        }
+    override func update(deltaTime seconds: TimeInterval) {
+        timeSinceLastHit += seconds
 
-        let deltaTime = currentTime - timeSinceLastHit
-
-        if deltaTime >= GameManager.shared.currentSpeed.timeRequiredToIncrement {
+        if timeSinceLastHit >= GameManager.shared.currentSpeed.timeRequiredToIncrement {
             GameManager.shared.speedManager.incrementSpeed()
-            timeSinceLastHit = currentTime
+            timeSinceLastHit = 0
         }
-    }
-
-    func die() {
-        print("Player died.")
-        GameManager.shared.state = .dead
     }
 }

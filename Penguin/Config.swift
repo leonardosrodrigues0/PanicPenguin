@@ -7,10 +7,10 @@ enum Config {
     /// Range of possible positions for the player in the X axis
     static let xMovementRange = -5.5 ... 5.5
 
-    /// Base score added each time tick (increased according to the speed)
-    static let baseScore: Double = 0.01
+    /// Base score added based on the distance
+    static let baseScore: Double = 1
     /// Base coin score (increased according to the speed)
-    static let baseCoinValue: Int = 20
+    static let baseCoinValue: Double = 20
 
     /// Maximum rotation angle of the player (in the edges), in degrees
     static let maxRotationAngle: Double = 15
