@@ -84,7 +84,10 @@ class GameViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard !isInteractingWithHud else { return }
         interactWithHud(touches)
-        guard GameManager.shared.state == .playing else { return }
+
+        guard GameManager.shared.state == .playing,
+              !hud.containsInteractableObject(touches) else { return }
+
         if let position = touches.first?.location(in: sceneView) {
             gameScene.entities.forEach {
                 if let touchController = $0.component(ofType: TouchControllerComponent.self) {

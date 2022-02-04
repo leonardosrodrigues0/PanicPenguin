@@ -24,7 +24,9 @@ extension hudDelegate {
     }
 
     func didInteractWithHud(withSuccess: Bool) {
-        isInteractingWithHud = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            self.isInteractingWithHud = false
+        }
     }
 
 }
@@ -100,7 +102,6 @@ class Hud: SKScene {
     
     func processTouch(_ touches: Set<UITouch>) {
         if let position = touches.first?.location(in: self) {
-            self.nodes(at: position).forEach({print($0.name ?? "noName")})
             if pauseIcon.contains(position) {
                 GameManager.shared.togglePause()
             }
