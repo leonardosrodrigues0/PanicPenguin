@@ -1,15 +1,62 @@
 import GameplayKit
 
-enum Speed: Int {
-    case v0
-    case v1
-    case v2
-    case v3
-    case v4
-    case v5
+enum Speed: Double {
+    case v0 = 0.0
+    case v1 = 0.7
+    case v2 = 0.9
+    case v3 = 1.2
+    case v4 = 1.6
+    case v5 = 2.1
+
+    var next: Speed? {
+        switch self {
+        case .v0:
+            return .v1
+        case .v1:
+            return .v2
+        case .v2:
+            return .v3
+        case .v3:
+            return .v4
+        case .v4:
+            return .v5
+        case .v5:
+            return nil
+        }
+    }
+
+    var previous: Speed? {
+        switch self {
+        case .v0:
+            return nil
+        case .v1:
+            return .v0
+        case .v2:
+            return .v1
+        case .v3:
+            return .v2
+        case .v4:
+            return .v3
+        case .v5:
+            return .v4
+        }
+    }
 
     var timeRequiredToIncrement: Double {
-        return 5
+        switch self {
+        case .v0:
+            return 3.0
+        case .v1:
+            return 3.0
+        case .v2:
+            return 5.0
+        case .v3:
+            return 7.0
+        case .v4:
+            return 10.0
+        case .v5:
+            return 1.0
+        }
     }
 }
 
@@ -18,7 +65,7 @@ class SpeedManagerComponent: GKComponent {
     private(set) var currentSpeed: Speed = .v2 {
         didSet {
             if currentSpeed == .v0 {
-                GameManager.shared.playerHealth?.die()
+                GameManager.shared.die()
             }
         }
     }
@@ -26,7 +73,7 @@ class SpeedManagerComponent: GKComponent {
     func incrementSpeed() {
         if currentSpeed == .v4 { return }
 
-        if let newSpeed = Speed(rawValue: currentSpeed.rawValue + 1) {
+        if let newSpeed = currentSpeed.next {
             currentSpeed = newSpeed
             print("accelerating to \(currentSpeed)")
         }

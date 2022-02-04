@@ -56,6 +56,7 @@ class Player: GKEntity {
         let healthComponent = PlayerHealthComponent()
         addComponent(healthComponent)
         addComponent(animationComponent)
+        addComponent(ParticleEffectComponent(.snowTrail, at: .init(.mid, .bottom, .back)))
         addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
             switch category {
             case .obstacle:
@@ -69,6 +70,7 @@ class Player: GKEntity {
                 return
             }
         }))
+        addComponent(MusicComponent())
     }
 
     required init?(coder: NSCoder) {

@@ -11,7 +11,6 @@ class GameViewController: UIViewController {
     lazy internal var hud = Hud(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
     var isInteractingWithHud: Bool = false
 
-    
     private var didGameStart: Bool = false
 
     private func buildNewScene() -> GameScene {
@@ -31,7 +30,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.scene = gameScene
-        sceneView.delegate = self
+        sceneView.delegate = GameManager.shared
         sceneView.isPlaying = true
 
         GameManager.shared.delegate = self
@@ -40,39 +39,27 @@ class GameViewController: UIViewController {
             let alert = self.buildControllerChoiceAlert()
             self.present(alert, animated: true)
         }
-        
+
     }
-    
+
     override func viewDidLayoutSubviews() {
         if !didGameStart {
             sceneView.overlaySKScene = hud
             didGameStart = true
         }
     }
-    
+
     func buildControllerChoiceAlert() -> UIAlertController {
         let alert = UIAlertController(title: "Choose your Controller Scheme", message: nil, preferredStyle: .actionSheet)
 
         let setMotionControllerAction = UIAlertAction(title: "Motion", style: .default) { _ in
-            self.gameScene.entities.forEach {
-                if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
-                    playerController.controller = .motion
-                    playerController.entity?.addComponent(MotionControllerComponent())
-                }
-            }
-
-            GameManager.shared.state = .playing
+            GameManager.shared.playerMovement?.controllerType = .motion
+            GameManager.shared.unpause()
         }
 
         let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
-            self.gameScene.entities.forEach {
-                if let playerController = $0.component(ofType: PlayerMovementComponent.self) {
-                    playerController.controller = .touch
-                    playerController.entity?.addComponent(TouchControllerComponent())
-                }
-            }
-
-            GameManager.shared.state = .playing
+            GameManager.shared.playerMovement?.controllerType = .touch
+            GameManager.shared.unpause()
         }
 
         alert.addAction(setTouchControllerAction)
@@ -81,70 +68,64 @@ class GameViewController: UIViewController {
         return alert
     }
 
+    // MARK: - Touches Handling Methods
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard !isInteractingWithHud else { return }
         interactWithHud(touches)
 
-        guard GameManager.shared.state == .playing,
-              !hud.containsInteractableObject(touches) else { return }
-
-        if let position = touches.first?.location(in: sceneView) {
-            gameScene.entities.forEach {
-                if let touchController = $0.component(ofType: TouchControllerComponent.self) {
-                    touchController.setup(position, sceneView.frame, shouldUpdate: true)
-                }
-            }
+        guard
+            GameManager.shared.state == .playing,
+            !hud.containsInteractableObject(touches)
+        else {
+            return
         }
+
+        GameManager.shared.playerMovement?.movementManager?.touchesBegan(
+            touches,
+            with: event,
+            view: sceneView
+        )
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isInteractingWithHud,
-              GameManager.shared.state == .playing else { return }
-
-        if let position = touches.first?.location(in: sceneView) {
-            gameScene.entities.forEach {
-                if let touchController = $0.component(ofType: TouchControllerComponent.self) {
-                    touchController.setup(position, sceneView.frame, shouldUpdate: true)
-                }
-            }
+        guard
+            !isInteractingWithHud,
+            GameManager.shared.state == .playing
+        else {
+            return
         }
 
+        GameManager.shared.playerMovement?.movementManager?.touchesMoved(
+            touches,
+            with: event,
+            view: sceneView
+        )
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isInteractingWithHud,
-              GameManager.shared.state == .playing else { return }
-
-        gameScene.entities.forEach {
-            if let touchController = $0.component(ofType: TouchControllerComponent.self) {
-                touchController.setup(shouldUpdate: false)
-            }
+        guard
+            !isInteractingWithHud,
+            GameManager.shared.state == .playing
+        else {
+            return
         }
+
+        GameManager.shared.playerMovement?.movementManager?.touchesEnded(
+            touches,
+            with: event,
+            view: sceneView
+        )
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isInteractingWithHud,
-              GameManager.shared.state == .playing else { return }
-
-        gameScene.entities.forEach {
-            if let touchController = $0.component(ofType: TouchControllerComponent.self) {
-                touchController.setup(shouldUpdate: false)
-            }
-        }
+        touchesEnded(touches, with: event)
     }
 }
 
-extension GameViewController: hudDelegate {
-}
+extension GameViewController: hudDelegate {}
 
-extension GameViewController: SCNSceneRendererDelegate {
-    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        guard GameManager.shared.state == .playing else { return }
-        gameScene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
-    }
-}
-
-extension GameViewController: ManagerDelegate {
+extension GameViewController: GameManagerDelegate {
     func didEnterDeathState() {
         let alert = buildResetGameAlert()
 
