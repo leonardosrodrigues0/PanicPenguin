@@ -12,6 +12,7 @@
 		3FEA03DA27AAA6DA006F4E39 /* Particles.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */; };
 		3FEA03DC27AAA73C006F4E39 /* ParticleEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */; };
 		3FEA03DE27AAC3D5006F4E39 /* AttachPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */; };
+		3FF9D54427AD42F500DE8F55 /* Avalanche.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D54327AD42F500DE8F55 /* Avalanche.swift */; };
 		6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */; };
 		60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */; };
 		60B0E16A27AAA53300672CAA /* MusicComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B0E16927AAA53300672CAA /* MusicComponent.swift */; };
@@ -58,6 +59,7 @@
 		3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Particles.scnassets; sourceTree = "<group>"; };
 		3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleEffectComponent.swift; sourceTree = "<group>"; };
 		3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPosition.swift; sourceTree = "<group>"; };
+		3FF9D54327AD42F500DE8F55 /* Avalanche.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avalanche.swift; sourceTree = "<group>"; };
 		6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPowerUp.swift; sourceTree = "<group>"; };
 		60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleMovementComponent.swift; sourceTree = "<group>"; };
 		60B0E16927AAA53300672CAA /* MusicComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicComponent.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				D7F9B17D27A1899900275F94 /* Spawner.swift */,
 				D7A389BF27A2C46B00748137 /* Coin.swift */,
 				6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */,
+				3FF9D54327AD42F500DE8F55 /* Avalanche.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */,
 				D7F9B17227A1644300275F94 /* GameManager.swift in Sources */,
 				60B0E16A27AAA53300672CAA /* MusicComponent.swift in Sources */,
+				3FF9D54427AD42F500DE8F55 /* Avalanche.swift in Sources */,
 				A75717FD279AD80B004A4C9B /* Camera.swift in Sources */,
 				A76ECC9C279B27780024B3A7 /* Config.swift in Sources */,
 				D7A94958279EE6A30090CD26 /* MotionMovementManager.swift in Sources */,
