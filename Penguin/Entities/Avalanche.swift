@@ -9,13 +9,15 @@ class Avalanche: GKEntity {
         material.diffuse.contents = UIColor.systemGray4
         component.node.geometry!.materials = [material]
         component.node.pivot = SCNMatrix4MakeTranslation(0, -2.5, -50)
-        component.node.position = .init(0, 0, -20)
+        component.node.position = .init(0, 0, -19)
         return component
     }()
     
     override init() {
         super.init()
         addComponent(geometryComponent)
+        addComponent(AnimationComponent())
+        addComponent(AvalancheManagerComponent())
     }
     
     required init?(coder: NSCoder) {

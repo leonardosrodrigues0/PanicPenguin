@@ -5,7 +5,7 @@ class Camera: GKEntity {
 
     override init() {
         super.init()
-        let position = SCNVector3(x: 0, y: 25, z: -18)
+        let position = SCNVector3(x: 0, y: 25, z: -15)
         let orientation = SCNVector3(x: -1, y: 0, z: 0)
         addComponent(GeometryComponent(geometry: nil, position: position))
         addComponent(CameraComponent(orientation: orientation))
