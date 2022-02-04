@@ -105,7 +105,7 @@ class GameManager: GKEntity {
     }
 
     var coinValue: Int {
-        Int(currentSpeed.rawValue) * Config.baseCoinValue
+        Int(currentSpeed.rawValue * Config.baseCoinValue)
     }
 
     required init?(coder: NSCoder) {
