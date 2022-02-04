@@ -7,12 +7,7 @@ class GameViewController: UIViewController {
 
     @IBOutlet private var sceneView: SCNView!
 
-//    @IBAction private func pause() {
-//        GameManager.shared.togglePause()
-//    }
-
     lazy private var gameScene: GameScene = buildNewScene()
-    private var hud: Hud = Hud()
     
     private var didGameStart: Bool = false
 
@@ -43,15 +38,11 @@ class GameViewController: UIViewController {
             self.present(alert, animated: true)
         }
         
-        // TODO: Remove timer
-        Timer.scheduledTimer(withTimeInterval: Config.interval, repeats: true) { _ in
-            self.hud.updateLabels(currentScore: GameManager.shared.currentScore, currentSpeed: GameManager.shared.currentSpeed)
-        }
     }
     
     override func viewDidLayoutSubviews() {
         if !didGameStart {
-            sceneView.overlaySKScene = hud.buildHud(sceneWidth: sceneView.frame.width, sceneHeight: sceneView.frame.height)
+            sceneView.overlaySKScene = Hud(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
             sceneView.overlaySKScene?.isUserInteractionEnabled = false
             didGameStart = true
         }
@@ -110,21 +101,6 @@ class GameViewController: UIViewController {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        let touchLocation = touch!.location(in: sceneView)
-        
-        let pauseIconLocation = (sceneView.overlaySKScene?.childNode(withName: "starIcon")!.childNode(withName: "pauseIcon")!.position)!
-        let starIconLocation = (sceneView.overlaySKScene?.childNode(withName: "starIcon")!.position)!
-
-        let sumStarPause = CGPoint(x: starIconLocation.x + pauseIconLocation.x, y: sceneView.frame.height - starIconLocation.y)
-        
-        if touchLocation.x > sumStarPause.x - hud.getPauseIconWidth() / 2 &&
-            touchLocation.x < sumStarPause.x + hud.getPauseIconWidth() / 2 &&
-            touchLocation.y > sumStarPause.y - hud.getPauseIconHeight() / 2 &&
-            touchLocation.y < sumStarPause.y + hud.getPauseIconHeight() / 2 {
-            GameManager.shared.togglePause()
-        }
-        
         gameScene.entities.forEach {
             if let touchController = $0.component(ofType: TouchControllerComponent.self) {
                 touchController.setup(shouldUpdate: false)
