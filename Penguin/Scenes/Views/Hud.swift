@@ -3,6 +3,32 @@ import SpriteKit
 import SceneKit
 import Foundation
 
+protocol hudDelegate: AnyObject {
+    func willInteractWithHud()
+    func didInteractWithHud(withSuccess: Bool)
+    func interactWithHud(_ touches: Set<UITouch>)
+    var isInteractingWithHud: Bool { get set }
+    var hud: Hud { get set }
+}
+
+extension hudDelegate {
+    func interactWithHud(_ touches: Set<UITouch>) {
+        willInteractWithHud()
+        let success = hud.containsInteractableObject(touches)
+        hud.processTouch(touches)
+        didInteractWithHud(withSuccess: success)
+    }
+
+    func willInteractWithHud() {
+        isInteractingWithHud = true
+    }
+
+    func didInteractWithHud(withSuccess: Bool) {
+        isInteractingWithHud = false
+    }
+
+}
+
 class Hud: SKScene {
     
     let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "HUD")
@@ -17,9 +43,11 @@ class Hud: SKScene {
         self.starCountText = SKLabelNode(text: "000")
         self.speedometerText = SKLabelNode(text: "000")
         super.init(size: size)
-        starIcon.isUserInteractionEnabled = true
-        starIcon.childNode(withName: "pauseIcon").
+    }
+
+    override func didMove(to view: SKView) {
         buildScene()
+        self.isUserInteractionEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -65,18 +93,22 @@ class Hud: SKScene {
         speedometerIcon.addChild(speedometerText)
         
         pauseIcon.size = CGSize(width: 20, height: 20)
-        pauseIcon.position = CGPoint(x: 140, y: 0)
+        pauseIcon.position = CGPoint(x: 180, y: self.frame.height - 90)
         pauseIcon.name = "pauseIcon"
-        pauseIcon.isUserInteractionEnabled = true
-        starIcon.addChild(pauseIcon)
+        self.addChild(pauseIcon)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let position = touches.first?.location(in: starIcon) {
-            let touchedNode = starIcon.atPoint(position)
-            if touchedNode.name == "pauseIcon" {
-                print("Pause")
+    func processTouch(_ touches: Set<UITouch>) {
+        if let position = touches.first?.location(in: self) {
+            self.nodes(at: position).forEach({print($0.name ?? "noName")})
+            if pauseIcon.contains(position) {
+                GameManager.shared.togglePause()
             }
         }
+    }
+
+    func containsInteractableObject(_ touches: Set<UITouch>) -> Bool {
+        guard let position = touches.first?.location(in: self) else { return false }
+        return pauseIcon.contains(position)
     }
 }

@@ -52,24 +52,24 @@ class Player: GKEntity {
     override init() {
         super.init()
         addComponent(GeometryComponent(geometry: Self.geometry, position: .init(0, 0.25, -25)))
-        addComponent(PhysicsComponent(withBody: Self.physicsBody))
+//        addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(PlayerMovementComponent())
         let healthComponent = PlayerHealthComponent()
         addComponent(healthComponent)
         addComponent(animationComponent)
-        addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
-            switch category {
-            case .obstacle:
-                self.animationComponent.run(.hit)
-                healthComponent.hit()
-            case .powerUp:
-                GameManager.shared.speedManager.changeSpeed(to: .v5)
-            case .coin:
-                GameManager.shared.scoreManager.collectCoin()
-            default:
-                return
-            }
-        }))
+//        addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
+//            switch category {
+//            case .obstacle:
+//                self.animationComponent.run(.hit)
+//                healthComponent.hit()
+//            case .powerUp:
+//                GameManager.shared.speedManager.changeSpeed(to: .v5)
+//            case .coin:
+//                GameManager.shared.scoreManager.collectCoin()
+//            default:
+//                return
+//            }
+//        }))
     }
 
     required init?(coder: NSCoder) {

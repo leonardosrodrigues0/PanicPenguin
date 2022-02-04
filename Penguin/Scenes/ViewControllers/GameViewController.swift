@@ -8,6 +8,9 @@ class GameViewController: UIViewController {
     @IBOutlet private var sceneView: SCNView!
 
     lazy private var gameScene: GameScene = buildNewScene()
+    lazy internal var hud = Hud(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
+    var isInteractingWithHud: Bool = false
+
     
     private var didGameStart: Bool = false
 
@@ -42,8 +45,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         if !didGameStart {
-            sceneView.overlaySKScene = Hud(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
-            sceneView.overlaySKScene?.isUserInteractionEnabled = false
+            sceneView.overlaySKScene = hud
             didGameStart = true
         }
     }
@@ -80,6 +82,9 @@ class GameViewController: UIViewController {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isInteractingWithHud else { return }
+        interactWithHud(touches)
+        guard GameManager.shared.state == .playing else { return }
         if let position = touches.first?.location(in: sceneView) {
             gameScene.entities.forEach {
                 if let touchController = $0.component(ofType: TouchControllerComponent.self) {
@@ -90,6 +95,9 @@ class GameViewController: UIViewController {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isInteractingWithHud,
+              GameManager.shared.state == .playing else { return }
+
         if let position = touches.first?.location(in: sceneView) {
             gameScene.entities.forEach {
                 if let touchController = $0.component(ofType: TouchControllerComponent.self) {
@@ -101,6 +109,9 @@ class GameViewController: UIViewController {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isInteractingWithHud,
+              GameManager.shared.state == .playing else { return }
+
         gameScene.entities.forEach {
             if let touchController = $0.component(ofType: TouchControllerComponent.self) {
                 touchController.setup(shouldUpdate: false)
@@ -109,12 +120,18 @@ class GameViewController: UIViewController {
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isInteractingWithHud,
+              GameManager.shared.state == .playing else { return }
+
         gameScene.entities.forEach {
             if let touchController = $0.component(ofType: TouchControllerComponent.self) {
                 touchController.setup(shouldUpdate: false)
             }
         }
     }
+}
+
+extension GameViewController: hudDelegate {
 }
 
 extension GameViewController: SCNSceneRendererDelegate {
