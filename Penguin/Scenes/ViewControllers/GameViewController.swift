@@ -8,7 +8,7 @@ class GameViewController: UIViewController {
     @IBOutlet private var sceneView: SCNView!
 
     lazy private var gameScene: GameScene = buildNewScene()
-    lazy internal var hud = Hud(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
+    lazy var hud = Hud(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
     var isInteractingWithHud: Bool = false
 
     private var didGameStart: Bool = false
@@ -123,7 +123,7 @@ class GameViewController: UIViewController {
     }
 }
 
-extension GameViewController: hudDelegate {}
+extension GameViewController: HudDelegate {}
 
 extension GameViewController: GameManagerDelegate {
     func didEnterDeathState() {

@@ -3,7 +3,7 @@ import SpriteKit
 import SceneKit
 import Foundation
 
-protocol hudDelegate: AnyObject {
+protocol HudDelegate: AnyObject {
     func willInteractWithHud()
     func didInteractWithHud(withSuccess: Bool)
     func interactWithHud(_ touches: Set<UITouch>)
@@ -11,7 +11,7 @@ protocol hudDelegate: AnyObject {
     var hud: Hud { get set }
 }
 
-extension hudDelegate {
+extension HudDelegate {
     func interactWithHud(_ touches: Set<UITouch>) {
         willInteractWithHud()
         let success = hud.containsInteractableObject(touches)
