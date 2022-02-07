@@ -4,9 +4,9 @@ enum Speed: Double {
     case v0 = 0.0
     case v1 = 0.7
     case v2 = 0.9
-    case v3 = 1.2
-    case v4 = 1.6
-    case v5 = 2.1
+    case v3 = 1.1
+    case v4 = 1.3
+    case v5 = 1.6
 
     var next: Speed? {
         switch self {

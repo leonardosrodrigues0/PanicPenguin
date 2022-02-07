@@ -5,7 +5,7 @@ class Player: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.reflective.contents = UIColor.blue
+//        material.reflective.contents = UIColor.blue
         material.diffuse.contents = UIColor.blue
         let geometry = SCNBox(width: 3, height: 0.5, length: 3, chamferRadius: 0.2)
         geometry.materials = [material]
@@ -18,7 +18,6 @@ class Player: GKEntity {
         body.angularVelocityFactor = SCNVector3(1, 0, 0)
         body.categoryBitMask = PhysicsCategory.player.rawValue
         body.collisionBitMask = PhysicsCategory.bitMask(forCategories: [
-            PhysicsCategory.ground
 //            PhysicsCategory.obstacle
         ])
 

@@ -32,6 +32,7 @@ class GameScene: SCNScene {
         
         entities.remove(entity)
     }
+    
 }
 
 extension GameScene: SCNPhysicsContactDelegate {
@@ -43,8 +44,13 @@ extension GameScene: SCNPhysicsContactDelegate {
             return
         }
 
-        let nodeACategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0)
-        let nodeBCategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0)
+        guard
+            let nodeACategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0),
+            let nodeBCategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0)
+        else {
+            print("Invalid collision")
+            return
+        }
         
         // Trigger the action of each entity
         contactComponentA.action(nodeBCategory)
