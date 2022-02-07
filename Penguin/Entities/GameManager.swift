@@ -19,6 +19,7 @@ class GameManager: GKEntity {
 
     private override init() {
         super.init()
+        addComponent(soundManager)
         addComponent(speedManager)
         addComponent(scoreManager)
     }
@@ -27,6 +28,7 @@ class GameManager: GKEntity {
 
     let speedManager = SpeedManagerComponent()
     let scoreManager = ScoreManagerComponent()
+    let soundManager = AudioManagerComponent()
 
     // MARK: - Other entities components
 
@@ -58,24 +60,6 @@ class GameManager: GKEntity {
         }
     }
 
-    weak var delegate: GameManagerDelegate?
-
-    weak var scene: GameScene?
-
-    let speedManager = SpeedManagerComponent()
-    let scoreManager = ScoreManagerComponent()
-    let soundManager = AudioManagerComponent()
-
-    var playerHealth: PlayerHealthComponent?
-    var playerMovement: PlayerMovementComponent?
-
-    var currentSpeed: Speed {
-        speedManager.currentSpeed
-    }
-
-    var currentScore: Int {
-        scoreManager.score
-
     func unpause() {
         if state == .paused {
             // Empty last call so that playTime won't update
@@ -89,12 +73,6 @@ class GameManager: GKEntity {
             state = .paused
         }
     }
-
-    private override init() {
-        super.init()
-        addComponent(soundManager)
-        addComponent(speedManager)
-        addComponent(scoreManager)
 
     func die() {
         state = .dead
@@ -138,6 +116,7 @@ class GameManager: GKEntity {
     }
 }
 
+
 extension GameManager: SCNSceneRendererDelegate {
 
     /// Basic scene update method, called by SceneKit every beginning of a new cycle if the scene is not paused.
@@ -162,3 +141,4 @@ extension GameManager: SCNSceneRendererDelegate {
         lastRendererCall = time
     }
 }
+

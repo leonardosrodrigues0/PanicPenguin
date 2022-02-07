@@ -11,7 +11,6 @@ class GameViewController: UIViewController {
     lazy private var gameScene: GameScene = buildNewScene()
     public var backgroundMusicPlayer: AVAudioPlayer?
     
-    lazy private var gameScene: GameScene = buildNewScene()
     lazy var hud = Hud(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
     var isInteractingWithHud: Bool = false
 

@@ -17,9 +17,6 @@ class Player: GKEntity {
         body.velocityFactor = SCNVector3(0, 1, 0)
         body.angularVelocityFactor = SCNVector3(1, 0, 0)
         body.categoryBitMask = PhysicsCategory.player.rawValue
-        body.collisionBitMask = PhysicsCategory.bitMask(forCategories: [
-//            PhysicsCategory.obstacle
-        ])
 
         return body
     }
