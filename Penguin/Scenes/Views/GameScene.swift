@@ -8,6 +8,7 @@ class GameScene: SCNScene {
     override init() {
         super.init()
         physicsWorld.contactDelegate = self
+        isPaused = true
     }
     
     required init?(coder: NSCoder) {
@@ -43,8 +44,13 @@ extension GameScene: SCNPhysicsContactDelegate {
             return
         }
 
-        let nodeACategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0)
-        let nodeBCategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0)
+        guard
+            let nodeACategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0),
+            let nodeBCategory = PhysicsCategory(rawValue: contact.nodeB.physicsBody?.categoryBitMask ?? 0)
+        else {
+            print("Invalid collision")
+            return
+        }
         
         // Trigger the action of each entity
         contactComponentA.action(nodeBCategory)

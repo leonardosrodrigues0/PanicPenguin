@@ -51,6 +51,7 @@ class GameManager: GKEntity {
                 scene?.isPaused = false
                 print("Game unpaused")
             case .dead:
+                scene?.isPaused = true
                 delegate?.didEnterDeathState()
                 print("Player died.")
             }
