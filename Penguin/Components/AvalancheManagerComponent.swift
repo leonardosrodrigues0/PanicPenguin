@@ -3,7 +3,7 @@ import GameplayKit
 class AvalancheManagerComponent: GKComponent {
     private enum ZPosition: Int {
         case v1 = -20, v2, v3, v4, v5
-        case v0 = -50
+        case v0 = -60
         
         init(velocity: Speed) {
             switch velocity {
@@ -31,12 +31,19 @@ class AvalancheManagerComponent: GKComponent {
         didSet {
             avalancheAnimator.move(
                 to: .init(0, 0, ZPosition(velocity: lastVelocity).rawValue),
-                duration: 0.5
+                duration: lastVelocity == .v0 ? 1.2 : 0.5
             )
         }
     }
+    
+    func coverPlayer() {
+        lastVelocity = .v0
+    }
+    
+    override func didAddToEntity() {
+        GameManager.shared.avalancheManager = self
+    }
         
-    // TODO: - lastVelocity não fica em v0 porque a função update deixa de ser chamada quando entra em death state
     override func update(deltaTime seconds: TimeInterval) {
         if lastVelocity != GameManager.shared.currentSpeed {
             lastVelocity = GameManager.shared.currentSpeed

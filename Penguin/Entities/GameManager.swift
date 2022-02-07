@@ -23,6 +23,7 @@ class GameManager: GKEntity {
             case .playing:
                 scene?.isPaused = false
             case .dead:
+                avalancheManager?.coverPlayer()
                 delegate?.didEnterDeathState()
             }
         }
@@ -37,6 +38,7 @@ class GameManager: GKEntity {
 
     var playerHealth: PlayerHealthComponent?
     var playerMovement: PlayerMovementComponent?
+    var avalancheManager: AvalancheManagerComponent?
 
     var currentSpeed: Speed {
         speedManager.currentSpeed
