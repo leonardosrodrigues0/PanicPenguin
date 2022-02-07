@@ -56,25 +56,21 @@ class Player: GKEntity {
         addComponent(PlayerMovementComponent())
         let healthComponent = PlayerHealthComponent()
         addComponent(healthComponent)
-        let musicComponent = MusicComponent()
-        addComponent(musicComponent)
         addComponent(animationComponent)
         addComponent(ParticleEffectComponent(.snowTrail, at: .init(.mid, .bottom, .back)))
         addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
             switch category {
             case .obstacle:
                 self.animationComponent.run(.hit)
-                musicComponent.hitObstacleSound()
                 healthComponent.hit()
             case .powerUp:
                 GameManager.shared.speedManager.changeSpeed(to: .v5)
-                musicComponent.powerUpSound()
             case .coin:
                 GameManager.shared.scoreManager.collectCoin()
-                musicComponent.coinSound()
             default:
                 return
             }
+            GameManager.shared.soundManager.triggerSoundEffect(SoundEffectOrigin.fromCategory(category), fromEntity: self)
         }))
     }
 

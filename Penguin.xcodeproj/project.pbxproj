@@ -18,7 +18,7 @@
 		6065BFE927AD42FD008C9AFA /* Pinguim-coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6065BFE527AD42FD008C9AFA /* Pinguim-coin.mp3 */; };
 		6065BFEA27AD42FD008C9AFA /* Pinguim-dead.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6065BFE627AD42FD008C9AFA /* Pinguim-dead.mp3 */; };
 		60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */; };
-		60B0E16A27AAA53300672CAA /* MusicComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B0E16927AAA53300672CAA /* MusicComponent.swift */; };
+		60B0E16A27AAA53300672CAA /* AudioManagerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B0E16927AAA53300672CAA /* AudioManagerComponent.swift */; };
 		60CC25AC27AAA6D900D35A61 /* JazzRush.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 60CC25AB27AAA6D900D35A61 /* JazzRush.mp3 */; };
 		A74276DD27A9D6210097CC7C /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74276DC27A9D6210097CC7C /* ClosedRange.swift */; };
 		A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BA74D27998C1D00B0711C /* AppDelegate.swift */; };
@@ -68,7 +68,7 @@
 		6065BFE527AD42FD008C9AFA /* Pinguim-coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pinguim-coin.mp3"; sourceTree = "<group>"; };
 		6065BFE627AD42FD008C9AFA /* Pinguim-dead.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pinguim-dead.mp3"; sourceTree = "<group>"; };
 		60960EB527A16E8C009F81E3 /* ObstacleMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleMovementComponent.swift; sourceTree = "<group>"; };
-		60B0E16927AAA53300672CAA /* MusicComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicComponent.swift; sourceTree = "<group>"; };
+		60B0E16927AAA53300672CAA /* AudioManagerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerComponent.swift; sourceTree = "<group>"; };
 		60CC25AB27AAA6D900D35A61 /* JazzRush.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JazzRush.mp3; sourceTree = "<group>"; };
 		A74276DC27A9D6210097CC7C /* ClosedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRange.swift; sourceTree = "<group>"; };
 		A74BA74A27998C1D00B0711C /* Penguin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Penguin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,7 +235,7 @@
 				D7F9B17927A1826400275F94 /* ObjectSpawnerComponent.swift */,
 				A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */,
 				3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */,
-				60B0E16927AAA53300672CAA /* MusicComponent.swift */,
+				60B0E16927AAA53300672CAA /* AudioManagerComponent.swift */,
 				3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */,
 			);
 			path = Components;
@@ -405,7 +405,7 @@
 				A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */,
 				D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */,
 				D7F9B17227A1644300275F94 /* GameManager.swift in Sources */,
-				60B0E16A27AAA53300672CAA /* MusicComponent.swift in Sources */,
+				60B0E16A27AAA53300672CAA /* AudioManagerComponent.swift in Sources */,
 				A75717FD279AD80B004A4C9B /* Camera.swift in Sources */,
 				A76ECC9C279B27780024B3A7 /* Config.swift in Sources */,
 				D7A94958279EE6A30090CD26 /* MotionMovementManager.swift in Sources */,

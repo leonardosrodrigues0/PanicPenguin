@@ -34,6 +34,7 @@ class GameManager: GKEntity {
 
     let speedManager = SpeedManagerComponent()
     let scoreManager = ScoreManagerComponent()
+    let soundManager = AudioManagerComponent()
 
     var playerHealth: PlayerHealthComponent?
     var playerMovement: PlayerMovementComponent?
@@ -52,6 +53,7 @@ class GameManager: GKEntity {
 
     private override init() {
         super.init()
+        addComponent(soundManager)
         addComponent(speedManager)
         addComponent(scoreManager)
     }
