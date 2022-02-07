@@ -11,7 +11,7 @@ class SpeedPowerUp: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.reflective.contents = UIColor.blue
+//        material.reflective.contents = UIColor.blue
         material.diffuse.contents = UIColor.blue
         let geometry = SCNSphere(radius: 1.0)
         geometry.materials = [material]

@@ -12,7 +12,7 @@ class Coin: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.reflective.contents = UIColor.yellow
+//        material.reflective.contents = UIColor.yellow
         material.diffuse.contents = UIColor.yellow
         let geometry = SCNSphere(radius: 0.75)
         geometry.materials = [material]
