@@ -36,6 +36,7 @@ class AvalancheManagerComponent: GKComponent {
         }
     }
         
+    // TODO: - lastVelocity não fica em v0 porque a função update deixa de ser chamada quando entra em death state
     override func update(deltaTime seconds: TimeInterval) {
         if lastVelocity != GameManager.shared.currentSpeed {
             lastVelocity = GameManager.shared.currentSpeed
