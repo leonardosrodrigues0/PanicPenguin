@@ -5,7 +5,7 @@ class Tree: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.reflective.contents = UIColor.red
+//        material.reflective.contents = UIColor.red
         material.diffuse.contents = UIColor.red
         let geometry = SCNBox(width: 1.5, height: 0.5, length: 1.5, chamferRadius: 0.2)
         geometry.materials = [material]
