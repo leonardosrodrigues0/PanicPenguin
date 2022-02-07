@@ -32,6 +32,7 @@ class GameScene: SCNScene {
         
         entities.remove(entity)
     }
+    
 }
 
 extension GameScene: SCNPhysicsContactDelegate {
