@@ -33,8 +33,8 @@ class SpeedPowerUp: GKEntity {
         addComponent(geometryComponent)
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(ObstacleMovementComponent())
-        addComponent(ContactComponent(with: [.player]) { _ in
-            self.collideWithPlayer()
+        addComponent(ContactComponent(with: [.player, .obstacle, .coin, .powerUp]) { category in
+            self.collide(category: category)
         })
     }
 
@@ -43,14 +43,6 @@ class SpeedPowerUp: GKEntity {
     }
 }
 
-extension SpeedPowerUp {
-    func collideWithPlayer() {
-        self.removeComponent(ofType: PhysicsComponent.self)
-        self.removeComponent(ofType: ContactComponent.self)
-        self.removeComponent(ofType: GeometryComponent.self)
-    }
-}
-
 extension SpeedPowerUp: SpawnableObject {
-    static let spawnType: SpawnedObjectType = .powerUp
+    static let spawnType: PhysicsCategory = .powerUp
 }
