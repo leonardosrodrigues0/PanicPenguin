@@ -8,6 +8,7 @@ class GameScene: SCNScene {
     override init() {
         super.init()
         physicsWorld.contactDelegate = self
+        isPaused = true
     }
     
     required init?(coder: NSCoder) {

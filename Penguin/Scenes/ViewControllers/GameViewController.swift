@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.scene = gameScene
-        sceneView.delegate = self
+        sceneView.delegate = GameManager.shared
         sceneView.isPlaying = true
 
         GameManager.shared.delegate = self
@@ -53,12 +53,12 @@ class GameViewController: UIViewController {
 
         let setMotionControllerAction = UIAlertAction(title: "Motion", style: .default) { _ in
             GameManager.shared.playerMovement?.controllerType = .motion
-            GameManager.shared.state = .playing
+            GameManager.shared.unpause()
         }
 
         let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
             GameManager.shared.playerMovement?.controllerType = .touch
-            GameManager.shared.state = .playing
+            GameManager.shared.unpause()
         }
 
         alert.addAction(setTouchControllerAction)
@@ -95,13 +95,6 @@ class GameViewController: UIViewController {
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchesEnded(touches, with: event)
-    }
-}
-
-extension GameViewController: SCNSceneRendererDelegate {
-    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        guard GameManager.shared.state == .playing else { return }
-        gameScene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
     }
 }
 
