@@ -141,19 +141,19 @@ extension GameViewController: GameManagerDelegate {
     
     private func buildResetGameAlert() -> UIAlertController {
         let alert = UIAlertController(title: "You are now deceased.", message: nil, preferredStyle: .actionSheet)
-        
+
         let resetGameAction = UIAlertAction(title: "Reset Game", style: .default) { _ in
-            
+
             GameManager.shared.reset()
-            
+
             let scene = self.buildNewScene()
             self.gameScene = scene
             self.sceneView.scene = scene
             self.viewDidLoad()
         }
-        
+
         alert.addAction(resetGameAction)
-        
+
         return alert
     }
     

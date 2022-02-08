@@ -53,7 +53,6 @@ class GameManager: GKEntity {
                 scene?.isPaused = false
                 print("Game unpaused")
             case .dead:
-                scene?.isPaused = true
                 delegate?.didEnterDeathState()
                 print("Player died.")
             }
@@ -116,7 +115,6 @@ class GameManager: GKEntity {
     }
 }
 
-
 extension GameManager: SCNSceneRendererDelegate {
 
     /// Basic scene update method, called by SceneKit every beginning of a new cycle if the scene is not paused.
@@ -141,4 +139,3 @@ extension GameManager: SCNSceneRendererDelegate {
         lastRendererCall = time
     }
 }
-
