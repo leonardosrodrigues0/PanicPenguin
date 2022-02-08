@@ -3,6 +3,7 @@ import GameplayKit
 /// Defines types of particle effects
 enum ParticleEffectType: String {
     case snowTrail
+    case avalanche
 }
 
 /// Implement an specific type of particle effect

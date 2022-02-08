@@ -15,6 +15,8 @@
 		3FEA03DA27AAA6DA006F4E39 /* Particles.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */; };
 		3FEA03DC27AAA73C006F4E39 /* ParticleEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */; };
 		3FEA03DE27AAC3D5006F4E39 /* AttachPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */; };
+		3FF9D54427AD42F500DE8F55 /* Avalanche.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D54327AD42F500DE8F55 /* Avalanche.swift */; };
+		3FF9D54627AD6F5100DE8F55 /* AvalancheManagerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D54527AD6F5100DE8F55 /* AvalancheManagerComponent.swift */; };
 		6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */; };
 		6065BFE727AD42FD008C9AFA /* Pinguim-strike.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6065BFE327AD42FC008C9AFA /* Pinguim-strike.mp3 */; };
 		6065BFE827AD42FD008C9AFA /* Pinguim-powerUp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6065BFE427AD42FD008C9AFA /* Pinguim-powerUp.mp3 */; };
@@ -68,6 +70,8 @@
 		3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Particles.scnassets; sourceTree = "<group>"; };
 		3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleEffectComponent.swift; sourceTree = "<group>"; };
 		3FEA03DD27AAC3D5006F4E39 /* AttachPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachPosition.swift; sourceTree = "<group>"; };
+		3FF9D54327AD42F500DE8F55 /* Avalanche.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avalanche.swift; sourceTree = "<group>"; };
+		3FF9D54527AD6F5100DE8F55 /* AvalancheManagerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvalancheManagerComponent.swift; sourceTree = "<group>"; };
 		6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPowerUp.swift; sourceTree = "<group>"; };
 		6065BFE327AD42FC008C9AFA /* Pinguim-strike.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pinguim-strike.mp3"; sourceTree = "<group>"; };
 		6065BFE427AD42FD008C9AFA /* Pinguim-powerUp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pinguim-powerUp.mp3"; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				D7F9B17D27A1899900275F94 /* Spawner.swift */,
 				D7A389BF27A2C46B00748137 /* Coin.swift */,
 				6056F60E27A2D65D0091027D /* SpeedPowerUp.swift */,
+				3FF9D54327AD42F500DE8F55 /* Avalanche.swift */,
 				31C9E6A927AD572E003FEAB1 /* Light.swift */,
 			);
 			path = Entities;
@@ -244,6 +249,7 @@
 				3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */,
 				60B0E16927AAA53300672CAA /* AudioManagerComponent.swift */,
 				3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */,
+				3FF9D54527AD6F5100DE8F55 /* AvalancheManagerComponent.swift */,
 				3114416227AC187A00EEB671 /* LightComponent.swift */,
 			);
 			path = Components;
@@ -397,6 +403,7 @@
 				3114416327AC187A00EEB671 /* LightComponent.swift in Sources */,
 				A75717F1279AD4F8004A4C9B /* Tree.swift in Sources */,
 				D7A389C027A2C46B00748137 /* Coin.swift in Sources */,
+				3FF9D54627AD6F5100DE8F55 /* AvalancheManagerComponent.swift in Sources */,
 				3F0FD7F027A16CE000E618CE /* ContactComponent.swift in Sources */,
 				A75717EB279AD336004A4C9B /* Player.swift in Sources */,
 				D73C1A9327A02149007C8549 /* TouchMovementManager.swift in Sources */,

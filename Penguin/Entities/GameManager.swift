@@ -34,6 +34,7 @@ class GameManager: GKEntity {
 
     var playerHealth: PlayerHealthComponent?
     var playerMovement: PlayerMovementComponent?
+    var avalancheManager: AvalancheManagerComponent?
 
     // MARK: - Game management
 
@@ -53,6 +54,10 @@ class GameManager: GKEntity {
                 scene?.isPaused = false
                 print("Game unpaused")
             case .dead:
+                avalancheManager?.coverPlayer {
+                    self.scene?.isPaused = true
+                    print("Game paused")
+                }
                 delegate?.didEnterDeathState()
                 print("Player died.")
             }
