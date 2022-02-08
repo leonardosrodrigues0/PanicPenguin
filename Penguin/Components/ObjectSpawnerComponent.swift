@@ -1,15 +1,24 @@
 import GameplayKit
 
 protocol SpawnableObject: GKEntity {
-    static func spawn(at position: SCNVector3)
+    static func spawn(at position: SCNVector3) -> SpawnableObject
     static var spawnType: SpawnedObjectType { get }
+    func respawn(at position: SCNVector3)
+    func prepareForReuse()
+    func deSpawn()
 }
 
 extension SpawnableObject {
-    static func spawn(at position: SCNVector3) {
+    static func spawn(at position: SCNVector3) -> SpawnableObject {
         let obj = self.init()
         obj.component(ofType: GeometryComponent.self)?.node.position = position
         GameManager.shared.scene?.add(obj)
+        return obj
+    }
+
+    func respawn(at position: SCNVector3) {
+        prepareForReuse()
+        self.component(ofType: GeometryComponent.self)?.node.position = position
     }
 }
 
@@ -33,9 +42,27 @@ enum SpawnedObjectType {
 
 class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
     private var timeSinceLastSpawn: Double = 0
+    var pool = [SpawnableObject]()
+    var poolMaxSize = 30
+
+    var spawnPosition: SCNVector3 {
+        return SCNVector3(Double.random(in: Config.xMovementRange), 0.25, -100)
+    }
 
     func spawnThing() {
-        T.spawn(at: SCNVector3(Double.random(in: Config.xMovementRange), 0.25, -100))
+        var obj: SpawnableObject?
+        if pool.count >= poolMaxSize {
+            obj = pool.removeFirst()
+            obj?.respawn(at: spawnPosition)
+        } else {
+            obj = T.spawn(at: spawnPosition)
+        }
+
+        if obj != nil {
+            pool.append(obj!)
+        }
+
+        print(pool.count)
     }
 
     override func update(deltaTime seconds: TimeInterval) {

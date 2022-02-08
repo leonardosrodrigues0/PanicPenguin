@@ -46,12 +46,18 @@ class Coin: GKEntity {
 
 extension Coin {
     func collideWithPlayer() {
-        self.removeComponent(ofType: PhysicsComponent.self)
-        self.removeComponent(ofType: ContactComponent.self)
-        self.removeComponent(ofType: GeometryComponent.self)
+        self.disable()
     }
 }
 
 extension Coin: SpawnableObject {
     static let spawnType: SpawnedObjectType = .coin
+
+    func prepareForReuse() {
+        self.enable()
+    }
+
+    func deSpawn() {
+        GameManager.shared.coinSpawner?.pool.append(self)
+    }
 }

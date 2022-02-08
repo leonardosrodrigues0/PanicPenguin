@@ -28,6 +28,10 @@ class GameManager: GKEntity {
     let speedManager = SpeedManagerComponent()
     let scoreManager = ScoreManagerComponent()
 
+    var treeSpawner: ObjectSpawnerComponent<Tree>?
+    var powerUpSpawner: ObjectSpawnerComponent<SpeedPowerUp>?
+    var coinSpawner: ObjectSpawnerComponent<Coin>?
+
     // MARK: - Other entities components
 
     var playerHealth: PlayerHealthComponent?

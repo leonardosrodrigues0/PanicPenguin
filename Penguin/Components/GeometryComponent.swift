@@ -17,7 +17,9 @@ class GeometryComponent: GKComponent {
 
     override func update(deltaTime seconds: TimeInterval) {
         if node.position.z > 0 {
-            GameManager.shared.scene?.remove(self.entity!)
+            if let entity = (entity as? SpawnableObject) {
+                entity.deSpawn()
+            }
         }
     }
 
@@ -27,5 +29,15 @@ class GeometryComponent: GKComponent {
 
     override func willRemoveFromEntity() {
         node.removeFromParentNode()
+    }
+}
+
+extension GeometryComponent: ToggleableComponent {
+    func disable() {
+        node.isHidden = true
+    }
+
+    func enable() {
+        node.isHidden = false
     }
 }

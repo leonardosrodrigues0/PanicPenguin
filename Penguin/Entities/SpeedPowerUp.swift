@@ -45,12 +45,19 @@ class SpeedPowerUp: GKEntity {
 
 extension SpeedPowerUp {
     func collideWithPlayer() {
-        self.removeComponent(ofType: PhysicsComponent.self)
-        self.removeComponent(ofType: ContactComponent.self)
-        self.removeComponent(ofType: GeometryComponent.self)
+        self.disable()
     }
 }
 
 extension SpeedPowerUp: SpawnableObject {
     static let spawnType: SpawnedObjectType = .powerUp
+    
+    func prepareForReuse() {
+        self.enable()
+    }
+
+    func deSpawn() {
+        GameManager.shared.powerUpSpawner?.pool.append(self)
+    }
+
 }

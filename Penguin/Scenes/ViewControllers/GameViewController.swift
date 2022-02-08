@@ -21,9 +21,18 @@ class GameViewController: UIViewController {
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
-        scene.add(Spawner<Tree>())
-        scene.add(Spawner<Coin>())
-        scene.add(Spawner<SpeedPowerUp>())
+
+        let treeSpawner = Spawner<Tree>()
+        GameManager.shared.treeSpawner = treeSpawner.component(ofType: ObjectSpawnerComponent<Tree>.self)
+        scene.add(treeSpawner)
+
+        let coinSpawner = Spawner<Coin>()
+        GameManager.shared.coinSpawner = treeSpawner.component(ofType: ObjectSpawnerComponent<Coin>.self)
+        scene.add(coinSpawner)
+
+        let powerUpSpawner = Spawner<SpeedPowerUp>()
+        GameManager.shared.powerUpSpawner = treeSpawner.component(ofType: ObjectSpawnerComponent<SpeedPowerUp>.self)
+        scene.add(powerUpSpawner)
 
         return scene
     }

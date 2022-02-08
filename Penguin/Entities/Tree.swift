@@ -37,12 +37,18 @@ class Tree: GKEntity {
 
 extension Tree {
     func collideWithPlayer() {
-        self.removeComponent(ofType: PhysicsComponent.self)
-        self.removeComponent(ofType: ContactComponent.self)
-        self.removeComponent(ofType: GeometryComponent.self)
+        self.disable()
     }
 }
 
 extension Tree: SpawnableObject {
+    func prepareForReuse() {
+        self.enable()
+    }
+
+    func deSpawn() {
+        GameManager.shared.treeSpawner?.pool.append(self)
+    }
+
     static let spawnType: SpawnedObjectType = .obstacle
 }
