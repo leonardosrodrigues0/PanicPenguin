@@ -31,8 +31,6 @@ class AnimationComponent: GKComponent {
         node?.runAction(animation, forKey: type.rawValue)
     }
     
-    
-    
     func move(by delta: SCNVector3) {
         node?.runAction(.move(by: delta, duration: Config.interval), forKey: ActionType.move.rawValue)
     }
