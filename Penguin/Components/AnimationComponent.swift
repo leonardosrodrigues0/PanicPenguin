@@ -31,12 +31,14 @@ class AnimationComponent: GKComponent {
         node?.runAction(animation, forKey: type.rawValue)
     }
     
+    
+    
     func move(by delta: SCNVector3) {
         node?.runAction(.move(by: delta, duration: Config.interval), forKey: ActionType.move.rawValue)
     }
     
-    func move(to position: SCNVector3, duration: Double = Config.interval) {
-        node?.runAction(.move(to: position, duration: duration), forKey: ActionType.move.rawValue)
+    func move(to position: SCNVector3, duration: Double = Config.interval, completion: (() -> Void)? = nil) {
+        node?.runAction(.move(to: position, duration: duration), forKey: ActionType.move.rawValue, completionHandler: completion)
     }
     
     func rotate(by angle: CGFloat) {

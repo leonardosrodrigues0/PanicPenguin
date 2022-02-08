@@ -27,16 +27,20 @@ class AvalancheManagerComponent: GKComponent {
         entity!.component(ofType: AnimationComponent.self)!
     }
     
+    private var completion: (() -> Void)?
+    
     private var lastVelocity = GameManager.shared.currentSpeed {
         didSet {
             avalancheAnimator.move(
                 to: .init(0, 0, ZPosition(velocity: lastVelocity).rawValue),
-                duration: lastVelocity == .v0 ? 1.2 : 0.5
+                duration: lastVelocity == .v0 ? 1.2 : 0.5,
+                completion: self.completion
             )
         }
     }
     
-    func coverPlayer() {
+    func coverPlayer(completion: (() -> Void)?) {
+        self.completion = completion
         lastVelocity = .v0
     }
     
