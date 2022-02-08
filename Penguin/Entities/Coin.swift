@@ -12,7 +12,7 @@ class Coin: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.reflective.contents = UIColor.yellow
+//        material.reflective.contents = UIColor.yellow
         material.diffuse.contents = UIColor.yellow
         let geometry = SCNSphere(radius: 0.75)
         geometry.materials = [material]
@@ -34,8 +34,8 @@ class Coin: GKEntity {
         addComponent(geometryComponent)
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(ObstacleMovementComponent())
-        addComponent(ContactComponent(with: [.player]) { _ in
-            self.collideWithPlayer()
+        addComponent(ContactComponent(with: [.player, .obstacle, .coin, .powerUp]) { category in
+            self.collide(category: category)
         })
     }
 
@@ -44,14 +44,6 @@ class Coin: GKEntity {
     }
 }
 
-extension Coin {
-    func collideWithPlayer() {
-        self.removeComponent(ofType: PhysicsComponent.self)
-        self.removeComponent(ofType: ContactComponent.self)
-        self.removeComponent(ofType: GeometryComponent.self)
-    }
-}
-
 extension Coin: SpawnableObject {
-    static let spawnType: SpawnedObjectType = .coin
+    static let spawnType: PhysicsCategory = .coin
 }

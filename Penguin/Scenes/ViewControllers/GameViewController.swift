@@ -1,18 +1,17 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import SpriteKit
 
 class GameViewController: UIViewController {
 
     @IBOutlet private var sceneView: SCNView!
-    @IBOutlet private var scoreLabel: UILabel!
-    @IBOutlet private var speedLabel: UILabel!
-
-    @IBAction private func pause() {
-        GameManager.shared.togglePause()
-    }
 
     lazy private var gameScene: GameScene = buildNewScene()
+    lazy var hud = Hud(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
+    var isInteractingWithHud: Bool = false
+
+    private var didGameStart: Bool = false
 
     private func buildNewScene() -> GameScene {
         let scene = GameScene()
@@ -21,6 +20,7 @@ class GameViewController: UIViewController {
         scene.add(Player())
         scene.add(Ground())
         scene.add(Camera())
+        scene.add(Light())
         scene.add(Avalanche())
         scene.add(Spawner<Tree>())
         scene.add(Spawner<Coin>())
@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.scene = gameScene
-        sceneView.delegate = self
+        sceneView.delegate = GameManager.shared
         sceneView.isPlaying = true
 
         GameManager.shared.delegate = self
@@ -42,9 +42,12 @@ class GameViewController: UIViewController {
             self.present(alert, animated: true)
         }
 
-        Timer.scheduledTimer(withTimeInterval: Config.interval, repeats: true) { _ in
-            self.scoreLabel.text = "\(GameManager.shared.currentScore)"
-            self.speedLabel.text = "\(GameManager.shared.currentSpeed)"
+    }
+
+    override func viewDidLayoutSubviews() {
+        if !didGameStart {
+            sceneView.overlaySKScene = hud
+            didGameStart = true
         }
     }
 
@@ -53,12 +56,12 @@ class GameViewController: UIViewController {
 
         let setMotionControllerAction = UIAlertAction(title: "Motion", style: .default) { _ in
             GameManager.shared.playerMovement?.controllerType = .motion
-            GameManager.shared.state = .playing
+            GameManager.shared.unpause()
         }
 
         let setTouchControllerAction = UIAlertAction(title: "Touch", style: .default) { _ in
             GameManager.shared.playerMovement?.controllerType = .touch
-            GameManager.shared.state = .playing
+            GameManager.shared.unpause()
         }
 
         alert.addAction(setTouchControllerAction)
@@ -70,6 +73,16 @@ class GameViewController: UIViewController {
     // MARK: - Touches Handling Methods
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isInteractingWithHud else { return }
+        interactWithHud(touches)
+
+        guard
+            GameManager.shared.state == .playing,
+            !hud.containsInteractableObject(touches)
+        else {
+            return
+        }
+
         GameManager.shared.playerMovement?.movementManager?.touchesBegan(
             touches,
             with: event,
@@ -77,16 +90,30 @@ class GameViewController: UIViewController {
         )
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        GameManager.shared.playerMovement?.movementManager?.touchesEnded(
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard
+            !isInteractingWithHud,
+            GameManager.shared.state == .playing
+        else {
+            return
+        }
+
+        GameManager.shared.playerMovement?.movementManager?.touchesMoved(
             touches,
             with: event,
             view: sceneView
         )
     }
 
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        GameManager.shared.playerMovement?.movementManager?.touchesMoved(
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard
+            !isInteractingWithHud,
+            GameManager.shared.state == .playing
+        else {
+            return
+        }
+
+        GameManager.shared.playerMovement?.movementManager?.touchesEnded(
             touches,
             with: event,
             view: sceneView
@@ -98,12 +125,7 @@ class GameViewController: UIViewController {
     }
 }
 
-extension GameViewController: SCNSceneRendererDelegate {
-    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        guard GameManager.shared.state == .playing else { return }
-        gameScene.entities.forEach { $0.components.forEach { $0.update(deltaTime: time) } }
-    }
-}
+extension GameViewController: HudDelegate {}
 
 extension GameViewController: GameManagerDelegate {
     func didEnterDeathState() {

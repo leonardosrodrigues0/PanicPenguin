@@ -5,7 +5,7 @@ class Tree: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.reflective.contents = UIColor.red
+//        material.reflective.contents = UIColor.red
         material.diffuse.contents = UIColor.red
         let geometry = SCNBox(width: 1.5, height: 0.5, length: 1.5, chamferRadius: 0.2)
         geometry.materials = [material]
@@ -25,8 +25,8 @@ class Tree: GKEntity {
         addComponent(GeometryComponent(geometry: Self.geometry, position: position))
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(ObstacleMovementComponent())
-        addComponent(ContactComponent(with: [.player]) { _ in
-            self.collideWithPlayer()
+        addComponent(ContactComponent(with: [.player, .obstacle, .coin, .powerUp]) { category in
+            self.collide(category: category)
         })
     }
 
@@ -35,14 +35,6 @@ class Tree: GKEntity {
     }
 }
 
-extension Tree {
-    func collideWithPlayer() {
-        self.removeComponent(ofType: PhysicsComponent.self)
-        self.removeComponent(ofType: ContactComponent.self)
-        self.removeComponent(ofType: GeometryComponent.self)
-    }
-}
-
 extension Tree: SpawnableObject {
-    static let spawnType: SpawnedObjectType = .obstacle
+    static let spawnType: PhysicsCategory = .obstacle
 }

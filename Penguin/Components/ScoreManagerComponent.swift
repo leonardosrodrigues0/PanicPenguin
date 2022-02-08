@@ -10,7 +10,7 @@ class ScoreManagerComponent: GKComponent {
     private var realScore: Double = 0.0
 
     override func update(deltaTime seconds: TimeInterval) {
-        realScore += Config.baseScore * GameManager.shared.currentSpeed.rawValue
+        realScore += Config.baseScore * GameManager.shared.currentSpeed.rawValue * seconds
     }
 
     func resetScore() {
