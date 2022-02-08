@@ -12,7 +12,7 @@ class AnimationComponent: GKComponent {
     private var animations: [ActionType: SCNAction]
     private var node: SCNNode?
     
-    init(animations: [ActionType: SCNAction]) {
+    init(animations: [ActionType: SCNAction] = [:]) {
         self.animations = animations
         super.init()
     }
@@ -33,6 +33,10 @@ class AnimationComponent: GKComponent {
     
     func move(by delta: SCNVector3) {
         node?.runAction(.move(by: delta, duration: Config.interval), forKey: ActionType.move.rawValue)
+    }
+    
+    func move(to position: SCNVector3, duration: Double = Config.interval, completion: (() -> Void)? = nil) {
+        node?.runAction(.move(to: position, duration: duration), forKey: ActionType.move.rawValue, completionHandler: completion)
     }
     
     func rotate(by angle: CGFloat) {
