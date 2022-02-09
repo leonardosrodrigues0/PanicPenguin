@@ -55,9 +55,7 @@ class Player: GKEntity {
         addComponent(animationComponent)
         addComponent(ParticleEffectComponent(.snowTrail, at: .init(.mid, .bottom, .back)))
         addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
-            GameManager.shared.soundManager.triggerSoundEffect(SoundEffectOrigin.fromCategory(category), fromEntity: self) {
-                GameManager.shared.pause()
-            }
+            GameManager.shared.soundManager.triggerSoundEffect(SoundEffectOrigin.fromCategory(category), fromEntity: self)
             switch category {
             case .obstacle:
                 self.animationComponent.run(.hit)

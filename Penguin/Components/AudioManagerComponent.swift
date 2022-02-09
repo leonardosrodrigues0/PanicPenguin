@@ -23,7 +23,7 @@ enum SoundEffectOrigin: String {
 
 class AudioManagerComponent: GKComponent {
     
-    func triggerSoundEffect(_ origin: SoundEffectOrigin?, fromEntity entity: GKEntity, _ completion: () -> Void) {
+    func triggerSoundEffect(_ origin: SoundEffectOrigin?, fromEntity entity: GKEntity) {
         DispatchQueue.main.async {
             guard let node = self.node(from: entity),
                   let origin = origin,
