@@ -19,6 +19,7 @@ class GameManager: GKEntity {
 
     private override init() {
         super.init()
+        addComponent(soundManager)
         addComponent(speedManager)
         addComponent(scoreManager)
     }
@@ -27,6 +28,7 @@ class GameManager: GKEntity {
 
     let speedManager = SpeedManagerComponent()
     let scoreManager = ScoreManagerComponent()
+    let soundManager = AudioManagerComponent()
 
     // MARK: - Other entities components
 

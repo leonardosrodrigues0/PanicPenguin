@@ -17,9 +17,6 @@ class Player: GKEntity {
         body.velocityFactor = SCNVector3(0, 1, 0)
         body.angularVelocityFactor = SCNVector3(1, 0, 0)
         body.categoryBitMask = PhysicsCategory.player.rawValue
-        body.collisionBitMask = PhysicsCategory.bitMask(forCategories: [
-//            PhysicsCategory.obstacle
-        ])
 
         return body
     }
@@ -58,6 +55,7 @@ class Player: GKEntity {
         addComponent(animationComponent)
         addComponent(ParticleEffectComponent(.snowTrail, at: .init(.mid, .bottom, .back)))
         addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
+            GameManager.shared.soundManager.triggerSoundEffect(SoundEffectOrigin.fromCategory(category), fromEntity: self)
             switch category {
             case .obstacle:
                 self.animationComponent.run(.hit)
@@ -70,7 +68,6 @@ class Player: GKEntity {
                 return
             }
         }))
-        addComponent(MusicComponent())
     }
 
     required init?(coder: NSCoder) {
