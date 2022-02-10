@@ -73,6 +73,7 @@ class Menu: SKScene, OverlayableSKScene {
                 GameManager.shared.startGame()
             } else if leaderboardIcon.contains(position) {
                 // Leaderboard access here
+                GameCenterManager.shared.displayLeaderboard(.test)
             }
         }
     }
