@@ -25,9 +25,10 @@ class AudioManagerComponent: GKComponent {
     
     func triggerSoundEffect(_ origin: SoundEffectOrigin?, fromEntity entity: GKEntity) {
         DispatchQueue.main.async {
-            guard let node = self.node(from: entity),
-                  let origin = origin,
-                  let soundEffect = SCNAudioSource(named: origin.rawValue)
+            guard
+                let node = self.node(from: entity),
+                let origin = origin,
+                let soundEffect = SCNAudioSource(named: origin.rawValue)
             else {
                 print("Failure trigger Sound effect")
                 return

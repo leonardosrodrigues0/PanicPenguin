@@ -2,12 +2,15 @@ import GameplayKit
 import SceneKit
 
 enum GameState {
+    case menu
     case paused
     case playing
     case dead
 }
 
 protocol GameManagerDelegate: AnyObject {
+    func didResetGame()
+    func didStartGame()
     func didEnterDeathState()
 }
 
@@ -44,32 +47,38 @@ class GameManager: GKEntity {
     private var lastRendererCall: TimeInterval?
     private var playTime: TimeInterval = 0
 
-    private(set) var state: GameState = .paused {
+    private(set) var state: GameState = .menu {
         didSet {
+            print("Game entered \(state) state")
             switch state {
+            case .menu:
+                scene?.isPaused = true
             case .paused:
                 scene?.isPaused = true
-                print("Game paused")
             case .playing:
                 scene?.isPaused = false
-                print("Game unpaused")
             case .dead:
                 avalancheManager?.coverPlayer {
                     self.scene?.isPaused = true
                     print("Game paused")
                 }
                 delegate?.didEnterDeathState()
-                print("Player died.")
             }
         }
     }
 
+    func startGame() {
+        guard state == .menu else { return }
+        state = .playing
+        delegate?.didStartGame()
+    }
+
     func unpause() {
-        if state == .paused {
-            // Empty last call so that playTime won't update
-            lastRendererCall = nil
-            state = .playing
-        }
+        guard state == .paused else { return }
+
+        // Empty last call so that playTime won't update
+        lastRendererCall = nil
+        state = .playing
     }
 
     func pause() {
@@ -82,23 +91,28 @@ class GameManager: GKEntity {
         state = .dead
     }
 
-    func togglePause() {
+    func togglePause(completion: (GameState) -> Void = { _ in }) {
         switch state {
+        case .menu:
+            completion(.menu)
         case .paused:
             unpause()
+            completion(.playing)
         case .playing:
             pause()
+            completion(.paused)
         case .dead:
-            return
+            completion(.dead)
         }
     }
 
     func reset() {
-        state = .paused
+        state = .menu
         speedManager.changeSpeed(to: .v2)
         scoreManager.resetScore()
         playTime = 0
         lastRendererCall = nil
+        delegate?.didResetGame()
     }
 
     // MARK: - Access to game information

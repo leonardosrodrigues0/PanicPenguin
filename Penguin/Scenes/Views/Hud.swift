@@ -3,37 +3,11 @@ import SpriteKit
 import SceneKit
 import Foundation
 
-protocol HudDelegate: AnyObject {
-    func willInteractWithHud()
-    func didInteractWithHud(withSuccess: Bool)
-    func interactWithHud(_ touches: Set<UITouch>)
-    var isInteractingWithHud: Bool { get set }
-    var hud: Hud { get set }
-}
-
-extension HudDelegate {
-    func interactWithHud(_ touches: Set<UITouch>) {
-        willInteractWithHud()
-        let success = hud.containsInteractableObject(touches)
-        hud.processTouch(touches)
-        didInteractWithHud(withSuccess: success)
-    }
-
-    func willInteractWithHud() {
-        isInteractingWithHud = true
-    }
-
-    func didInteractWithHud(withSuccess: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            self.isInteractingWithHud = false
-        }
-    }
-
-}
-
-class Hud: SKScene {
+class Hud: SKScene, OverlayableSKScene {
     
-    let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "HUD")
+    let textureAtlas = SKTextureAtlas(named: "HUD")
+    let pauseTexture = SKTexture(image: UIImage(systemName: "pause.fill")!)
+    let playTexture = SKTexture(image: UIImage(systemName: "play.fill")!)
     let starIcon: SKSpriteNode
     let pauseIcon: SKSpriteNode
     var starCountText: SKLabelNode
@@ -41,14 +15,14 @@ class Hud: SKScene {
     
     override init(size: CGSize) {
         self.starIcon = SKSpriteNode(texture: textureAtlas.textureNamed("star"))
-        self.pauseIcon = SKSpriteNode(texture: SKTexture.init(image: UIImage(systemName: "pause.fill")!))
+        self.pauseIcon = SKSpriteNode(texture: pauseTexture)
         self.starCountText = SKLabelNode(text: "000")
         self.speedometerText = SKLabelNode(text: "000")
         super.init(size: size)
+        buildScene()
     }
 
     override func didMove(to view: SKView) {
-        buildScene()
         self.isUserInteractionEnabled = false
     }
     
@@ -103,7 +77,14 @@ class Hud: SKScene {
     func processTouch(_ touches: Set<UITouch>) {
         if let position = touches.first?.location(in: self) {
             if pauseIcon.contains(position) {
-                GameManager.shared.togglePause()
+                GameManager.shared.togglePause { state in
+                    switch state {
+                    case .paused:
+                        self.pauseIcon.texture = playTexture
+                    default:
+                        self.pauseIcon.texture = pauseTexture
+                    }
+                }
             }
         }
     }
