@@ -19,4 +19,6 @@ identifier_name:
     excluded: ["x", "y", "z"]
 type_name:
     excluded: ["X", "Y", "Z"]
+indentation_width:
+    include_comments: false
 reporter: "xcode"

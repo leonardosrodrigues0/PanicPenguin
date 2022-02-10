@@ -44,6 +44,7 @@
 		A75717FD279AD80B004A4C9B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75717FC279AD80B004A4C9B /* Camera.swift */; };
 		A76ECC9C279B27780024B3A7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76ECC9B279B27780024B3A7 /* Config.swift */; };
 		A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */; };
+		A77E7BFF27B3E25800A5E550 /* OverlayableSKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E7BFE27B3E25800A5E550 /* OverlayableSKScene.swift */; };
 		A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */; };
 		A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5F279B403400F96F0F /* CameraComponent.swift */; };
 		A7B66F5727A972D900281AA4 /* MovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B66F5627A972D900281AA4 /* MovementManager.swift */; };
@@ -100,6 +101,7 @@
 		A75717FC279AD80B004A4C9B /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		A76ECC9B279B27780024B3A7 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A76ECC9D279B2A690024B3A7 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
+		A77E7BFE27B3E25800A5E550 /* OverlayableSKScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayableSKScene.swift; sourceTree = "<group>"; };
 		A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryComponent.swift; sourceTree = "<group>"; };
 		A783CF5F279B403400F96F0F /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 		A7B66F5627A972D900281AA4 /* MovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementManager.swift; sourceTree = "<group>"; };
@@ -177,7 +179,6 @@
 				A74BA74D27998C1D00B0711C /* AppDelegate.swift */,
 				A76ECC9B279B27780024B3A7 /* Config.swift */,
 				A74BA75327998C1D00B0711C /* Main.storyboard */,
-				A74BA75627998C1E00B0711C /* Assets.xcassets */,
 				A74BA75827998C1E00B0711C /* LaunchScreen.storyboard */,
 			);
 			path = Penguin;
@@ -186,6 +187,7 @@
 		A74BA7682799A79E00B0711C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A74BA75627998C1E00B0711C /* Assets.xcassets */,
 				6065BFEB27AD4C51008C9AFA /* Music */,
 				6065BFE227AD42B5008C9AFA /* SoundsEffects */,
 				3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */,
@@ -266,9 +268,10 @@
 		A74BA76F2799A8D100B0711C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A75717F6279AD6A9004A4C9B /* Menu.swift */,
 				A75717F8279AD6C0004A4C9B /* GameScene.swift */,
+				A75717F6279AD6A9004A4C9B /* Menu.swift */,
 				3114416027ABFAE200EEB671 /* Hud.swift */,
+				A77E7BFE27B3E25800A5E550 /* OverlayableSKScene.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				D7F9B17627A16A8100275F94 /* PlayerHealthComponent.swift in Sources */,
 				3FEA03DE27AAC3D5006F4E39 /* AttachPosition.swift in Sources */,
 				A76ECC9E279B2A690024B3A7 /* PhysicsComponent.swift in Sources */,
+				A77E7BFF27B3E25800A5E550 /* OverlayableSKScene.swift in Sources */,
 				A74BA74E27998C1D00B0711C /* AppDelegate.swift in Sources */,
 				D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */,
 				D7F9B17227A1644300275F94 /* GameManager.swift in Sources */,
