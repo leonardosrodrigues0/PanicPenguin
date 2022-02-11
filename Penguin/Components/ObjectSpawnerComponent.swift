@@ -9,7 +9,9 @@ protocol SpawnableObject: GKEntity {
 extension SpawnableObject {
     static func spawn(at position: SCNVector3) {
         let obj = self.init()
-        obj.component(ofType: GeometryComponent.self)?.node.position = position
+        let geometry = obj.component(ofType: GeometryComponent.self)
+        geometry?.node.position = position
+        geometry?.node.eulerAngles = SCNVector3(0, Int.random(in: 0..<360), 0)
         GameManager.shared.scene?.add(obj)
     }
 
