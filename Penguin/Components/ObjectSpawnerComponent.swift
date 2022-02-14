@@ -4,12 +4,17 @@ protocol SpawnableObject: GKEntity {
     static func spawn(at position: SCNVector3)
     static var spawnType: PhysicsCategory { get }
     static var spawnHeight: Double { get }
+    static var spawnPosition: SCNVector3 { get }
     func collideWithSpawnableObject(category: PhysicsCategory)
 }
 
 extension SpawnableObject {
     static var spawnHeight: Double {
         0
+    }
+
+    static var spawnPosition: SCNVector3 {
+        SCNVector3(Double.random(in: Config.xMovementRange), spawnHeight, -100)
     }
 
     static func spawn(at position: SCNVector3) {
@@ -58,8 +63,10 @@ extension PhysicsCategory {
             return 4
         case .coin:
             return 2
-        case .obstacle:
+        case .obstacle: 
             return 0.2
+        case .scenario:
+            return 0.3
         default:
             return 1
         }
@@ -79,6 +86,8 @@ extension PhysicsCategory {
             return 0.05
         case .obstacle:
             return 0.05
+        case .scenario:
+            return 1
         default:
             return 1
         }
@@ -89,7 +98,7 @@ class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
     private var timeSinceLastSpawn: Double = 0
 
     func spawnThing() {
-        T.spawn(at: SCNVector3(Double.random(in: Config.xMovementRange), T.spawnHeight, -100))
+        T.spawn(at: T.spawnPosition)
     }
 
     override func update(deltaTime seconds: TimeInterval) {

@@ -5,7 +5,7 @@ enum Config {
     static let interval: Double = 1 / 60
 
     /// Range of possible positions for the player in the X axis
-    static let xMovementRange = -5.5 ... 5.5
+    static let xMovementRange: ClosedRange<Double> = -5 ... 5
 
     /// Base score added based on the distance
     static let baseScore: Double = 1

@@ -38,6 +38,7 @@ class GameViewController: UIViewController {
         scene.add(Avalanche())
         scene.add(Spawner<Coin>())
         scene.add(Spawner<SpeedPowerUp>())
+        scene.add(Spawner<ScenarioObject>())
         playBackgroundMusic()
 
         return scene
