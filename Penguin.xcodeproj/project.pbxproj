@@ -11,6 +11,8 @@
 		3114416327AC187A00EEB671 /* LightComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3114416227AC187A00EEB671 /* LightComponent.swift */; };
 		31C9E6AA27AD572E003FEAB1 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C9E6A927AD572E003FEAB1 /* Light.swift */; };
 		3F0FD7F027A16CE000E618CE /* ContactComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */; };
+		3F80118527B54097003356B9 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F80118427B54097003356B9 /* GameCenterManager.swift */; };
+		3F80118827B54866003356B9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F80118727B54866003356B9 /* GameKit.framework */; };
 		3FC0D23627A82C16004FD5E8 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */; };
 		3FEA03DA27AAA6DA006F4E39 /* Particles.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */; };
 		3FEA03DC27AAA73C006F4E39 /* ParticleEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */; };
@@ -67,6 +69,8 @@
 		3114416227AC187A00EEB671 /* LightComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightComponent.swift; sourceTree = "<group>"; };
 		31C9E6A927AD572E003FEAB1 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		3F0FD7EF27A16CE000E618CE /* ContactComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactComponent.swift; sourceTree = "<group>"; };
+		3F80118427B54097003356B9 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
+		3F80118727B54866003356B9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3FC0D23527A82C16004FD5E8 /* AnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
 		3FEA03D927AAA6DA006F4E39 /* Particles.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Particles.scnassets; sourceTree = "<group>"; };
 		3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleEffectComponent.swift; sourceTree = "<group>"; };
@@ -124,12 +128,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F80118827B54866003356B9 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F80118627B54866003356B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F80118727B54866003356B9 /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6065BFE227AD42B5008C9AFA /* SoundsEffects */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +170,7 @@
 				A74BA76027998C9300B0711C /* README.md */,
 				A74BA74C27998C1D00B0711C /* Penguin */,
 				A74BA74B27998C1D00B0711C /* Products */,
+				3F80118627B54866003356B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -261,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				A75717F4279AD68D004A4C9B /* DeviceMotion.swift */,
+				3F80118427B54097003356B9 /* GameCenterManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -403,6 +418,7 @@
 				A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */,
 				3114416127ABFAE200EEB671 /* Hud.swift in Sources */,
 				6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */,
+				3F80118527B54097003356B9 /* GameCenterManager.swift in Sources */,
 				3FC0D23627A82C16004FD5E8 /* AnimationComponent.swift in Sources */,
 				3114416327AC187A00EEB671 /* LightComponent.swift in Sources */,
 				A75717F1279AD4F8004A4C9B /* Tree.swift in Sources */,
@@ -584,10 +600,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -613,10 +631,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

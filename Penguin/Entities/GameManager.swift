@@ -62,6 +62,7 @@ class GameManager: GKEntity {
                     self.scene?.isPaused = true
                     print("Game paused")
                 }
+                GameCenterManager.shared.score(currentScore)
                 delegate?.didEnterDeathState()
             }
         }

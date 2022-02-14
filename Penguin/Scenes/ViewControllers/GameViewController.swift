@@ -48,6 +48,7 @@ class GameViewController: UIViewController {
         sceneView.scene = gameScene
         sceneView.delegate = GameManager.shared
         sceneView.isPlaying = true
+        GameCenterManager.shared.viewController = self
         overlay = menu
         GameManager.shared.delegate = self
     }
@@ -114,6 +115,7 @@ extension GameViewController: OverlayableSKSceneDelegate {}
 
 extension GameViewController: GameManagerDelegate {
     func didStartGame() {
+        hud.updateRecordLabel()
         overlay = hud
     }
 

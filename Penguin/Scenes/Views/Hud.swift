@@ -5,19 +5,21 @@ import Foundation
 
 class Hud: SKScene, OverlayableSKScene {
     
-    let textureAtlas = SKTextureAtlas(named: "HUD")
-    let pauseTexture = SKTexture(image: UIImage(systemName: "pause.fill")!)
-    let playTexture = SKTexture(image: UIImage(systemName: "play.fill")!)
-    let starIcon: SKSpriteNode
-    let pauseIcon: SKSpriteNode
-    var starCountText: SKLabelNode
-    var speedometerText: SKLabelNode
+    private let textureAtlas = SKTextureAtlas(named: "HUD")
+    private let pauseTexture = SKTexture(image: UIImage(systemName: "pause.fill")!)
+    private let playTexture = SKTexture(image: UIImage(systemName: "play.fill")!)
+    private let starIcon: SKSpriteNode
+    private let pauseIcon: SKSpriteNode
+    private let starCountText: SKLabelNode
+    private let speedometerText: SKLabelNode
+    private let recordText: SKLabelNode
     
     override init(size: CGSize) {
         self.starIcon = SKSpriteNode(texture: textureAtlas.textureNamed("star"))
         self.pauseIcon = SKSpriteNode(texture: pauseTexture)
         self.starCountText = SKLabelNode(text: "000")
         self.speedometerText = SKLabelNode(text: "000")
+        self.recordText = SKLabelNode()
         super.init(size: size)
         buildScene()
     }
@@ -34,13 +36,24 @@ class Hud: SKScene, OverlayableSKScene {
         updateLabels(currentScore: GameManager.shared.currentScore, currentSpeed: GameManager.shared.currentSpeed)
     }
     
-    func updateLabels(currentScore: Int, currentSpeed: Speed) {
+    private func updateLabels(currentScore: Int, currentSpeed: Speed) {
         starCountText.text = "\(currentScore)"
         speedometerText.text = "\(currentSpeed)"
     }
     
-    func buildScene() {
+    func updateRecordLabel() {
+        recordText.text = getRecordLabel() ?? ""
+    }
+    
+    private func getRecordLabel() -> String? {
+        guard GameCenterManager.shared.isAuthenticated else {
+            return nil
+        }
         
+        return "Best score: " + String(GameCenterManager.shared.highestScore)
+    }
+    
+    private func buildScene() {
         starIcon.size = CGSize(width: 20, height: 20)
         starIcon.position = CGPoint(x: 40, y: self.frame.height - 90)
         starIcon.name = "starIcon"
@@ -72,6 +85,14 @@ class Hud: SKScene, OverlayableSKScene {
         pauseIcon.position = CGPoint(x: 180, y: self.frame.height - 90)
         pauseIcon.name = "pauseIcon"
         self.addChild(pauseIcon)
+        
+        recordText.text = getRecordLabel()
+        recordText.fontSize = CGFloat(16)
+        recordText.position = CGPoint(x: 95, y: -6)
+        recordText.fontName = "AvenirNext-HeavyItalic"
+        recordText.fontColor = UIColor.black
+        recordText.name = "speedometerText"
+        pauseIcon.addChild(recordText)
     }
     
     func processTouch(_ touches: Set<UITouch>) {
