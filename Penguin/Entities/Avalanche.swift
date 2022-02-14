@@ -22,8 +22,22 @@ class Avalanche: GKEntity {
     override init() {
         super.init()
         addComponent(geometryComponent)
-        addComponent(ParticleEffectComponent(.avalanche, at: .init(.mid, .bottom, .front)))
-        addComponent(AnimationComponent())
+//        addComponent(ParticleEffectComponent(.avalanche, at: .init(.mid, .bottom, .front)))
+        addComponent(AnimationComponent(animations: [
+            .idle: .repeatForever(
+                .group([
+                    .sequence([
+                        .scale(by: 21/20, duration: 1),
+                        .scale(by: 20/21, duration: 1)
+                    ]),
+                    .sequence([
+                        .rotate(by: 3.toRad, around: .init(0, 0, 1), duration: 0.5),
+                        .rotate(by: (-6).toRad, around: .init(0, 0, 1), duration: 1),
+                        .rotate(by: 3.toRad, around: .init(0, 0, 1), duration: 0.5)
+                    ])
+                ])
+            )
+        ]))
         addComponent(AvalancheManagerComponent())
     }
     
