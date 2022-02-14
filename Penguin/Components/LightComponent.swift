@@ -28,6 +28,7 @@ class LightComponent: GKComponent {
     func configLight() {
         light.type = .omni
         light.intensity = CGFloat(10000)
+        light.castsShadow = true
         if #available(iOS 13.0, *) {
             light.color = UIColor.systemGray
         }
