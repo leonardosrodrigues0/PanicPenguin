@@ -9,28 +9,29 @@ import SceneKit
 
 class SpeedPowerUp: GKEntity {
 
+    static let scene = SCNScene(named: "models.scnassets/Fish/PowerUp.scn")!
+
     static var geometry: SCNGeometry {
-        let material = SCNMaterial()
-//        material.reflective.contents = UIColor.blue
-        material.diffuse.contents = UIColor.blue
-        let geometry = SCNSphere(radius: 1.0)
-        geometry.materials = [material]
-        return geometry
+        let geometryNode = scene.rootNode.childNode(withName: "Powerup", recursively: true)
+        return geometryNode!.geometry!
     }
 
     static var physicsBody: SCNPhysicsBody {
-        let body = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
-        body.categoryBitMask = PhysicsCategory.powerUp.rawValue
+        let body = SCNPhysicsBody(
+            type: .kinematic,
+            shape: SCNPhysicsShape(
+                geometry: geometry,
+                options: nil
+            )
+        )
 
+        body.categoryBitMask = PhysicsCategory.powerUp.rawValue
         return body
     }
 
     override init() {
         super.init()
-        let position = SCNVector3(0, 0.25, -25)
-        let geometryComponent = GeometryComponent(geometry: Self.geometry, position: position)
-        geometryComponent.node.scale.y = 0.5
-        addComponent(geometryComponent)
+        addComponent(GeometryComponent(scene: Self.scene, nodeWithName: "Armature"))
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(ObstacleMovementComponent())
         addComponent(ContactComponent(with: [.player, .obstacle, .coin, .powerUp]) { category in
@@ -45,4 +46,5 @@ class SpeedPowerUp: GKEntity {
 
 extension SpeedPowerUp: SpawnableObject {
     static let spawnType: PhysicsCategory = .powerUp
+    static let spawnHeight: Double = 1
 }

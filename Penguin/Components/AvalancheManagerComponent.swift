@@ -2,8 +2,12 @@ import GameplayKit
 
 class AvalancheManagerComponent: GKComponent {
     private enum ZPosition: Int {
-        case v1 = -20, v2, v3, v4, v5
-        case v0 = -60
+        case v1 = -18
+        case v2 = -15
+        case v3 = -13
+        case v4 = -10
+        case v5 = -5
+        case v0 = -23
         
         init(velocity: Speed) {
             switch velocity {
@@ -33,7 +37,7 @@ class AvalancheManagerComponent: GKComponent {
         didSet {
             avalancheAnimator.move(
                 to: .init(0, 0, ZPosition(velocity: lastVelocity).rawValue),
-                duration: lastVelocity == .v0 ? 1.2 : 0.5,
+                duration: lastVelocity == .v0 ? 0.5 : 0.5,
                 completion: self.completion
             )
         }
@@ -46,6 +50,7 @@ class AvalancheManagerComponent: GKComponent {
     
     override func didAddToEntity() {
         GameManager.shared.avalancheManager = self
+        lastVelocity = .v2
     }
         
     override func update(deltaTime seconds: TimeInterval) {

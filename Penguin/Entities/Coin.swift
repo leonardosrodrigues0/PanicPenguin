@@ -10,28 +10,29 @@ import SceneKit
 
 class Coin: GKEntity {
 
+    static let scene = SCNScene(named: "models.scnassets/Fish/Coin.scn")!
+
     static var geometry: SCNGeometry {
-        let material = SCNMaterial()
-//        material.reflective.contents = UIColor.yellow
-        material.diffuse.contents = UIColor.yellow
-        let geometry = SCNSphere(radius: 0.75)
-        geometry.materials = [material]
-        return geometry
+        let geometryNode = scene.rootNode.childNode(withName: "Coin", recursively: true)
+        return geometryNode!.geometry!
     }
 
     static var physicsBody: SCNPhysicsBody {
-        let body = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
-        body.categoryBitMask = PhysicsCategory.coin.rawValue
+        let body = SCNPhysicsBody(
+            type: .kinematic,
+            shape: SCNPhysicsShape(
+                geometry: geometry,
+                options: nil
+            )
+        )
 
+        body.categoryBitMask = PhysicsCategory.coin.rawValue
         return body
     }
 
     override init() {
         super.init()
-        let position = SCNVector3(0, 0.25, -25)
-        let geometryComponent = GeometryComponent(geometry: Self.geometry, position: position)
-        geometryComponent.node.scale.y = 0.5
-        addComponent(geometryComponent)
+        addComponent(GeometryComponent(scene: Self.scene, nodeWithName: "Armature"))
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(ObstacleMovementComponent())
         addComponent(ContactComponent(with: [.player, .obstacle, .coin, .powerUp]) { category in
@@ -46,4 +47,5 @@ class Coin: GKEntity {
 
 extension Coin: SpawnableObject {
     static let spawnType: PhysicsCategory = .coin
+    static let spawnHeight: Double = 1
 }

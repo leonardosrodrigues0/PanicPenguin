@@ -3,10 +3,15 @@ import GameplayKit
 protocol SpawnableObject: GKEntity {
     static func spawn(at position: SCNVector3)
     static var spawnType: PhysicsCategory { get }
+    static var spawnHeight: Double { get }
     func collideWithSpawnableObject(category: PhysicsCategory)
 }
 
 extension SpawnableObject {
+    static var spawnHeight: Double {
+        0
+    }
+
     static func spawn(at position: SCNVector3) {
         let obj = self.init()
         let geometry = obj.component(ofType: GeometryComponent.self)
@@ -84,7 +89,7 @@ class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
     private var timeSinceLastSpawn: Double = 0
 
     func spawnThing() {
-        T.spawn(at: SCNVector3(Double.random(in: Config.xMovementRange), 0.25, -100))
+        T.spawn(at: SCNVector3(Double.random(in: Config.xMovementRange), T.spawnHeight, -100))
     }
 
     override func update(deltaTime seconds: TimeInterval) {

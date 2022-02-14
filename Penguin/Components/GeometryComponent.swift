@@ -3,10 +3,28 @@ import SceneKit
 
 class GeometryComponent: GKComponent {
 
-    let node: SCNNode
+    var node: SCNNode
 
     init(geometry: SCNGeometry?, position: SCNVector3 = SCNVector3(0, 0, 0)) {
         node = SCNNode(geometry: geometry)
+        node.position = position
+        super.init()
+    }
+
+    init(scene: SCNScene, position: SCNVector3 = SCNVector3(0, 0, 0)) {
+        node = scene.rootNode
+        node.position = position
+        super.init()
+    }
+
+    init(scene: SCNScene, nodeWithName name: String, position: SCNVector3 = SCNVector3(0, 0, 0)) {
+        node = scene.rootNode.childNode(withName: name, recursively: true)!.clone()
+        node.position = position
+        super.init()
+    }
+
+    init(scene: SCNScene, atIndex index: Int = 0, position: SCNVector3 = SCNVector3(0, 0, 0)) {
+        node = scene.rootNode.childNodes[index].clone()
         node.position = position
         super.init()
     }
