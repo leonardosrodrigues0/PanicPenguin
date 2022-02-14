@@ -12,16 +12,11 @@ class Coin: GKEntity {
 
     static let scene = SCNScene(named: "models.scnassets/Fish/Coin.scn")!
 
-    static var geometry: SCNGeometry {
-        let geometryNode = scene.rootNode.childNode(withName: "Coin", recursively: true)
-        return geometryNode!.geometry!
-    }
-
     static var physicsBody: SCNPhysicsBody {
         let body = SCNPhysicsBody(
             type: .kinematic,
             shape: SCNPhysicsShape(
-                geometry: geometry,
+                geometry: SCNBox(width: 1, height: 10, length: 1, chamferRadius: 0),
                 options: nil
             )
         )
