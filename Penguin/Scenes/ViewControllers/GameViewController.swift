@@ -17,6 +17,8 @@ class GameViewController: UIViewController {
 
     lazy var hud = Hud(size: sceneViewSize)
     lazy var menu = Menu(size: sceneViewSize)
+    lazy var afterMenu = AfterMenu(size: sceneViewSize)
+    private var controllerOption: MovementManagerType? = nil
 
     var overlay: OverlayableSKScene? {
         didSet {
@@ -115,6 +117,7 @@ extension GameViewController: OverlayableSKSceneDelegate {}
 
 extension GameViewController: GameManagerDelegate {
     func didStartGame() {
+        controllerOption = GameManager.shared.playerMovement?.controllerType
         hud.updateRecordLabel()
         overlay = hud
     }
@@ -124,29 +127,9 @@ extension GameViewController: GameManagerDelegate {
     }
 
     func didEnterDeathState() {
-        let alert = buildResetGameAlert()
-
-        DispatchQueue.main.async {
-            self.present(alert, animated: true)
-        }
-    }
-
-    private func buildResetGameAlert() -> UIAlertController {
-        let alert = UIAlertController(title: "You are now deceased.", message: nil, preferredStyle: .actionSheet)
-
-        let resetGameAction = UIAlertAction(title: "Reset Game", style: .default) { _ in
-
-            GameManager.shared.reset()
-
-            let scene = self.buildNewScene()
-            self.gameScene = scene
-            self.sceneView.scene = scene
-            self.viewDidLoad()
-        }
-
-        alert.addAction(resetGameAction)
-
-        return alert
+        overlay = afterMenu
+        sceneView.scene = buildNewScene()
+        GameManager.shared.playerMovement?.controllerType = controllerOption
     }
 
     public func playBackgroundMusic() {
