@@ -5,7 +5,7 @@ class Ground: GKEntity {
 
     static var geometry: SCNGeometry {
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor(white: 0.6, alpha: 1)
+        material.diffuse.contents = UIColor(white: 0.5, alpha: 1)
         material.reflective.contents = UIColor.lightGray
         let geometry = SCNFloor()
         geometry.reflectivity = 0
