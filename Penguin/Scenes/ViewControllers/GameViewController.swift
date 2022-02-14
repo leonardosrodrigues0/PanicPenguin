@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
     lazy var hud = Hud(size: sceneViewSize)
     lazy var menu = Menu(size: sceneViewSize)
     lazy var afterMenu = AfterMenu(size: sceneViewSize)
-    private var controllerOption: MovementManagerType? = nil
+    private var controllerOption: MovementManagerType?
 
     var overlay: OverlayableSKScene? {
         didSet {
