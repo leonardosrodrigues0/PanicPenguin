@@ -3,24 +3,23 @@ import GameplayKit
 
 class Player: GKEntity {
 
+    static var scene: SCNScene {
+        return SCNScene(named: "models.scnassets/Penguin/Penguin_Rigged.scn")!
+    }
+
     static var geometry: SCNGeometry {
-        let material = SCNMaterial()
-//        material.reflective.contents = UIColor.blue
-        material.diffuse.contents = UIColor.blue
-        let geometry = SCNBox(width: 3, height: 0.5, length: 3, chamferRadius: 0.2)
-        geometry.materials = [material]
-        return geometry
+        let geometryNode = scene.rootNode.childNode(withName: "Model", recursively: true)
+        return geometryNode!.geometry!
     }
 
     static var physicsBody: SCNPhysicsBody {
-        let body = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry, options: nil))
+        let body = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: Self.geometry, options: nil))
         body.velocityFactor = SCNVector3(0, 1, 0)
         body.angularVelocityFactor = SCNVector3(1, 0, 0)
         body.categoryBitMask = PhysicsCategory.player.rawValue
-
         return body
     }
-    
+
     lazy private var animationComponent: AnimationComponent = {
         let component = AnimationComponent(animations: [
             .hit: .group([
@@ -47,13 +46,14 @@ class Player: GKEntity {
 
     override init() {
         super.init()
-        addComponent(GeometryComponent(geometry: Self.geometry, position: .init(0, 0.25, -25)))
+        let position = SCNVector3(0, -0.25, -25)
+        addComponent(GeometryComponent(scene: Self.scene, position: position))
         addComponent(PhysicsComponent(withBody: Self.physicsBody))
         addComponent(PlayerMovementComponent())
         let healthComponent = PlayerHealthComponent()
         addComponent(healthComponent)
         addComponent(animationComponent)
-        addComponent(ParticleEffectComponent(.snowTrail, at: .init(.mid, .bottom, .back)))
+        addComponent(ParticleEffectComponent(.snowTrail, at: .init(.mid, .bottom, .mid)))
         addComponent(ContactComponent(with: [.obstacle, .coin, .powerUp], { category in
             GameManager.shared.soundManager.triggerSoundEffect(SoundEffectOrigin.fromCategory(category), fromEntity: self)
             switch category {
