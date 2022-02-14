@@ -51,6 +51,8 @@
 		A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */; };
 		A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5F279B403400F96F0F /* CameraComponent.swift */; };
 		A7B66F5727A972D900281AA4 /* MovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B66F5627A972D900281AA4 /* MovementManager.swift */; };
+		A7CF6FC427BA88B300F92859 /* ScenarioObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CF6FC327BA88B300F92859 /* ScenarioObject.swift */; };
+		A7CF6FC627BA8B6900F92859 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CF6FC527BA8B6900F92859 /* Direction.swift */; };
 		A7EE406127A182CD0073DD3F /* ScoreManagerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */; };
 		D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */; };
 		D73C1A9327A02149007C8549 /* TouchMovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C1A9227A02149007C8549 /* TouchMovementManager.swift */; };
@@ -112,6 +114,8 @@
 		A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryComponent.swift; sourceTree = "<group>"; };
 		A783CF5F279B403400F96F0F /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 		A7B66F5627A972D900281AA4 /* MovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementManager.swift; sourceTree = "<group>"; };
+		A7CF6FC327BA88B300F92859 /* ScenarioObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenarioObject.swift; sourceTree = "<group>"; };
+		A7CF6FC527BA8B6900F92859 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		A7EE406027A182CD0073DD3F /* ScoreManagerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManagerComponent.swift; sourceTree = "<group>"; };
 		D73C1A9027A0195C007C8549 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 		D73C1A9227A02149007C8549 /* TouchMovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchMovementManager.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 		A74BA7692799A7FF00B0711C /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				A7CF6FC327BA88B300F92859 /* ScenarioObject.swift */,
 				A75717EA279AD336004A4C9B /* Player.swift */,
 				A75717F0279AD4F8004A4C9B /* Obstacle.swift */,
 				A75717FA279AD6F2004A4C9B /* Ground.swift */,
@@ -241,6 +246,7 @@
 				D73C1A9227A02149007C8549 /* TouchMovementManager.swift */,
 				D73C1A8F27A0194C007C8549 /* Extensions */,
 				A74BA76D2799A88E00B0711C /* Services */,
+				A7CF6FC527BA8B6900F92859 /* Direction.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -423,6 +429,7 @@
 				D7F9B17A27A1826400275F94 /* ObjectSpawnerComponent.swift in Sources */,
 				60960EB627A16E8C009F81E3 /* ObstacleMovementComponent.swift in Sources */,
 				A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */,
+				A7CF6FC427BA88B300F92859 /* ScenarioObject.swift in Sources */,
 				3114416127ABFAE200EEB671 /* Hud.swift in Sources */,
 				6056F60F27A2D65D0091027D /* SpeedPowerUp.swift in Sources */,
 				3F80118527B54097003356B9 /* GameCenterManager.swift in Sources */,
@@ -456,6 +463,7 @@
 				60B0E16A27AAA53300672CAA /* AudioManagerComponent.swift in Sources */,
 				A75717FD279AD80B004A4C9B /* Camera.swift in Sources */,
 				A76ECC9C279B27780024B3A7 /* Config.swift in Sources */,
+				A7CF6FC627BA8B6900F92859 /* Direction.swift in Sources */,
 				D7A94958279EE6A30090CD26 /* MotionMovementManager.swift in Sources */,
 				A7B66F5727A972D900281AA4 /* MovementManager.swift in Sources */,
 				A74276DD27A9D6210097CC7C /* ClosedRange.swift in Sources */,

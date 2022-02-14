@@ -11,11 +11,6 @@ enum TouchState {
     case more
 }
 
-enum Direction: Int {
-    case left = -1
-    case right = 1
-}
-
 class TouchMovementManager: MovementManager {
 
     private var state = TouchState.zero
