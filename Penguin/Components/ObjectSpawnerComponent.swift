@@ -63,7 +63,7 @@ extension PhysicsCategory {
             return 4
         case .coin:
             return 2
-        case .obstacle: 
+        case .obstacle:
             return 0.2
         case .scenario:
             return 0.3
