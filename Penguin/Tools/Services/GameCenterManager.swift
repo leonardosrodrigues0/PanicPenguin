@@ -44,9 +44,11 @@ class GameCenterManager: NSObject {
     }
     
     func displayLeaderboard(_ id: LeaderboardType) {
-        let vc = GKGameCenterViewController(leaderboardID: id.rawValue, playerScope: .global, timeScope: .allTime)
-        vc.gameCenterDelegate = self
-        viewController?.present(vc, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let vc = GKGameCenterViewController(leaderboardID: id.rawValue, playerScope: .global, timeScope: .allTime)
+            vc.gameCenterDelegate = self
+            self.viewController?.present(vc, animated: true, completion: nil)
+        }
     }
     
     /// Checks if the score received is better than the player's record. If so, it publishes the new record to Game Center
