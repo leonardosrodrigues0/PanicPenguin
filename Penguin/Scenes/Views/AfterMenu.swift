@@ -61,6 +61,10 @@ class AfterMenu: SKScene, OverlayableSKScene {
         self.addChild(leaderboardIcon)
     }
 
+    func updateOverlay() {
+        finalScore.text = "\(GameManager.shared.currentScore)"
+    }
+
     override func didMove(to view: SKView) {
         self.isUserInteractionEnabled = false
     }

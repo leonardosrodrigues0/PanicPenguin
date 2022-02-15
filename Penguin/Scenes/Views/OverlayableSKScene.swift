@@ -1,8 +1,13 @@
 import SpriteKit
 
 protocol OverlayableSKScene: SKScene {
+    func updateOverlay()
     func containsInteractableObject(_ touches: Set<UITouch>) -> Bool
     func processTouch(_ touches: Set<UITouch>)
+}
+
+extension OverlayableSKScene {
+    func updateOverlay() {}
 }
 
 protocol OverlayableSKSceneDelegate: AnyObject {

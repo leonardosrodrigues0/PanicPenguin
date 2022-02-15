@@ -22,6 +22,7 @@ class GameViewController: UIViewController {
 
     var overlay: OverlayableSKScene? {
         didSet {
+            overlay?.updateOverlay()
             sceneView.overlaySKScene = overlay
         }
     }
