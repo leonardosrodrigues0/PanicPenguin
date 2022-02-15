@@ -26,4 +26,18 @@ class CameraComponent: GKComponent {
         node.eulerAngles = orientation
         node.camera = camera
     }
+
+    override func update(deltaTime seconds: TimeInterval) {
+        guard let node = entity?.component(ofType: GeometryComponent.self)?.node else {
+            print("FALHOUUU")
+            return
+        }
+
+        guard let newPosition = GameManager.shared.playerMovement?.entity?.component(ofType: GeometryComponent.self)?.node.position else {
+            print("AAAAAAAA")
+            return
+        }
+
+        node.position = newPosition + SCNVector3(0, 2, 3)
+    }
 }

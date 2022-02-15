@@ -7,9 +7,9 @@ class Camera: GKEntity {
         super.init()
         let position = SCNVector3(x: 0, y: 5, z: -40)
         let orientation = SCNVector3(
-            x: Float(160).toRad,
+            x: 0,
             y: 0,
-            z: Float(180).toRad
+            z: 0
         )
         addComponent(GeometryComponent(geometry: nil, position: position))
         addComponent(CameraComponent(orientation: orientation))
