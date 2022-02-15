@@ -12,11 +12,15 @@ class AfterMenu: SKScene, OverlayableSKScene {
     private let returnGame: SKSpriteNode
     private let leaderboardIcon: SKSpriteNode
 
+    private static var scoreText: String {
+        "Score: \(GameManager.shared.currentScore)"
+    }
+
     override init(size: CGSize) {
-        self.iconSize = CGSize(width: 0.9 * size.width, height: 0.09 * size.height)
+        self.iconSize = CGSize(width: 0.9 * size.width, height: 0.09 * size.width)
         self.background = SKSpriteNode(texture: backgroundTexture)
         self.returnGame = SKSpriteNode(texture: returnGameTexture)
-        self.finalScore = SKLabelNode(text: "\(GameManager.shared.currentScore)")
+        self.finalScore = SKLabelNode(text: Self.scoreText)
         self.leaderboardIcon = SKSpriteNode(texture: leaderboardTexture)
 
         super.init(size: size)
@@ -36,7 +40,7 @@ class AfterMenu: SKScene, OverlayableSKScene {
         returnGame.size = iconSize
         returnGame.position = CGPoint(
             x: 0.5 * self.frame.width,
-            y: 0.5 * self.frame.height + iconSize.height
+            y: 0.5 * self.frame.height + 2 * iconSize.height
         )
         returnGame.name = "returnGame"
         self.addChild(returnGame)
@@ -55,14 +59,14 @@ class AfterMenu: SKScene, OverlayableSKScene {
         leaderboardIcon.size = iconSize
         leaderboardIcon.position = CGPoint(
             x: 0.5 * self.frame.width,
-            y: 0.5 * self.frame.height - iconSize.height
+            y: 0.5 * self.frame.height - 2 * iconSize.height
         )
         leaderboardIcon.name = "leaderboardIcon"
         self.addChild(leaderboardIcon)
     }
 
     func updateOverlay() {
-        finalScore.text = "\(GameManager.shared.currentScore)"
+        finalScore.text = Self.scoreText
     }
 
     override func didMove(to view: SKView) {
