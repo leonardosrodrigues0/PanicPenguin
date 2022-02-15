@@ -118,19 +118,25 @@ extension GameViewController: OverlayableSKSceneDelegate {}
 
 extension GameViewController: GameManagerDelegate {
     func didStartGame() {
-        controllerOption = GameManager.shared.playerMovement?.controllerType
-        hud.updateRecordLabel()
-        overlay = hud
+        DispatchQueue.main.async {
+            self.controllerOption = GameManager.shared.playerMovement?.controllerType
+            self.hud.updateRecordLabel()
+            self.overlay = self.hud
+        }
     }
 
     func didResetGame() {
-        overlay = menu
+        DispatchQueue.main.async {
+            self.overlay = self.menu
+        }
     }
 
     func didEnterDeathState() {
-        overlay = afterMenu
-        sceneView.scene = buildNewScene()
-        GameManager.shared.playerMovement?.controllerType = controllerOption
+        DispatchQueue.main.async {
+            self.overlay = self.afterMenu
+            self.sceneView.scene = self.buildNewScene()
+            GameManager.shared.playerMovement?.controllerType = self.controllerOption
+        }
     }
 
     public func playBackgroundMusic() {
