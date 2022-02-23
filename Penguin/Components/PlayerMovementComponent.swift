@@ -29,11 +29,7 @@ class PlayerMovementComponent: GKComponent {
     }
 
     func move(by distance: Double) {
-        guard
-            let geometry = geometry,
-            geometry.node.action(forKey: ActionType.move.rawValue) == nil,
-            let animationComponent = entity?.component(ofType: AnimationComponent.self)
-        else {
+        guard let geometry = geometry else {
             return
         }
 
@@ -43,9 +39,10 @@ class PlayerMovementComponent: GKComponent {
         guard Config.xMovementRange.contains(Double(newPosition.x)) else { return }
 
         let rotationAngle = 2 * Config.maxRotationAngle * distance / Config.xMovementRange.size
+        let newEulerAngles = geometry.node.eulerAngles + SCNVector3(0, rotationAngle.toRad, 0)
 
-        animationComponent.move(by: deltaPosition)
-        animationComponent.rotate(by: CGFloat(rotationAngle.toRad))
+        geometry.node.position = newPosition
+        geometry.node.eulerAngles = newEulerAngles
     }
 
     override func update(deltaTime seconds: TimeInterval) {

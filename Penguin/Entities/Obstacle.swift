@@ -15,12 +15,14 @@ class Obstacle: GKEntity {
 
     var physicsBody: SCNPhysicsBody {
         let body = SCNPhysicsBody(
-            type: .static,
+            type: .kinematic,
             shape: SCNPhysicsShape(
                 geometry: geometry ?? SCNBox(width: 1.5, height: 1.5, length: 1.5, chamferRadius: 0),
                 options: [.scale: node?.scale ?? SCNVector3(1, 1, 1)]
             )
         )
+
+        body.categoryBitMask = PhysicsCategory.obstacle.rawValue
         return body
     }
 

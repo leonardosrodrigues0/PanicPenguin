@@ -43,4 +43,5 @@ class Coin: GKEntity {
 extension Coin: SpawnableObject {
     static let spawnType: PhysicsCategory = .coin
     static let spawnHeight: Double = 1
+    static let poolSize: Int = 5
 }

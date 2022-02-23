@@ -4,6 +4,9 @@ enum Config {
     /// Base game time interval used in several stuff, in seconds
     static let interval: Double = 1 / 60
 
+    /// Affects all speeds in the game
+    static let speedFactor: Double = 0.5
+
     /// Range of possible positions for the player in the X axis
     static let xMovementRange: ClosedRange<Double> = -5 ... 5
 
@@ -16,7 +19,7 @@ enum Config {
     static let maxRotationAngle: Double = 15
 
     /// When using touch control, base distance traveled each tick
-    static let touchMoveDistance: Double = 0.6
+    static let touchMoveDistance: Double = 0.4
 
     enum Motion {
         /// Min angle that affects speed (dead zone), in degrees
