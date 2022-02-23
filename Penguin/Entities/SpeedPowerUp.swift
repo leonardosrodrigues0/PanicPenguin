@@ -1,9 +1,3 @@
-//
-//  PowerUp.swift
-//  Penguin
-//
-//  Created by Matheus Vicente on 27/01/22.
-//
 import GameplayKit
 import SceneKit
 
@@ -42,4 +36,5 @@ class SpeedPowerUp: GKEntity {
 extension SpeedPowerUp: SpawnableObject {
     static let spawnType: PhysicsCategory = .powerUp
     static let spawnHeight: Double = 1
+    static let poolSize: Int = 5
 }

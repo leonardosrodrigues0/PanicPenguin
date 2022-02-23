@@ -1,10 +1,10 @@
 import GameplayKit
 
 protocol SpawnableObject: GKEntity {
-    static func spawn(at position: SCNVector3)
     static var spawnType: PhysicsCategory { get }
     static var spawnHeight: Double { get }
     static var spawnPosition: SCNVector3 { get }
+    static var poolSize: Int { get }
     func collideWithSpawnableObject(category: PhysicsCategory)
 }
 
@@ -13,16 +13,12 @@ extension SpawnableObject {
         0
     }
 
-    static var spawnPosition: SCNVector3 {
-        SCNVector3(Double.random(in: Config.xMovementRange), spawnHeight, -100)
+    static var poolSize: Int {
+        return 20
     }
 
-    static func spawn(at position: SCNVector3) {
-        let obj = self.init()
-        let geometry = obj.component(ofType: GeometryComponent.self)
-        geometry?.node.position = position
-        geometry?.node.eulerAngles = SCNVector3(0, Int.random(in: 0..<360), 0)
-        GameManager.shared.scene?.add(obj)
+    static var spawnPosition: SCNVector3 {
+        SCNVector3(Double.random(in: Config.xMovementRange), spawnHeight, -100)
     }
 
     func collide(category: PhysicsCategory) {
@@ -39,18 +35,23 @@ extension SpawnableObject {
     /// Remove object if its spawn distance is smaller than or equal to the other object.
     func collideWithSpawnableObject(category: PhysicsCategory) {
         if Self.spawnType.minimumSpawnDistance <= category.minimumSpawnDistance {
-            removeEntityBody()
+            removeAndReturnToPool()
         }
     }
 
     func collideWithPlayer() {
-        removeEntityBody()
+        removeAndReturnToPool()
     }
 
-    func removeEntityBody() {
-        self.removeComponent(ofType: PhysicsComponent.self)
-        self.removeComponent(ofType: ContactComponent.self)
-        self.removeComponent(ofType: GeometryComponent.self)
+    private func removeAndReturnToPool() {
+        GameManager.shared.scene?.remove(self)
+        spawnerComponent?.returnToPool(self)
+    }
+
+    private var spawnerComponent: ObjectSpawnerComponent<Self>? {
+        GameManager.shared.scene?.entities.first { entity in
+            entity as? Spawner<Self> != nil
+        }?.component(ofType: ObjectSpawnerComponent<Self>.self)
     }
 }
 
@@ -96,18 +97,66 @@ extension PhysicsCategory {
 
 class ObjectSpawnerComponent<T: SpawnableObject>: GKComponent {
     private var timeSinceLastSpawn: Double = 0
+    private var pool: [T]
+
+    override init() {
+        pool = []
+        for _ in 0 ..< T.poolSize {
+            pool.append(T())
+        }
+
+        super.init()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     func spawnThing() {
-        T.spawn(at: T.spawnPosition)
+        guard let obj = pool.popLast() else {
+            print("Empty pool for object type \(T.self)")
+            return
+        }
+
+        let geometry = obj.component(ofType: GeometryComponent.self)
+        geometry?.node.position = T.spawnPosition
+        geometry?.node.eulerAngles = SCNVector3(0, Int.random(in: 0 ..< 360), 0)
+        GameManager.shared.scene?.add(obj)
+    }
+
+    func returnToPool(_ object: T) {
+        pool.append(object)
     }
 
     override func update(deltaTime seconds: TimeInterval) {
+        verifyTimeAndSpawn(deltaTime: seconds)
+        verifyObjectsAndRemove()
+    }
+
+    private func verifyTimeAndSpawn(deltaTime seconds: TimeInterval) {
         timeSinceLastSpawn += seconds
 
         if timeSinceLastSpawn >= T.spawnType.minimumSpawnDistance / GameManager.shared.currentSpeed.rawValue {
             if Double.random(in: 0 ... 1) <= T.spawnType.spawnProbability {
                 spawnThing()
                 timeSinceLastSpawn = 0
+            }
+        }
+    }
+
+    private func verifyObjectsAndRemove() {
+        guard let scene = GameManager.shared.scene else {
+            print("Invalid game scene when trying to remove objects")
+            return
+        }
+
+        let objects = scene.entities.compactMap { $0 as? T }
+
+        for object in objects {
+            let position = object.component(ofType: GeometryComponent.self)!.node.position.z
+            if position > 0 {
+                scene.remove(object)
+                returnToPool(object)
             }
         }
     }

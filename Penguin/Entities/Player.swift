@@ -13,7 +13,10 @@ class Player: GKEntity {
     }
 
     static var physicsBody: SCNPhysicsBody {
-        let body = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: Self.geometry, options: nil))
+        let body = SCNPhysicsBody(
+            type: .kinematic,
+            shape: SCNPhysicsShape(geometry: Self.geometry, options: nil)
+        )
         body.velocityFactor = SCNVector3(0, 1, 0)
         body.angularVelocityFactor = SCNVector3(1, 0, 0)
         body.categoryBitMask = PhysicsCategory.player.rawValue
