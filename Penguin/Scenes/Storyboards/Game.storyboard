@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,13 +13,25 @@
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="GameViewController" customModule="Panic_Penguin" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5EZ-qb-Rvc" customClass="SCNView">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpE-AL-1Un">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </sceneKitView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cpE-AL-1Un" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="3f6-2c-UgE"/>
+                            <constraint firstItem="cpE-AL-1Un" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Sym-Kr-0Jj"/>
+                            <constraint firstAttribute="bottom" secondItem="cpE-AL-1Un" secondAttribute="bottom" id="TTI-sb-lMi"/>
+                            <constraint firstItem="cpE-AL-1Un" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="dcG-zS-a8k"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="sceneView" destination="5EZ-qb-Rvc" id="JT5-Gb-68U"/>
+                        <outlet property="sceneView" destination="cpE-AL-1Un" id="P1k-v1-VFG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

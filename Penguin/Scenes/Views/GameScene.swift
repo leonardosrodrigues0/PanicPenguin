@@ -9,6 +9,20 @@ class GameScene: SCNScene {
         super.init()
         physicsWorld.contactDelegate = self
         isPaused = true
+        addStartingEntities()
+    }
+
+    private func addStartingEntities() {
+        add(GameManager.shared)
+        add(Player())
+        add(Ground())
+        add(Camera())
+        add(Light())
+        add(Spawner<Obstacle>())
+        add(Avalanche())
+        add(Spawner<Coin>())
+        add(Spawner<SpeedPowerUp>())
+        add(Spawner<ScenarioObject>())
     }
 
     required init?(coder: NSCoder) {

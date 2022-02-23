@@ -51,7 +51,7 @@
 		A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5F279B403400F96F0F /* CameraComponent.swift */; };
 		A7A2F51A27C660E200DFD728 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A2F51927C660E200DFD728 /* Main.swift */; };
 		A7A2F51C27C6624600DFD728 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A2F51B27C6624600DFD728 /* Main.storyboard */; };
-		A7A2F51E27C6657B00DFD728 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A2F51D27C6657B00DFD728 /* Game.storyboard */; };
+		A7A2F52127C6668700DFD728 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A2F52027C6668700DFD728 /* Game.storyboard */; };
 		A7B66F5727A972D900281AA4 /* MovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B66F5627A972D900281AA4 /* MovementManager.swift */; };
 		A7CF6FC427BA88B300F92859 /* ScenarioObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CF6FC327BA88B300F92859 /* ScenarioObject.swift */; };
 		A7CF6FC627BA8B6900F92859 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CF6FC527BA8B6900F92859 /* Direction.swift */; };
@@ -116,7 +116,7 @@
 		A783CF5F279B403400F96F0F /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 		A7A2F51927C660E200DFD728 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		A7A2F51B27C6624600DFD728 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		A7A2F51D27C6657B00DFD728 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
+		A7A2F52027C6668700DFD728 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		A7B66F5627A972D900281AA4 /* MovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementManager.swift; sourceTree = "<group>"; };
 		A7CF6FC327BA88B300F92859 /* ScenarioObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenarioObject.swift; sourceTree = "<group>"; };
 		A7CF6FC527BA8B6900F92859 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				A7A2F51B27C6624600DFD728 /* Main.storyboard */,
-				A7A2F51D27C6657B00DFD728 /* Game.storyboard */,
+				A7A2F52027C6668700DFD728 /* Game.storyboard */,
 				A74BA75827998C1E00B0711C /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -396,7 +396,7 @@
 			files = (
 				D7D153A627A96C6B00A6C207 /* models.scnassets in Resources */,
 				60CC25AC27AAA6D900D35A61 /* JazzRush.mp3 in Resources */,
-				A7A2F51E27C6657B00DFD728 /* Game.storyboard in Resources */,
+				A7A2F52127C6668700DFD728 /* Game.storyboard in Resources */,
 				A74BA75A27998C1E00B0711C /* LaunchScreen.storyboard in Resources */,
 				6065BFEA27AD42FD008C9AFA /* Pinguim-dead.mp3 in Resources */,
 				A74BA76127998C9300B0711C /* README.md in Resources */,
