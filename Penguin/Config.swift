@@ -25,7 +25,7 @@ enum Config {
         /// Min angle that affects speed (dead zone), in degrees
         static let minAngle: Double = 3
         /// Max move distance in a tick, when the angle is maximum
-        static let maxMoveDistance: Double = 0.8
+        static let maxMoveDistance: Double = 0.5
         /// Max angle that affects speed, in degrees
         static let maxAngle: Double = 30
     }
