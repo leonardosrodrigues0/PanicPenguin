@@ -77,10 +77,7 @@ class AfterMenu: SKScene, OverlayableSKScene {
         guard containsInteractableObject(touches) else { return }
         if let position = touches.first?.location(in: self) {
             if returnGame.contains(position) {
-                let gameMode = GameManager.shared.playerMovement?.controllerType
                 GameManager.shared.reset()
-                GameManager.shared.playerMovement?.controllerType = gameMode
-                GameManager.shared.startGame()
             } else if leaderboardIcon.contains(position) {
                 GameCenterManager.shared.displayLeaderboard(.test)
             }
