@@ -9,9 +9,9 @@ enum GameState {
 }
 
 protocol GameManagerDelegate: AnyObject {
-    func didResetGame()
-    func didStartGame()
-    func didEnterDeathState()
+    func didUpdateState()
+//    func didStartGame()
+//    func didEnterDeathState()
 }
 
 class GameManager: GKEntity {
@@ -60,18 +60,19 @@ class GameManager: GKEntity {
             case .dead:
                 avalancheManager?.coverPlayer {
                     self.scene?.isPaused = true
-                    self.delegate?.didEnterDeathState()
+//                    self.delegate?.didEnterDeathState()
                     print("Game paused")
                 }
                 GameCenterManager.shared.score(currentScore)
             }
+            delegate?.didUpdateState()
         }
     }
 
     func startGame() {
         guard state == .menu else { return }
         state = .playing
-        delegate?.didStartGame()
+//        delegate?.didStartGame()
     }
 
     func unpause() {
@@ -113,7 +114,6 @@ class GameManager: GKEntity {
         scoreManager.resetScore()
         playTime = 0
         lastRendererCall = nil
-        delegate?.didResetGame()
     }
 
     // MARK: - Access to game information

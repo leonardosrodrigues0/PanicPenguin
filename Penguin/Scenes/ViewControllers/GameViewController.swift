@@ -15,24 +15,29 @@ class GameViewController: UIViewController {
         CGSize(width: sceneView.frame.width, height: sceneView.frame.height)
     }
 
-    lazy var hud = Hud(size: sceneViewSize)
-    lazy var menu = Menu(size: sceneViewSize)
-    lazy var afterMenu = AfterMenu(size: sceneViewSize)
-    private var controllerOption: MovementManagerType?
+//    lazy var hud = Hud(size: sceneViewSize)
+//    lazy var menu = Menu(size: sceneViewSize)
+//    lazy var afterMenu = AfterMenu(size: sceneViewSize)
+//    private var controllerOption: MovementManagerType?
 
-    var overlay: OverlayableSKScene? {
-        didSet {
-            overlay?.updateOverlay()
-            sceneView.overlaySKScene = overlay
-        }
+//    var overlay: OverlayableSKScene? {
+//        didSet {
+//            overlay?.updateOverlay()
+//            sceneView.overlaySKScene = overlay
+//        }
+//    }
+
+//    var isInteractingWithOverlay: Bool = false
+
+    func updateScene() {
+        gameScene = buildNewScene()
+        sceneView.scene = gameScene
     }
-
-    var isInteractingWithOverlay: Bool = false
 
     private func buildNewScene() -> GameScene {
         let scene = GameScene()
         GameManager.shared.scene = scene
-        playBackgroundMusic()
+//        playBackgroundMusic()
         return scene
     }
 
@@ -42,22 +47,22 @@ class GameViewController: UIViewController {
         sceneView.delegate = GameManager.shared
         sceneView.isPlaying = true
         GameCenterManager.shared.viewController = self
-        overlay = menu
-        GameManager.shared.delegate = self
+//        overlay = menu
+//        GameManager.shared.delegate = self
     }
 
     // MARK: - Touches Handling Methods
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isInteractingWithOverlay else { return }
+//        guard !isInteractingWithOverlay else { return }
 
         // Keep state from before interaction call
         let state = GameManager.shared.state
-        interactWithOverlay(touches)
+//        interactWithOverlay(touches)
 
         guard
-            state == .playing,
-            !(overlay?.containsInteractableObject(touches) ?? false)
+            state == .playing
+//            !(overlay?.containsInteractableObject(touches) ?? false)
         else {
             return
         }
@@ -71,7 +76,7 @@ class GameViewController: UIViewController {
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard
-            !isInteractingWithOverlay,
+//            !isInteractingWithOverlay,
             GameManager.shared.state == .playing
         else {
             return
@@ -86,7 +91,7 @@ class GameViewController: UIViewController {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard
-            !isInteractingWithOverlay,
+//            !isInteractingWithOverlay,
             GameManager.shared.state == .playing
         else {
             return
@@ -104,48 +109,48 @@ class GameViewController: UIViewController {
     }
 }
 
-extension GameViewController: OverlayableSKSceneDelegate {}
+//extension GameViewController: OverlayableSKSceneDelegate {}
 
-extension GameViewController: GameManagerDelegate {
-    func didStartGame() {
-        DispatchQueue.main.async {
-            self.controllerOption = GameManager.shared.playerMovement?.controllerType
-            self.hud.updateRecordLabel()
-            self.overlay = self.hud
-        }
-    }
-
-    func didResetGame() {
-        DispatchQueue.main.async {
-            self.overlay = self.menu
-        }
-    }
-
-    func didEnterDeathState() {
-        DispatchQueue.main.async {
-            self.overlay = self.afterMenu
-            self.sceneView.scene = self.buildNewScene()
-            GameManager.shared.playerMovement?.controllerType = self.controllerOption
-        }
-    }
-
-    public func playBackgroundMusic() {
-        if let url = Bundle.main.url(forResource: "JazzRush", withExtension: ".mp3") {
-            do {
-                backgroundMusicPlayer = try AVAudioPlayer(contentsOf: url)
-            } catch {
-                print("the audio wasn't found")
-            }
-        } else {
-            return print("Could not find file: JazzRush")
-        }
-        if let player = backgroundMusicPlayer {
-            player.volume = 0.06
-            player.numberOfLoops = -1
-            player.prepareToPlay()
-            player.play()
-        } else {
-            print("Could not create audio player")
-        }
-    }
-}
+//extension GameViewController: GameManagerDelegate {
+//    func didStartGame() {
+//        DispatchQueue.main.async {
+//            self.controllerOption = GameManager.shared.playerMovement?.controllerType
+//            self.hud.updateRecordLabel()
+//            self.overlay = self.hud
+//        }
+//    }
+//
+//    func didResetGame() {
+//        DispatchQueue.main.async {
+//            self.overlay = self.menu
+//        }
+//    }
+//
+//    func didEnterDeathState() {
+//        DispatchQueue.main.async {
+//            self.overlay = self.afterMenu
+//            self.sceneView.scene = self.buildNewScene()
+//            GameManager.shared.playerMovement?.controllerType = self.controllerOption
+//        }
+//    }
+//
+//    public func playBackgroundMusic() {
+//        if let url = Bundle.main.url(forResource: "JazzRush", withExtension: ".mp3") {
+//            do {
+//                backgroundMusicPlayer = try AVAudioPlayer(contentsOf: url)
+//            } catch {
+//                print("the audio wasn't found")
+//            }
+//        } else {
+//            return print("Could not find file: JazzRush")
+//        }
+//        if let player = backgroundMusicPlayer {
+//            player.volume = 0.06
+//            player.numberOfLoops = -1
+//            player.prepareToPlay()
+//            player.play()
+//        } else {
+//            print("Could not create audio player")
+//        }
+//    }
+//}

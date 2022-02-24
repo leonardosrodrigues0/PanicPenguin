@@ -12,7 +12,31 @@ struct MenuView: View {
             GameManager.shared.playerMovement?.controllerType = .touch
             GameManager.shared.startGame()
         }, label: {
-            Text("Play")
+            Text("PLAY")
+                .padding()
+                .background(Color.red)
+        })
+    }
+}
+
+struct HudView: View {
+    var body: some View {
+        Button(action: {
+            GameManager.shared.togglePause()
+        }, label: {
+            Text("PAUSE")
+                .padding()
+                .background(Color.red)
+        })
+    }
+}
+
+struct AfterMenuView: View {
+    var body: some View {
+        Button(action: {
+            GameManager.shared.reset()
+        }, label: {
+            Text("RESET")
                 .padding()
                 .background(Color.red)
         })
@@ -24,14 +48,17 @@ struct Main: View {
 
     var body: some View {
         ZStack {
-            GameView()
+            GameView(state: $viewModel.state)
             switch viewModel.state {
             case .menu:
                 MenuView()
+            case .dead:
+                AfterMenuView()
             default:
-                Text("NOT MENU")
+                HudView()
             }
         }
+        .edgesIgnoringSafeArea(.all)
     }
 
     class ViewModel: ObservableObject, GameManagerDelegate {
@@ -39,23 +66,18 @@ struct Main: View {
 
         init() {
             state = GameManager.shared.state
+            GameManager.shared.delegate = self
         }
 
-        func didResetGame() {
-            <#code#>
-        }
-
-        func didStartGame() {
+        func didUpdateState() {
             state = GameManager.shared.state
-        }
-
-        func didEnterDeathState() {
-            <#code#>
         }
     }
 }
 
 struct GameView: UIViewControllerRepresentable {
+    @Binding var state: GameState
+
     func makeUIViewController(context: Context) -> some UIViewController {
         let storyboard = UIStoryboard(name: "Game", bundle: Bundle.main)
         let controller = storyboard.instantiateInitialViewController()!
@@ -63,6 +85,13 @@ struct GameView: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        guard let controller = uiViewController as? GameViewController else {
+            return
+        }
 
+        print("UPDATE \(state)")
+        if state == .menu {
+            controller.updateScene()
+        }
     }
 }

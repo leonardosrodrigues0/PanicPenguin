@@ -65,7 +65,9 @@ class SpeedManagerComponent: GKComponent {
     private(set) var currentSpeed: Speed = .v2 {
         didSet {
             if currentSpeed == .v0 {
-                GameManager.shared.die()
+                DispatchQueue.main.async {
+                    GameManager.shared.die()
+                }
             }
         }
     }
