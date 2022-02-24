@@ -13,7 +13,7 @@ class Menu: SKScene, OverlayableSKScene {
     private let leaderboardIcon: SKSpriteNode
 
     override init(size: CGSize) {
-        self.iconsSize = CGSize(width: 0.9 * size.width, height: 0.09 * size.width)
+        self.iconsSize = CGSize(width: 0.6 * size.width, height: 0.15 * size.width)
         self.background = SKSpriteNode(texture: backgroundTexture)
         self.touchIcon = SKSpriteNode(texture: touchTexture)
         self.motionIcon = SKSpriteNode(texture: motionTexture)
@@ -24,7 +24,7 @@ class Menu: SKScene, OverlayableSKScene {
     }
 
     func buildScene() {
-        background.size = CGSize(width: 0.95 * self.frame.width, height: 0.4 * self.frame.height)
+        background.size = CGSize(width: 0.9 * self.frame.width, height: 0.4 * self.frame.height)
         background.position = CGPoint(x: 0.5 * self.frame.width, y: 0.5 * self.frame.height)
         background.name = "background"
         self.addChild(background)
@@ -32,7 +32,7 @@ class Menu: SKScene, OverlayableSKScene {
         touchIcon.size = iconsSize
         touchIcon.position = CGPoint(
             x: 0.5 * self.frame.width,
-            y: 0.5 * self.frame.height + 3 * iconsSize.height
+            y: 0.5 * self.frame.height + 1.6 * iconsSize.height
         )
         touchIcon.name = "touchIcon"
         self.addChild(touchIcon)
@@ -40,7 +40,7 @@ class Menu: SKScene, OverlayableSKScene {
         motionIcon.size = iconsSize
         motionIcon.position = CGPoint(
             x: 0.5 * self.frame.width,
-            y: 0.5 * self.frame.height + 1 * iconsSize.height
+            y: 0.5 * self.frame.height + 0.4 * iconsSize.height
         )
         motionIcon.name = "motionIcon"
         self.addChild(motionIcon)
@@ -48,7 +48,7 @@ class Menu: SKScene, OverlayableSKScene {
         leaderboardIcon.size = iconsSize
         leaderboardIcon.position = CGPoint(
             x: 0.5 * self.frame.width,
-            y: 0.5 * self.frame.height - 3 * iconsSize.height
+            y: 0.5 * self.frame.height - 1.6 * iconsSize.height
         )
         leaderboardIcon.name = "leaderboardIcon"
         self.addChild(leaderboardIcon)

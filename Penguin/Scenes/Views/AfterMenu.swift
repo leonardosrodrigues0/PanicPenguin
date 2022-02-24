@@ -17,7 +17,7 @@ class AfterMenu: SKScene, OverlayableSKScene {
     }
 
     override init(size: CGSize) {
-        self.iconSize = CGSize(width: 0.9 * size.width, height: 0.09 * size.width)
+        self.iconSize = CGSize(width: 0.6 * size.width, height: 0.15 * size.width)
         self.background = SKSpriteNode(texture: backgroundTexture)
         self.returnGame = SKSpriteNode(texture: returnGameTexture)
         self.finalScore = SKLabelNode(text: Self.scoreText)
@@ -40,7 +40,7 @@ class AfterMenu: SKScene, OverlayableSKScene {
         returnGame.size = iconSize
         returnGame.position = CGPoint(
             x: 0.5 * self.frame.width,
-            y: 0.5 * self.frame.height + 2 * iconSize.height
+            y: 0.5 * self.frame.height + 1 * iconSize.height
         )
         returnGame.name = "returnGame"
         self.addChild(returnGame)
@@ -48,7 +48,7 @@ class AfterMenu: SKScene, OverlayableSKScene {
         finalScore.verticalAlignmentMode = .center
         finalScore.fontSize = CGFloat(32)
         finalScore.fontName = "AvenirNext-HeavyItalic"
-        finalScore.fontColor = .black
+        finalScore.fontColor = .white
         finalScore.name = "finalScore"
         finalScore.position = CGPoint(
             x: 0.5 * self.frame.width,
@@ -59,7 +59,7 @@ class AfterMenu: SKScene, OverlayableSKScene {
         leaderboardIcon.size = iconSize
         leaderboardIcon.position = CGPoint(
             x: 0.5 * self.frame.width,
-            y: 0.5 * self.frame.height - 2 * iconSize.height
+            y: 0.5 * self.frame.height - 1.5 * iconSize.height
         )
         leaderboardIcon.name = "leaderboardIcon"
         self.addChild(leaderboardIcon)
