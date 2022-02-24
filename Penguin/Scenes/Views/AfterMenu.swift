@@ -79,7 +79,7 @@ class AfterMenu: SKScene, OverlayableSKScene {
             if returnGame.contains(position) {
                 GameManager.shared.reset()
             } else if leaderboardIcon.contains(position) {
-                GameCenterManager.shared.displayLeaderboard(.test)
+                GameCenterManager.shared.displayLeaderboard(.production)
             }
         }
     }

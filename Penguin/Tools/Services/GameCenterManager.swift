@@ -3,6 +3,7 @@ import GameKit
 
 enum LeaderboardType: String {
     case test
+    case production
 }
 
 class GameCenterManager: NSObject {
@@ -32,7 +33,7 @@ class GameCenterManager: NSObject {
         GKLocalPlayer.local.authenticateHandler = { vc, error in
             if self.isAuthenticated {
                 print("Usuário autenticado")
-                self.updateLocalBest(from: .test)
+                self.updateLocalBest(from: .production)
             } else if let vc = vc {
                 self.viewController?.present(vc, animated: true, completion: nil)
             } else if let error = error {
@@ -59,7 +60,7 @@ class GameCenterManager: NSObject {
         
         if value > highestScore {
             highestScore = value
-            postScore(value, to: .test)
+            postScore(value, to: .production)
         }
     }
     
@@ -87,6 +88,8 @@ class GameCenterManager: NSObject {
                 if let entry = localEntry {
                     print(entry.score)
                     self.highestScore = entry.score
+                } else {
+                    self.highestScore = 0
                 }
             }
         }

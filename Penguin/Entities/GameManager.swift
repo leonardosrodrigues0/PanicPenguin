@@ -58,12 +58,12 @@ class GameManager: GKEntity {
             case .playing:
                 scene?.isPaused = false
             case .dead:
+                GameCenterManager.shared.score(currentScore)
                 avalancheManager?.coverPlayer {
                     self.scene?.isPaused = true
                     self.delegate?.didEnterDeathState()
                     print("Game paused")
                 }
-                GameCenterManager.shared.score(currentScore)
             }
         }
     }
