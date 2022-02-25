@@ -6,9 +6,8 @@ import Foundation
 class Hud: SKScene, OverlayableSKScene {
     
     private let textureAtlas = SKTextureAtlas(named: "HUD")
-    private let pauseTexture = SKTexture(image: UIImage(systemName: "pause.fill")!)
-    private let playTexture = SKTexture(image: UIImage(systemName: "play.fill")!)
-
+    private let pauseTexture: SKTexture
+    private let playTexture: SKTexture
     private let rootNode: SKNode
     private let starIcon: SKSpriteNode
     private let starCountText: SKLabelNode
@@ -18,6 +17,8 @@ class Hud: SKScene, OverlayableSKScene {
     
     override init(size: CGSize) {
         self.rootNode = SKNode()
+        self.pauseTexture = textureAtlas.textureNamed("pause")
+        self.playTexture = textureAtlas.textureNamed("play")
         self.starIcon = SKSpriteNode(texture: textureAtlas.textureNamed("star"))
         self.starCountText = SKLabelNode(text: "000")
         self.speedometerIcon = SKSpriteNode(texture: textureAtlas.textureNamed("speedometer"))
