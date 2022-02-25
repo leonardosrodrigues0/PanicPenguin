@@ -9,8 +9,6 @@ enum GameState {
 }
 
 protocol GameManagerDelegate: AnyObject {
-    func didResetGame()
-    func didStartGame()
     func didEnterDeathState()
 }
 
@@ -25,6 +23,7 @@ class GameManager: GKEntity {
         addComponent(soundManager)
         addComponent(speedManager)
         addComponent(scoreManager)
+        addComponent(overlayManager)
     }
 
     // MARK: - Entity components
@@ -32,6 +31,7 @@ class GameManager: GKEntity {
     let speedManager = SpeedManagerComponent()
     let scoreManager = ScoreManagerComponent()
     let soundManager = AudioManagerComponent()
+    let overlayManager = OverlayManagerComponent()
 
     // MARK: - Other entities components
 
@@ -61,6 +61,7 @@ class GameManager: GKEntity {
                 avalancheManager?.coverPlayer {
                     self.scene?.isPaused = true
                     self.delegate?.didEnterDeathState()
+                    self.overlayManager.activateAfterMenu()
                     print("Game paused")
                 }
                 GameCenterManager.shared.score(currentScore)
@@ -71,7 +72,7 @@ class GameManager: GKEntity {
     func startGame() {
         guard state == .menu else { return }
         state = .playing
-        delegate?.didStartGame()
+        overlayManager.activateOnboarding(for: playerMovement?.controllerType)
     }
 
     func unpause() {
@@ -113,7 +114,7 @@ class GameManager: GKEntity {
         scoreManager.resetScore()
         playTime = 0
         lastRendererCall = nil
-        delegate?.didResetGame()
+        overlayManager.activateMenu()
     }
 
     // MARK: - Access to game information
@@ -157,5 +158,8 @@ extension GameManager: SCNSceneRendererDelegate {
         }
 
         lastRendererCall = time
+        if playTime > 2 && playTime < 2.1 {
+            overlayManager.activateHud()
+        }
     }
 }

@@ -50,6 +50,9 @@
 		A77E7BFF27B3E25800A5E550 /* OverlayableSKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E7BFE27B3E25800A5E550 /* OverlayableSKScene.swift */; };
 		A783CF5E279B2D2800F96F0F /* GeometryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */; };
 		A783CF60279B403400F96F0F /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CF5F279B403400F96F0F /* CameraComponent.swift */; };
+		A796E97C27C9118000A506DB /* TouchOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796E97B27C9118000A506DB /* TouchOnboarding.swift */; };
+		A796E97E27C9222F00A506DB /* MotionOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796E97D27C9222F00A506DB /* MotionOnboarding.swift */; };
+		A796E98027C9438700A506DB /* OverlayManagerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796E97F27C9438700A506DB /* OverlayManagerComponent.swift */; };
 		A7B66F5727A972D900281AA4 /* MovementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B66F5627A972D900281AA4 /* MovementManager.swift */; };
 		A7CF6FC427BA88B300F92859 /* ScenarioObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CF6FC327BA88B300F92859 /* ScenarioObject.swift */; };
 		A7CF6FC627BA8B6900F92859 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CF6FC527BA8B6900F92859 /* Direction.swift */; };
@@ -113,6 +116,9 @@
 		A77E7BFE27B3E25800A5E550 /* OverlayableSKScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayableSKScene.swift; sourceTree = "<group>"; };
 		A783CF5D279B2D2800F96F0F /* GeometryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryComponent.swift; sourceTree = "<group>"; };
 		A783CF5F279B403400F96F0F /* CameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
+		A796E97B27C9118000A506DB /* TouchOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchOnboarding.swift; sourceTree = "<group>"; };
+		A796E97D27C9222F00A506DB /* MotionOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionOnboarding.swift; sourceTree = "<group>"; };
+		A796E97F27C9438700A506DB /* OverlayManagerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayManagerComponent.swift; sourceTree = "<group>"; };
 		A7B66F5627A972D900281AA4 /* MovementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementManager.swift; sourceTree = "<group>"; };
 		A7CF6FC327BA88B300F92859 /* ScenarioObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenarioObject.swift; sourceTree = "<group>"; };
 		A7CF6FC527BA8B6900F92859 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -278,6 +284,7 @@
 				3FEA03DB27AAA73C006F4E39 /* ParticleEffectComponent.swift */,
 				3FF9D54527AD6F5100DE8F55 /* AvalancheManagerComponent.swift */,
 				3114416227AC187A00EEB671 /* LightComponent.swift */,
+				A796E97F27C9438700A506DB /* OverlayManagerComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -299,6 +306,8 @@
 				3114416027ABFAE200EEB671 /* Hud.swift */,
 				A77E7BFE27B3E25800A5E550 /* OverlayableSKScene.swift */,
 				31EB894727B53AEB00F30239 /* AfterMenu.swift */,
+				A796E97B27C9118000A506DB /* TouchOnboarding.swift */,
+				A796E97D27C9222F00A506DB /* MotionOnboarding.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -447,6 +456,8 @@
 				A75717E9279ACEF4004A4C9B /* PhysicsCategory.swift in Sources */,
 				A75717F5279AD68D004A4C9B /* DeviceMotion.swift in Sources */,
 				31C9E6AA27AD572E003FEAB1 /* Light.swift in Sources */,
+				A796E98027C9438700A506DB /* OverlayManagerComponent.swift in Sources */,
+				A796E97C27C9118000A506DB /* TouchOnboarding.swift in Sources */,
 				D7F9B17E27A1899900275F94 /* Spawner.swift in Sources */,
 				A75717F7279AD6A9004A4C9B /* Menu.swift in Sources */,
 				D7F9B17427A164DC00275F94 /* SpeedManagerComponent.swift in Sources */,
@@ -460,6 +471,7 @@
 				D73C1A9127A0195C007C8549 /* SCNVector3+Extensions.swift in Sources */,
 				31EB894827B53AEB00F30239 /* AfterMenu.swift in Sources */,
 				D7F9B17227A1644300275F94 /* GameManager.swift in Sources */,
+				A796E97E27C9222F00A506DB /* MotionOnboarding.swift in Sources */,
 				60B0E16A27AAA53300672CAA /* AudioManagerComponent.swift in Sources */,
 				A75717FD279AD80B004A4C9B /* Camera.swift in Sources */,
 				A76ECC9C279B27780024B3A7 /* Config.swift in Sources */,

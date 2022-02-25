@@ -6,28 +6,17 @@ import SpriteKit
 
 class GameViewController: UIViewController {
 
-    @IBOutlet private var sceneView: SCNView!
-    lazy private var gameScene: GameScene = buildNewScene()
-
-    public var backgroundMusicPlayer: AVAudioPlayer?
-
-    private var sceneViewSize: CGSize {
-        CGSize(width: sceneView.frame.width, height: sceneView.frame.height)
-    }
-
-    lazy var hud = Hud(size: sceneViewSize)
-    lazy var menu = Menu(size: sceneViewSize)
-    lazy var afterMenu = AfterMenu(size: sceneViewSize)
-    private var controllerOption: MovementManagerType?
-
-    var overlay: OverlayableSKScene? {
+    @IBOutlet private var sceneView: SCNView! {
         didSet {
-            overlay?.updateOverlay()
-            sceneView.overlaySKScene = overlay
+            GameManager.shared.overlayManager.sceneView = sceneView
         }
     }
 
-    var isInteractingWithOverlay: Bool = false
+    lazy private var gameScene: GameScene = buildNewScene()
+
+    public var backgroundMusicPlayer: AVAudioPlayer?
+    
+    internal var controllerOption: MovementManagerType?
 
     private func buildNewScene() -> GameScene {
         let scene = GameScene()
@@ -53,22 +42,29 @@ class GameViewController: UIViewController {
         sceneView.delegate = GameManager.shared
         sceneView.isPlaying = true
         GameCenterManager.shared.viewController = self
-        overlay = menu
         GameManager.shared.delegate = self
     }
 
     // MARK: - Touches Handling Methods
+
+    var isInteractingWithOverlay: Bool {
+        GameManager.shared.overlayManager.isInteractingWithOverlay
+    }
+
+    func containsInteractableObject(_ touches: Set<UITouch>) -> Bool {
+        GameManager.shared.overlayManager.overlay?.containsInteractableObject(touches) ?? false
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard !isInteractingWithOverlay else { return }
 
         // Keep state from before interaction call
         let state = GameManager.shared.state
-        interactWithOverlay(touches)
+        GameManager.shared.overlayManager.interactWithOverlay(touches)
 
         guard
             state == .playing,
-            !(overlay?.containsInteractableObject(touches) ?? false)
+            !containsInteractableObject(touches)
         else {
             return
         }
@@ -113,33 +109,8 @@ class GameViewController: UIViewController {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchesEnded(touches, with: event)
     }
-}
 
-extension GameViewController: OverlayableSKSceneDelegate {}
-
-extension GameViewController: GameManagerDelegate {
-    func didStartGame() {
-        DispatchQueue.main.async {
-            self.controllerOption = GameManager.shared.playerMovement?.controllerType
-            self.overlay = self.hud
-        }
-    }
-
-    func didResetGame() {
-        DispatchQueue.main.async {
-            self.overlay = self.menu
-        }
-    }
-
-    func didEnterDeathState() {
-        DispatchQueue.main.async {
-            self.overlay = self.afterMenu
-            self.sceneView.scene = self.buildNewScene()
-            GameManager.shared.playerMovement?.controllerType = self.controllerOption
-        }
-    }
-
-    public func playBackgroundMusic() {
+    func playBackgroundMusic() {
         if let url = Bundle.main.url(forResource: "JazzRush", withExtension: ".mp3") {
             do {
                 backgroundMusicPlayer = try AVAudioPlayer(contentsOf: url)
@@ -156,6 +127,15 @@ extension GameViewController: GameManagerDelegate {
             player.play()
         } else {
             print("Could not create audio player")
+        }
+    }
+}
+
+extension GameViewController: GameManagerDelegate {
+
+    func didEnterDeathState() {
+        DispatchQueue.main.async {
+            self.sceneView.scene = self.buildNewScene()
         }
     }
 }

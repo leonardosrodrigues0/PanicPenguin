@@ -9,6 +9,12 @@ protocol OverlayableSKScene: SKScene {
 extension OverlayableSKScene {
     func updateOverlay() {}
 
+    func containsInteractableObject(_ touches: Set<UITouch>) -> Bool {
+        false
+    }
+
+    func processTouch(_ touches: Set<UITouch>) {}
+
     static var fontName: String {
         "AvenirNext-HeavyItalic"
     }
