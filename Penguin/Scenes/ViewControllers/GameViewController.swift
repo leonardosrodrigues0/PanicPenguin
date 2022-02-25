@@ -21,18 +21,7 @@ class GameViewController: UIViewController {
     private func buildNewScene() -> GameScene {
         let scene = GameScene()
         GameManager.shared.scene = scene
-        scene.add(GameManager.shared)
-        scene.add(Player())
-        scene.add(Ground())
-        scene.add(Camera())
-        scene.add(Light())
-        scene.add(Spawner<Obstacle>())
-        scene.add(Avalanche())
-        scene.add(Spawner<Coin>())
-        scene.add(Spawner<SpeedPowerUp>())
-        scene.add(Spawner<ScenarioObject>())
         playBackgroundMusic()
-
         return scene
     }
 
