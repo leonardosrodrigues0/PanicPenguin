@@ -8,6 +8,10 @@ protocol OverlayableSKScene: SKScene {
 
 extension OverlayableSKScene {
     func updateOverlay() {}
+
+    static var fontName: String {
+        "AvenirNext-HeavyItalic"
+    }
 }
 
 protocol OverlayableSKSceneDelegate: AnyObject {

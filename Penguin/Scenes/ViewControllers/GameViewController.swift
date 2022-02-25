@@ -121,7 +121,6 @@ extension GameViewController: GameManagerDelegate {
     func didStartGame() {
         DispatchQueue.main.async {
             self.controllerOption = GameManager.shared.playerMovement?.controllerType
-            self.hud.updateRecordLabel()
             self.overlay = self.hud
         }
     }

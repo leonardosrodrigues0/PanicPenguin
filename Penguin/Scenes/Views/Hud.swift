@@ -8,18 +8,21 @@ class Hud: SKScene, OverlayableSKScene {
     private let textureAtlas = SKTextureAtlas(named: "HUD")
     private let pauseTexture = SKTexture(image: UIImage(systemName: "pause.fill")!)
     private let playTexture = SKTexture(image: UIImage(systemName: "play.fill")!)
+
+    private let rootNode: SKNode
     private let starIcon: SKSpriteNode
-    private let pauseIcon: SKSpriteNode
     private let starCountText: SKLabelNode
+    private let speedometerIcon: SKSpriteNode
     private let speedometerText: SKLabelNode
-    private let recordText: SKLabelNode
+    private let pauseIcon: SKSpriteNode
     
     override init(size: CGSize) {
+        self.rootNode = SKNode()
         self.starIcon = SKSpriteNode(texture: textureAtlas.textureNamed("star"))
-        self.pauseIcon = SKSpriteNode(texture: pauseTexture)
         self.starCountText = SKLabelNode(text: "000")
+        self.speedometerIcon = SKSpriteNode(texture: textureAtlas.textureNamed("speedometer"))
         self.speedometerText = SKLabelNode(text: "000")
-        self.recordText = SKLabelNode()
+        self.pauseIcon = SKSpriteNode(texture: pauseTexture)
         super.init(size: size)
         buildScene()
     }
@@ -39,65 +42,56 @@ class Hud: SKScene, OverlayableSKScene {
     private func updateLabels(currentScore: Int, currentSpeed: Speed) {
         starCountText.text = "\(currentScore)"
         speedometerText.text = "\(currentSpeed)"
-    }
-    
-    func updateRecordLabel() {
-        recordText.text = getRecordLabel() ?? ""
-    }
-    
-    private func getRecordLabel() -> String? {
-        guard GameCenterManager.shared.isAuthenticated else {
-            return nil
-        }
-        
-        return "Best score: " + String(GameCenterManager.shared.highestScore)
+        // Assure that when size increases, the layout behave properly:
+        starCountText.position = CGPoint(x: 30 + starCountText.frame.width / 2, y: -2)
     }
     
     private func buildScene() {
-        starIcon.size = CGSize(width: 20, height: 20)
-        starIcon.position = CGPoint(x: 40, y: self.frame.height - 90)
-        starIcon.name = "starIcon"
-        self.addChild(starIcon)
+        self.addChild(rootNode)
+        rootNode.position = CGPoint(
+            x: 0.1 * self.frame.width,
+            y: 0.9 * self.frame.height
+        )
 
+        rootNode.addChild(starIcon)
+        starIcon.size = CGSize(width: 20, height: 20)
+        starIcon.position = CGPoint(x: 0, y: 0)
+        starIcon.name = "starIcon"
+
+        starIcon.addChild(starCountText)
         starCountText.verticalAlignmentMode = .center
-        starCountText.fontSize = CGFloat(16)
-        starCountText.position = CGPoint(x: 30, y: 0)
-        starCountText.fontName = "AvenirNext-HeavyItalic"
+        starCountText.fontSize = CGFloat(25)
+        // position updated in `updateLabels`
+        starCountText.fontName = Self.fontName
         starCountText.fontColor = UIColor.black
         starCountText.name = "starCountText"
-        starIcon.addChild(starCountText)
-        
-        let speedometerIcon = SKSpriteNode(texture: textureAtlas.textureNamed("speedometer"))
-        speedometerIcon.size = CGSize(width: 20, height: 20)
-        speedometerIcon.position = CGPoint(x: 70, y: 0)
-        speedometerIcon.name = "speedometerIcon"
+
         starIcon.addChild(speedometerIcon)
+        speedometerIcon.size = CGSize(width: 20, height: 20)
+        speedometerIcon.position = CGPoint(x: 0, y: -40)
+        speedometerIcon.name = "speedometerIcon"
         
+        speedometerIcon.addChild(speedometerText)
         speedometerText.verticalAlignmentMode = .center
-        speedometerText.fontSize = CGFloat(16)
-        speedometerText.position = CGPoint(x: 30, y: 0)
-        speedometerText.fontName = "AvenirNext-HeavyItalic"
+        speedometerText.fontSize = CGFloat(25)
+        speedometerText.position = CGPoint(x: 40, y: 0)
+        speedometerText.fontName = Self.fontName
         speedometerText.fontColor = UIColor.black
         speedometerText.name = "speedometerText"
-        speedometerIcon.addChild(speedometerText)
         
-        pauseIcon.size = CGSize(width: 20, height: 20)
-        pauseIcon.position = CGPoint(x: 180, y: self.frame.height - 90)
+        rootNode.addChild(pauseIcon)
+        pauseIcon.size = CGSize(width: 30, height: 30)
+        pauseIcon.position = CGPoint(x: 250, y: 0)
         pauseIcon.name = "pauseIcon"
-        self.addChild(pauseIcon)
-        
-        recordText.text = getRecordLabel()
-        recordText.fontSize = CGFloat(16)
-        recordText.position = CGPoint(x: 95, y: -6)
-        recordText.fontName = "AvenirNext-HeavyItalic"
-        recordText.fontColor = UIColor.black
-        recordText.name = "speedometerText"
-        pauseIcon.addChild(recordText)
+
+        let scaleNum = 0.8 * self.frame.width
+        let scaleDen = pauseIcon.position.x + (pauseIcon.frame.width / 2)
+        rootNode.setScale(scaleNum / scaleDen)
     }
     
     func processTouch(_ touches: Set<UITouch>) {
         if let position = touches.first?.location(in: self) {
-            if pauseIcon.contains(position) {
+            if self.atPoint(position) == pauseIcon {
                 GameManager.shared.togglePause { state in
                     switch state {
                     case .paused:
@@ -112,6 +106,6 @@ class Hud: SKScene, OverlayableSKScene {
 
     func containsInteractableObject(_ touches: Set<UITouch>) -> Bool {
         guard let position = touches.first?.location(in: self) else { return false }
-        return pauseIcon.contains(position)
+        return self.atPoint(position) == pauseIcon
     }
 }

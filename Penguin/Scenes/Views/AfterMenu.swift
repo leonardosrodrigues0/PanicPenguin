@@ -47,7 +47,7 @@ class AfterMenu: SKScene, OverlayableSKScene {
 
         finalScore.verticalAlignmentMode = .center
         finalScore.fontSize = CGFloat(32)
-        finalScore.fontName = "AvenirNext-HeavyItalic"
+        finalScore.fontName = Self.fontName
         finalScore.fontColor = .white
         finalScore.name = "finalScore"
         finalScore.position = CGPoint(
